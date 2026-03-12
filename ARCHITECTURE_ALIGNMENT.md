@@ -61,7 +61,22 @@ Also declare execution platform profile:
 - Platform version/model
 - Capability profile (tools/file access/network/approval mode)
 
-**Output required:** Mode + platform declaration.
+If mode is `brownfield`, also declare:
+
+- Target workspace path (absolute)
+- Brief project description (1-3 sentences)
+- Optional profile override
+
+Then resolve selected profile via:
+
+- `/ai-onboarding/profiles/PROFILE_SELECTION_PROTOCOL.md`
+
+**Output required:** Mode + platform declaration (+ brownfield project brief and selected profile when applicable).
+
+Step 0 interaction rule:
+
+- If the user starts with a minimal alignment prompt and Step 0 fields are missing, the assistant must ask for missing fields before proceeding.
+- The assistant must not assume the user already knows which Step 0 questions to provide.
 
 ---
 
@@ -155,6 +170,8 @@ Phase 1 is complete only when all are true:
 
 - Mode declared
 - Platform profile declared
+- Brownfield project brief declared (if applicable)
+- Brownfield selected profile declared (if applicable)
 - `MASTER_CONTEXT.md` read (or absence explicitly acknowledged)
 - Bootstrap contract executed
 - `AI_ONBOARDING_SUMMARY.md` generated or validated

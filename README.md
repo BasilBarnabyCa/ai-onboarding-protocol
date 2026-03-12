@@ -16,28 +16,74 @@ This repository provides a repeatable protocol to:
 - Teams running AI-assisted work in software, security, operations, or mixed domains
 - Projects that need deterministic onboarding and change safety
 
-## Quick Start
+## Where To Start
 
-Run from `/ai-onboarding`.
+`Run from /ai-onboarding` means this folder is your working context in the AI tool. It is not a shell command.
 
-1. Choose mode and platform:
+If you want the shortest possible start, send this first:
+
+```text
+Follow /ai-onboarding/ARCHITECTURE_ALIGNMENT.md.
+No implementation changes.
+```
+
+After this message, the assistant should ask you for any missing Step 0 inputs automatically.
+You should not need to know the full Step 0 schema in advance.
+
+Expected assistant questions (as needed):
+
 - Mode: `greenfield` or `brownfield`
 - Platform: `Codex`, `Claude Code`, `ChatGPT`, or `Other`
-- For brownfield, also declare target workspace path
+- Platform profile (model + capability summary)
+- Brownfield only: target workspace absolute path
+- Brownfield only: brief project description (1-3 sentences)
+- Brownfield only: optional profile override
 
-2. Start alignment:
+Then use:
+
+```text
+Follow /ai-onboarding/AGENT_RULES.md.
+
+Begin Phase 2 - Change Planning only.
+No implementation changes.
+
+Task:
+[Clearly describe the task here]
+```
+
+Then use:
+
+```text
+Follow /ai-onboarding/AGENT_RULES.md.
+
+Proceed with implementation according to the approved Change Plan.
+```
+
+For full prompts and optional fields, see `AI_EXECUTION_PROTOCOL.md`.
+
+Start by sending prompt messages to the AI assistant in this exact order when you want full explicit context.
+
+### 1) Alignment
 
 ```text
 Follow /ai-onboarding/ARCHITECTURE_ALIGNMENT.md.
 Mode: [brownfield|greenfield]
 Platform: [Codex|Claude Code|ChatGPT|Other]
 Platform profile: [model + capability summary]
-Target workspace: [absolute path]
+Target workspace: [absolute path, brownfield only]
+Project brief: [1-3 sentences, brownfield only]
+Profile override: [optional]
 No implementation changes.
 Write onboarding artifacts to /ai-onboarding/output.
 ```
 
-3. After alignment, run drift audit gate:
+Wait for:
+
+- onboarding output artifacts
+- alignment confirmation
+- risks/ambiguities
+
+### 2) Drift Audit Gate
 
 ```text
 Run mandatory self-critique and drift audit.
@@ -47,7 +93,39 @@ If drift is major, pause and ask for clarification.
 No implementation changes.
 ```
 
-4. Move to planning, then implementation only after approvals and gate checks.
+### 3) Change Planning
+
+```text
+Follow /ai-onboarding/AGENT_RULES.md.
+
+Begin Phase 2 - Change Planning only.
+No implementation changes.
+
+Task:
+[Clearly describe the task here]
+```
+
+Review and explicitly approve the plan before implementation.
+
+### 4) Implementation
+
+```text
+Follow /ai-onboarding/AGENT_RULES.md.
+
+Proceed with implementation according to the approved Change Plan.
+```
+
+### 5) Mid-Thread Re-Anchor (optional)
+
+```text
+Follow /ai-onboarding/AGENT_RULES.md.
+
+Perform a quick re-alignment check against /ai-onboarding/output/MASTER_CONTEXT.md and /ai-onboarding/output/AI_ONBOARDING_SUMMARY.md.
+Do NOT regenerate onboarding output in this message.
+No implementation changes in this message - alignment only.
+
+Then continue from the already-approved Change Plan.
+```
 
 ## Core Files
 
@@ -58,6 +136,8 @@ No implementation changes.
 - `AI_ONBOARDING_MASTER_CONTEXT_GENERATOR.md`: master context generation rules
 - `ONBOARDING_INTAKE_TEMPLATE.md`: low-friction intake template
 - `DRIFT_CHECK_TEMPLATE.md`: standard drift audit template
+- `profiles/PROFILE_SELECTION_PROTOCOL.md`: deterministic brownfield profile router
+- `profiles/PROFILE_REGISTRY.md`: active/planned profile registry
 
 ## Software Brownfield Overlay
 
@@ -68,6 +148,11 @@ When mode is `brownfield` and target workspace is an existing software project, 
 Direct prompt variant:
 
 - `profiles/software-brownfield/SOFTWARE_BROWNFIELD_COPYPASTE_PROMPT.md`
+
+Profile selection behavior:
+
+- For brownfield runs, profile selection is resolved via `profiles/PROFILE_SELECTION_PROTOCOL.md`.
+- If ambiguous, one disambiguation question is asked within onboarding budget.
 
 ## Output Artifacts
 

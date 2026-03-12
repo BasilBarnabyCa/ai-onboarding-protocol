@@ -63,6 +63,9 @@ This role remains constant across threads.
 - Ask at most `3` follow-up questions, and only when critical uncertainty remains.
 - Prefer auto-discovery from available artifacts before asking questions.
 - Capture execution platform profile (platform, version/model, capabilities) at onboarding start.
+- If mode is `brownfield`, capture target workspace path and a 1-3 sentence project brief.
+- Resolve brownfield profile selection using `/ai-onboarding/profiles/PROFILE_SELECTION_PROTOCOL.md`.
+- If profile selection is ambiguous, ask one disambiguation question within question budget.
 - Track unresolved assumptions in an assumptions ledger with confidence labels.
 
 ---

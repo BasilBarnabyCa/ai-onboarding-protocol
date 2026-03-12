@@ -9,6 +9,10 @@ Use this template to generate `/ai-onboarding/output/DRIFT_CHECK_REPORT.md`.
 - Mode: [brownfield|greenfield]
 - Timestamp: [text goes here]
 - Phase gate: [alignment|pre-implementation]
+- Target workspace path (brownfield): [absolute path or n/a]
+- Selected profile id: [text goes here or none]
+- Profile selection method: [override|auto|question|none]
+- Profile selection confidence: [0.00-1.00 or n/a]
 - Scope impact level: [low|standard|high]
 - Current onboarding score: [0-100]
 
@@ -20,6 +24,7 @@ Use this template to generate `/ai-onboarding/output/DRIFT_CHECK_REPORT.md`.
 4. Approval alignment: [pass|fail] - [text goes here]
 5. Evidence freshness: [pass|fail] - [text goes here]
 6. Platform alignment: [pass|fail] - [text goes here]
+7. Profile alignment (brownfield): [pass|fail] - [text goes here]
 
 ## Assumption Risk
 

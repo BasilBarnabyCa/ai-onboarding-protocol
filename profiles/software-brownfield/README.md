@@ -6,6 +6,11 @@ Use this profile when:
 - Target workspace is an existing software project
 - You need deeper software-specific verification beyond the agnostic baseline
 
+Selection is routed by:
+
+- `/ai-onboarding/profiles/PROFILE_SELECTION_PROTOCOL.md`
+- `/ai-onboarding/profiles/PROFILE_REGISTRY.md`
+
 Primary artifact:
 
 - `SOFTWARE_BROWNFIELD_MASTER_CONTEXT_ARTIFACT.md`

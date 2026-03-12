@@ -55,6 +55,29 @@ Rules:
 
 ---
 
+## Brownfield Profile Selection (Required when mode is `brownfield`)
+
+Capture:
+
+- Target workspace path (absolute)
+- Brief project description (1-3 sentences)
+- Optional profile override
+
+Resolve profile using:
+
+- `/ai-onboarding/profiles/PROFILE_SELECTION_PROTOCOL.md`
+
+Persist selection details:
+
+- Selected profile id
+- Selection method (`override`, `auto`, `question`)
+- Selection confidence score
+- Evidence summary
+
+If ambiguous, ask one disambiguation question within question budget.
+
+---
+
 ## Adaptive Intake Rule (Required)
 
 - Ask at most `5` required questions.
