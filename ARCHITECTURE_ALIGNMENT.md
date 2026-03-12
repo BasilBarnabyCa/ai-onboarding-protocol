@@ -55,7 +55,13 @@ Declare one mode before alignment work:
 - `brownfield`
 - `greenfield`
 
-**Output required:** Mode declaration.
+Also declare execution platform profile:
+
+- Platform (`Codex`, `Claude Code`, `ChatGPT`, or `Other`)
+- Platform version/model
+- Capability profile (tools/file access/network/approval mode)
+
+**Output required:** Mode + platform declaration.
 
 ---
 
@@ -148,6 +154,7 @@ During Phase 1, the agent must:
 Phase 1 is complete only when all are true:
 
 - Mode declared
+- Platform profile declared
 - `MASTER_CONTEXT.md` read (or absence explicitly acknowledged)
 - Bootstrap contract executed
 - `AI_ONBOARDING_SUMMARY.md` generated or validated

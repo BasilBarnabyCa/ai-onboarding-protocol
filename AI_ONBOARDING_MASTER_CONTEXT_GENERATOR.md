@@ -29,6 +29,30 @@ Choose one:
 
 Record the selected mode at the top of each output file.
 
+## Brownfield Software Overlay (conditional)
+
+If mode is `brownfield` and available evidence indicates a software project, also load:
+
+- `/ai-onboarding/profiles/software-brownfield/SOFTWARE_BROWNFIELD_MASTER_CONTEXT_ARTIFACT.md`
+
+Software indicators can include files such as `package.json`, framework configs, route/controller folders, schema/migration files, CI workflows, or equivalent app/runtime artifacts.
+
+Apply the overlay as an additive strictness layer on top of this baseline workflow.
+
+## Execution Platform (required)
+
+Capture execution platform details at onboarding start:
+
+- Platform: `Codex`, `Claude Code`, `ChatGPT`, or `Other`
+- Platform version/model
+- Capability profile (tools, file access scope, network policy, approval mode)
+
+Rule:
+
+- Auto-detect platform/capabilities from runtime where possible.
+- Ask the user only if platform details are not inferable.
+- If asked, platform question must stay within the `5` required-question budget.
+
 ## Non-negotiable rules
 
 - Treat available artifacts as the source of truth.
@@ -49,10 +73,10 @@ Record the selected mode at the top of each output file.
 
 ## Suggested 5 required questions
 
-1. What outcome matters most right now?
-2. What is in scope vs out of scope?
-3. What are the top 3 "do not break" constraints?
-4. What approvals are required before high-impact changes?
+1. Which execution platform and capability profile should be used for this run?
+2. What outcome matters most right now?
+3. What is in scope vs out of scope?
+4. What are the top 3 "do not break" constraints and required approvals?
 5. What defines success for this onboarding?
 
 ## What you must use as input
@@ -96,6 +120,7 @@ Create `/ai-onboarding/output/MASTER_CONTEXT.md` with these required sections (i
 - Confirm assumptions ledger entries are referenced where needed.
 - Confirm drift classification and Go/No-Go decision are present in `/ai-onboarding/output/DRIFT_CHECK_REPORT.md`.
 - Confirm any `major` drift blocks implementation.
+- Confirm execution platform profile is captured and consistent between intake and outputs.
 
 ## Onboarding Score
 
@@ -124,11 +149,12 @@ High-impact override:
 
 1. Select mode (`brownfield` or `greenfield`).
 2. Auto-discover and summarize available evidence.
-3. Fill intake template with discovered data.
-4. Ask only missing high-impact questions (max 5 + 3 follow-ups).
-5. Generate required output files in `/ai-onboarding/output`.
-6. Run deterministic cross-consistency checks and include results.
-7. Generate `/ai-onboarding/output/DRIFT_CHECK_REPORT.md` with drift classification and Go/No-Go.
-8. Provide onboarding score and completion decision.
+3. If brownfield software indicators are present, load the software overlay profile.
+4. Fill intake template with discovered data.
+5. Ask only missing high-impact questions (max 5 + 3 follow-ups).
+6. Generate required output files in `/ai-onboarding/output`.
+7. Run deterministic cross-consistency checks and include results.
+8. Generate `/ai-onboarding/output/DRIFT_CHECK_REPORT.md` with drift classification and Go/No-Go.
+9. Provide onboarding score and completion decision.
 
 Now do the work and output the complete file contents for all required artifacts.

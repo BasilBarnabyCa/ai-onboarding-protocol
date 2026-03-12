@@ -13,6 +13,9 @@ Process:
 ## Mode
 
 - Selected mode: [text goes here]
+- Execution platform: [Codex|Claude Code|ChatGPT|Other]
+- Platform version/model: [text goes here]
+- Capability profile (tools/file access/network/approval mode): [text goes here]
 - Scope impact level: [low|standard|high]
 - Confidence: [high|medium|low]
 - Evidence: [text goes here]

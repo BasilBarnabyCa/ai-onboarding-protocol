@@ -10,12 +10,19 @@ This protocol must be followed for every new task or session.
 
 ---
 
-## Step 0 — Declare Mode
+## Step 0 — Declare Mode and Platform
 
-Declare one mode first:
+Declare mode and execution platform first:
 
 - `brownfield`: existing system/repository/process exists.
 - `greenfield`: new project with little or no implementation artifacts.
+- Platform: `Codex`, `Claude Code`, `ChatGPT`, or `Other`
+- Platform version/model
+- Capability profile (tools/file access/network/approval mode)
+
+If mode is `brownfield` and software artifacts are present, apply:
+
+- `/ai-onboarding/profiles/software-brownfield/SOFTWARE_BROWNFIELD_MASTER_CONTEXT_ARTIFACT.md`
 
 ---
 
@@ -28,6 +35,8 @@ Send:
 ```text
 Follow /ai-onboarding/ARCHITECTURE_ALIGNMENT.md.
 Mode: [brownfield|greenfield]
+Platform: [Codex|Claude Code|ChatGPT|Other]
+Platform profile: [model + capability summary]
 No implementation changes.
 Write onboarding artifacts to /ai-onboarding/output.
 ```

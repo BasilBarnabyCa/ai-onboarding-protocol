@@ -62,6 +62,7 @@ This role remains constant across threads.
 - Ask at most `5` required onboarding questions.
 - Ask at most `3` follow-up questions, and only when critical uncertainty remains.
 - Prefer auto-discovery from available artifacts before asking questions.
+- Capture execution platform profile (platform, version/model, capabilities) at onboarding start.
 - Track unresolved assumptions in an assumptions ledger with confidence labels.
 
 ---

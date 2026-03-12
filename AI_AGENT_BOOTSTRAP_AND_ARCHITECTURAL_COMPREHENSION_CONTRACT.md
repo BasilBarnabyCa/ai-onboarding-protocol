@@ -39,6 +39,22 @@ Declare one mode before onboarding output:
 
 ---
 
+## Execution Platform Declaration (Required)
+
+Capture platform details before onboarding output:
+
+- Platform (`Codex`, `Claude Code`, `ChatGPT`, or `Other`)
+- Platform version/model
+- Capability profile (tools, filesystem access, network policy, approval mode)
+
+Rules:
+
+- Auto-detect first where possible.
+- Ask the user only when unknown.
+- Platform clarification must stay within the required-question budget.
+
+---
+
 ## Adaptive Intake Rule (Required)
 
 - Ask at most `5` required questions.

@@ -19,6 +19,7 @@ Use this template to generate `/ai-onboarding/output/DRIFT_CHECK_REPORT.md`.
 3. Constraint alignment: [pass|fail] - [text goes here]
 4. Approval alignment: [pass|fail] - [text goes here]
 5. Evidence freshness: [pass|fail] - [text goes here]
+6. Platform alignment: [pass|fail] - [text goes here]
 
 ## Assumption Risk
 
