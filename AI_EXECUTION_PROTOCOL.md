@@ -5,6 +5,7 @@
 This document defines the exact commands to use when working with Codex from `/ai-onboarding`.
 
 All generated onboarding artifacts must be written to `/ai-onboarding/output`.
+If `/ai-onboarding/output` is missing, create it first.
 
 This protocol must be followed for every new task or session.
 

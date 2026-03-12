@@ -55,3 +55,7 @@ __pycache__/
 .mypy_cache/
 .venv/
 venv/
+
+# Generated onboarding artifacts
+output/*
+!output/.gitkeep

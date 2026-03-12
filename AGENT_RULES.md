@@ -12,6 +12,7 @@ All AI agents must follow this protocol before making changes.
 
 - Run onboarding workflows from `/ai-onboarding`.
 - Write onboarding artifacts to `/ai-onboarding/output`.
+- If `/ai-onboarding/output` does not exist, create it before writing artifacts.
 - Do not write generated onboarding artifacts outside `/ai-onboarding/output` unless explicitly approved.
 
 ---

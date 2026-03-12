@@ -159,6 +159,8 @@ Profile selection behavior:
 All generated artifacts are written to:
 
 - `/ai-onboarding/output`
+- This directory is auto-created if missing.
+- Generated files in `output/` are gitignored; only `output/.gitkeep` is tracked.
 
 Common files:
 
