@@ -73,8 +73,8 @@ Rule:
 2. Ask at most `5` required questions.
 3. Ask up to `3` follow-up questions only for critical uncertainties.
 4. Use concise prompts and default options when possible.
-5. Fill placeholders in `/ai-onboarding/ONBOARDING_INTAKE_TEMPLATE.md` and save to `/ai-onboarding/output/ONBOARDING_INTAKE_FILLED.md`.
-6. Fill `/ai-onboarding/DRIFT_CHECK_TEMPLATE.md` and save to `/ai-onboarding/output/DRIFT_CHECK_REPORT.md`.
+5. Fill placeholders in `/ai-onboarding/templates/ONBOARDING_INTAKE_TEMPLATE.md` and save to `/ai-onboarding/output/ONBOARDING_INTAKE_FILLED.md`.
+6. Fill `/ai-onboarding/templates/DRIFT_CHECK_TEMPLATE.md` and save to `/ai-onboarding/output/DRIFT_CHECK_REPORT.md`.
 
 ## Suggested 5 required questions
 

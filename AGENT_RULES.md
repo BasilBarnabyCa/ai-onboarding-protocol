@@ -4,7 +4,7 @@
 
 All AI agents must follow this protocol before making changes.
 
-> Note: Alignment (Phase 1) is defined in `/ai-onboarding/ARCHITECTURE_ALIGNMENT.md` and must be executed before Phase 2 on first entry or after material context changes.
+> Note: Alignment (Phase 1) is defined in `/ai-onboarding/docs/protocols/ARCHITECTURE_ALIGNMENT.md` and must be executed before Phase 2 on first entry or after material context changes.
 
 ---
 
@@ -123,7 +123,7 @@ Minimum report content:
 - Evidence freshness check (stale or missing sources)
 - Assumption risk check (low-confidence assumptions that affect outcomes)
 - Go/No-Go decision with rationale
-- Use `/ai-onboarding/DRIFT_CHECK_TEMPLATE.md` as the default report structure.
+- Use `/ai-onboarding/templates/DRIFT_CHECK_TEMPLATE.md` as the default report structure.
 
 ---
 
@@ -132,5 +132,5 @@ Minimum report content:
 - Phases may not be collapsed into a single instruction.
 - Alignment, planning, and implementation must remain separate.
 - If ambiguity exists, pause and request clarification before proceeding.
-- If repository or context state changes mid-thread, perform a re-alignment check using `/ai-onboarding/ARCHITECTURE_ALIGNMENT.md` before continuing.
+- If repository or context state changes mid-thread, perform a re-alignment check using `/ai-onboarding/docs/protocols/ARCHITECTURE_ALIGNMENT.md` before continuing.
 - Do not regenerate `/ai-onboarding/output/AI_ONBOARDING_SUMMARY.md` unless `/ai-onboarding/output/MASTER_CONTEXT.md` has materially changed and explicit approval is given.

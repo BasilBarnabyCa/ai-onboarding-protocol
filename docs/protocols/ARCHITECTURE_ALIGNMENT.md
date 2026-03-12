@@ -89,7 +89,7 @@ Step 0 interaction rule:
 
 ---
 
-### 2) Execute `/ai-onboarding/AI_AGENT_BOOTSTRAP_AND_ARCHITECTURAL_COMPREHENSION_CONTRACT.md`
+### 2) Execute `/ai-onboarding/docs/protocols/AI_AGENT_BOOTSTRAP_AND_ARCHITECTURAL_COMPREHENSION_CONTRACT.md`
 
 - Follow contract exactly.
 - Respect adaptive intake limits.
@@ -122,7 +122,7 @@ Rules:
 Generate or update:
 
 - `/ai-onboarding/output/DRIFT_CHECK_REPORT.md`
-- Use `/ai-onboarding/DRIFT_CHECK_TEMPLATE.md` as the base format.
+- Use `/ai-onboarding/templates/DRIFT_CHECK_TEMPLATE.md` as the base format.
 
 Minimum checks:
 

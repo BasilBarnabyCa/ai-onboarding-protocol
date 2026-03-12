@@ -197,7 +197,7 @@ No implementation work may begin until onboarding alignment is confirmed.
 After onboarding artifacts are generated or validated, produce:
 
 - `/ai-onboarding/output/DRIFT_CHECK_REPORT.md`
-- Use `/ai-onboarding/DRIFT_CHECK_TEMPLATE.md` as the default report structure.
+- Use `/ai-onboarding/templates/DRIFT_CHECK_TEMPLATE.md` as the default report structure.
 
 The report must include:
 

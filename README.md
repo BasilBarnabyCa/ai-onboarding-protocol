@@ -23,7 +23,7 @@ This repository provides a repeatable protocol to:
 If you want the shortest possible start, send this first:
 
 ```text
-Follow /ai-onboarding/ARCHITECTURE_ALIGNMENT.md.
+Follow /ai-onboarding/docs/protocols/ARCHITECTURE_ALIGNMENT.md.
 No implementation changes.
 ```
 
@@ -59,14 +59,14 @@ Follow /ai-onboarding/AGENT_RULES.md.
 Proceed with implementation according to the approved Change Plan.
 ```
 
-For full prompts and optional fields, see `AI_EXECUTION_PROTOCOL.md`.
+For full prompts and optional fields, see `docs/protocols/AI_EXECUTION_PROTOCOL.md`.
 
 Start by sending prompt messages to the AI assistant in this exact order when you want full explicit context.
 
 ### 1) Alignment
 
 ```text
-Follow /ai-onboarding/ARCHITECTURE_ALIGNMENT.md.
+Follow /ai-onboarding/docs/protocols/ARCHITECTURE_ALIGNMENT.md.
 Mode: [brownfield|greenfield]
 Platform: [Codex|Claude Code|ChatGPT|Other]
 Platform profile: [model + capability summary]
@@ -88,7 +88,7 @@ Wait for:
 ```text
 Run mandatory self-critique and drift audit.
 Generate /ai-onboarding/output/DRIFT_CHECK_REPORT.md.
-Use /ai-onboarding/DRIFT_CHECK_TEMPLATE.md as the report format.
+Use /ai-onboarding/templates/DRIFT_CHECK_TEMPLATE.md as the report format.
 If drift is major, pause and ask for clarification.
 No implementation changes.
 ```
@@ -129,13 +129,13 @@ Then continue from the already-approved Change Plan.
 
 ## Core Files
 
-- `AI_EXECUTION_PROTOCOL.md`: exact phase prompts
-- `ARCHITECTURE_ALIGNMENT.md`: Phase 1 alignment rules
+- `docs/protocols/AI_EXECUTION_PROTOCOL.md`: exact phase prompts
+- `docs/protocols/ARCHITECTURE_ALIGNMENT.md`: Phase 1 alignment rules
 - `AGENT_RULES.md`: behavioral constraints and readiness gates
-- `AI_AGENT_BOOTSTRAP_AND_ARCHITECTURAL_COMPREHENSION_CONTRACT.md`: mandatory onboarding contract
-- `AI_ONBOARDING_MASTER_CONTEXT_GENERATOR.md`: master context generation rules
-- `ONBOARDING_INTAKE_TEMPLATE.md`: low-friction intake template
-- `DRIFT_CHECK_TEMPLATE.md`: standard drift audit template
+- `docs/protocols/AI_AGENT_BOOTSTRAP_AND_ARCHITECTURAL_COMPREHENSION_CONTRACT.md`: mandatory onboarding contract
+- `docs/generators/AI_ONBOARDING_MASTER_CONTEXT_GENERATOR.md`: master context generation rules
+- `templates/ONBOARDING_INTAKE_TEMPLATE.md`: low-friction intake template
+- `templates/DRIFT_CHECK_TEMPLATE.md`: standard drift audit template
 - `profiles/PROFILE_SELECTION_PROTOCOL.md`: deterministic brownfield profile router
 - `profiles/PROFILE_REGISTRY.md`: active/planned profile registry
 

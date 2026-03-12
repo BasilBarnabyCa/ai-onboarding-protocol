@@ -18,7 +18,7 @@ Use these short prompts when you want the original simple workflow style.
 ### 1) Alignment
 
 ```text
-Follow /ai-onboarding/ARCHITECTURE_ALIGNMENT.md.
+Follow /ai-onboarding/docs/protocols/ARCHITECTURE_ALIGNMENT.md.
 No implementation changes.
 ```
 
@@ -111,7 +111,7 @@ Run this on first entry or after material context changes.
 Send:
 
 ```text
-Follow /ai-onboarding/ARCHITECTURE_ALIGNMENT.md.
+Follow /ai-onboarding/docs/protocols/ARCHITECTURE_ALIGNMENT.md.
 Mode: [brownfield|greenfield]
 Platform: [Codex|Claude Code|ChatGPT|Other]
 Platform profile: [model + capability summary]
@@ -141,7 +141,7 @@ After alignment outputs exist, send:
 ```text
 Run mandatory self-critique and drift audit.
 Generate /ai-onboarding/output/DRIFT_CHECK_REPORT.md.
-Use /ai-onboarding/DRIFT_CHECK_TEMPLATE.md as the report format.
+Use /ai-onboarding/templates/DRIFT_CHECK_TEMPLATE.md as the report format.
 If drift is major, pause and ask for clarification.
 No implementation changes.
 ```
@@ -185,7 +185,7 @@ Before implementation, send:
 ```text
 Re-run drift audit against approved Change Plan and current outputs.
 Update /ai-onboarding/output/DRIFT_CHECK_REPORT.md.
-Use /ai-onboarding/DRIFT_CHECK_TEMPLATE.md as the report format.
+Use /ai-onboarding/templates/DRIFT_CHECK_TEMPLATE.md as the report format.
 If drift is major, pause and ask for clarification.
 No implementation changes in this message.
 ```
