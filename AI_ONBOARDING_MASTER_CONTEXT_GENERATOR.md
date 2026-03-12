@@ -1,214 +1,134 @@
-# Codex Master Context Generator Prompt (Copy/Paste)
+# Domain-Agnostic Master Context Generator Prompt (Copy/Paste)
 
-Use this prompt inside Codex (or any repo-aware agent) **from the root of the repository**.
+Use this prompt inside Codex (or any repo-aware agent) from `/ai-onboarding`.
+
+All generated artifacts must be written to `/ai-onboarding/output`.
 
 ---
 
 ## Prompt
 
-You are an expert Staff Engineer and Technical Writer. Your job is to onboard an AI coding agent (Codex) into this repository with near-zero ambiguity.
+You are an expert systems operator and technical writer. Your job is to onboard an AI agent into this project with near-zero ambiguity while keeping user effort low.
 
 ## Goal
 
-Produce a single Markdown file named: `MASTER_CONTEXT.md` that explains everything Codex needs to be productive and safe in this repo.
+Generate onboarding artifacts with adaptive intake:
+
+- `/ai-onboarding/output/MASTER_CONTEXT.md` (required)
+- `/ai-onboarding/output/AI_ONBOARDING_SUMMARY.md` (required)
+- `/ai-onboarding/output/PROJECT_SCOPE.md` (required for greenfield, optional for brownfield)
+- `/ai-onboarding/output/ASSUMPTIONS_LEDGER.md` (required)
+- `/ai-onboarding/output/DRIFT_CHECK_REPORT.md` (required)
+
+## Mode (required)
+
+Choose one:
+
+- `brownfield`: existing implementation/process exists.
+- `greenfield`: new project or minimal implementation exists.
+
+Record the selected mode at the top of each output file.
 
 ## Non-negotiable rules
 
-* Treat the repository contents as the ONLY source of truth.
-* Do not guess. If something is unknown, explicitly mark it as `UNKNOWN` and list the exact files you checked.
-* Prefer linking to real files/paths in the repo.
-* Be concise but complete; optimize for *agent usefulness* (not marketing).
-* Capture conventions and “sharp edges” (things that will break if changed).
-* If multiple apps exist (monorepo), document each clearly.
+- Treat available artifacts as the source of truth.
+- Do not guess silently. Mark unknowns as `UNKNOWN`.
+- Label assumptions as `ASSUMPTION:` and track confidence (`high`, `medium`, `low`).
+- Prefer evidence-backed citations to file paths.
+- Be concise but complete.
+- Keep onboarding user effort low.
+
+## Adaptive Intake Rules
+
+1. Run auto-discovery first and pre-fill everything possible.
+2. Ask at most `5` required questions.
+3. Ask up to `3` follow-up questions only for critical uncertainties.
+4. Use concise prompts and default options when possible.
+5. Fill placeholders in `/ai-onboarding/ONBOARDING_INTAKE_TEMPLATE.md` and save to `/ai-onboarding/output/ONBOARDING_INTAKE_FILLED.md`.
+6. Fill `/ai-onboarding/DRIFT_CHECK_TEMPLATE.md` and save to `/ai-onboarding/output/DRIFT_CHECK_REPORT.md`.
+
+## Suggested 5 required questions
+
+1. What outcome matters most right now?
+2. What is in scope vs out of scope?
+3. What are the top 3 "do not break" constraints?
+4. What approvals are required before high-impact changes?
+5. What defines success for this onboarding?
 
 ## What you must use as input
 
-1. The full file/folder structure (tree).
-2. All Markdown documentation found in:
+1. File/folder structure from `/ai-onboarding`.
+2. Markdown docs under `/ai-onboarding`.
+3. Relevant config/workflow files (if present).
+4. Git history (if present) for intent and risk clues.
+5. User-provided answers from the adaptive intake.
 
-   * `/docs` (MANDATORY: fully scan this folder recursively and treat it as high-priority context)
-   * `/README.md`
-   * any `*.md` elsewhere relevant
-   * Any architectural decision records (ADR), RFCs, design notes, or planning documents
-     If `/docs` exists, you MUST:
-   * Summarize each file individually before synthesizing.
-   * Extract architectural intent, constraints, and conventions.
-   * Note any discrepancies between docs and implementation.
-3. Key config files (as applicable):
+## Output Format
 
-   * `package.json`, `pnpm-lock.yaml`, `yarn.lock`, `npm-lock.json`
-   * `tsconfig.json`, `vite.config.*`, `next.config.*`, `nuxt.config.*`
-   * `webpack.*`, `babel.*`
-   * `.env.example`, `.env.*` templates
-   * `docker-compose.yml`, `Dockerfile`, Kubernetes manifests
-   * `terraform/`, `bicep/`, `pulumi/`, CI workflows (`.github/workflows/*`)
-4. Git commit history (at least last 50 commits). Use it to infer intent, major milestones, and risky areas.
+Create `/ai-onboarding/output/MASTER_CONTEXT.md` with these required sections (in order):
 
-## Output format
+1. Project One-Liner
+2. Mode and Scope Boundaries
+3. Problem, Outcomes, and Success Criteria
+4. Stakeholders and Roles
+5. Operating Model / System Overview
+6. Components, Assets, or Process Areas
+7. Tooling and Platform Stack (if applicable)
+8. Repository / Workspace Map (if applicable)
+9. Data and Information Handling Model
+10. Security, Compliance, and Access Controls
+11. Delivery / Release / Execution Workflow
+12. Change Impact Map
+13. Validation and Verification Strategy
+14. Known Risks / Sharp Edges
+15. Recent Intent Signals (from history/docs)
+16. Operating Rules for Agents in This Repo
+17. Open Questions
+18. Deterministic Cross-Consistency Verification (with results)
+19. Self-Critique and Drift Control Status
 
-Create exactly one Markdown document: `MASTER_CONTEXT.md`.
+## Deterministic Verification (must output results)
 
-### Required sections (in this order)
+- Confirm every required section is present and non-empty.
+- Cross-check documented constraints against discovered artifacts.
+- Cross-check high-risk controls (access, secrets, destructive actions, deployment/runtime) for gaps.
+- Confirm scope boundaries are consistent across all output files.
+- Confirm assumptions ledger entries are referenced where needed.
+- Confirm drift classification and Go/No-Go decision are present in `/ai-onboarding/output/DRIFT_CHECK_REPORT.md`.
+- Confirm any `major` drift blocks implementation.
 
-1. **Project One-Liner**
-2. **What This Repo Does**
+## Onboarding Score
 
-   * Problem, users, key workflows
-3. **Architecture Overview**
+Compute and include an onboarding score:
 
-   * High-level diagram in Mermaid (keep simple)
-   * Major components/services and how they talk
-4. **Tech Stack**
+- Coverage (required sections complete): 30%
+- Evidence quality (citations or explicit source references): 30%
+- Consistency (cross-check pass rate): 25%
+- Risk clarity (constraints, approvals, rollback clarity): 15%
+- Drift penalty: subtract 0 to 20 points for unresolved drift/contradictions
 
-   * Frontend, backend, database, auth, hosting, CI/CD, observability
-5. **Repo Map**
+Decision gate:
 
-   * Annotated directory tree (top 3–4 levels)
-   * “Where to change X” quick pointers
-6. **Critical Files Index (High Sensitivity)**
+- `>=90`: onboarding complete for standard-risk execution
+- `85-89`: onboarding conditionally complete for low-risk prep only (no high-impact changes)
+- `<85`: onboarding not complete; run focused re-onboarding pass
+- Any `major` drift: onboarding not complete regardless of score
 
-   * List the most sensitive or high-impact files
-   * For each file: explain why it is sensitive and what breaks if modified incorrectly
-7. **Modification Impact Map**
+High-impact override:
 
-   * If modifying X → what else is affected?
-   * Map models to routes, routes to frontend calls, env vars to deployment
-   * Highlight cascading impact risks
-8. **How to Run Locally**
+- If scope includes production-critical controls, sensitive data exposure paths, compliance-regulated boundaries, or irreversible/destructive operations:
+- Require score `>=92` (recommended target `95`) and drift status `none`.
+- If this threshold is not met, block high-impact implementation.
 
-   * Prereqs
-   * Install steps
-   * Environment variables (table: name | required | default | where used)
-   * Common commands (dev/test/lint/build)
-9. **How to Deploy**
+## Procedure
 
-   * Environments (dev/stage/prod)
-   * Deployment pipeline steps
-   * Infra-as-code notes (if present)
-   * Where secrets are configured
-10. **Data & Domain Model**
+1. Select mode (`brownfield` or `greenfield`).
+2. Auto-discover and summarize available evidence.
+3. Fill intake template with discovered data.
+4. Ask only missing high-impact questions (max 5 + 3 follow-ups).
+5. Generate required output files in `/ai-onboarding/output`.
+6. Run deterministic cross-consistency checks and include results.
+7. Generate `/ai-onboarding/output/DRIFT_CHECK_REPORT.md` with drift classification and Go/No-Go.
+8. Provide onboarding score and completion decision.
 
-* Key entities
-* Where schemas live
-* Migrations strategy
-* Optional Mermaid ER diagram
-
-11. **Key Product Flows**
-
-* Step-by-step flows
-* Link to code entrypoints
-
-12. **Coding Conventions**
-
-* Patterns used
-* Naming conventions
-* Error handling
-* Logging
-
-13. **Testing**
-
-* Frameworks
-* Locations
-* How to run
-
-14. **Known Risks / Sharp Edges**
-
-15. **Recent Work & Intent (from Git History)**
-
-16. **Codex Operating Rules for This Repo**
-
-17. **Change Workflow Protocol**
-
-18. **AI Safety Principles (Non-Negotiable Rules)**
-
-19. **Performance Sensitivity Areas**
-
-20. **Security Boundaries & Secret Handling**
-
-21. **Open Questions**
-
-22. **Deterministic Cross-Consistency Verification (Mandatory)**
-
-* Must contain:
-
-  * Route inventory verification
-  * Frontend API → Backend route existence check
-  * Role & access-wrapper alignment
-  * Environment variable reality check
-* This section must contain explicit verification results — not just instructions.
-
----
-
-## Procedure you must follow
-
-1. Generate a repo tree summary.
-
-2. Read and summarize existing docs.
-
-3. Identify app entrypoints.
-
-4. Extract stack from config files.
-
-5. Scan commit history for intent.
-
-6. Synthesize into `MASTER_CONTEXT.md`.
-
-7. **Final Deterministic Cross-Consistency Verification (MANDATORY)**
-
-   You MUST populate Section 22 with the results of the following checks:
-
-   * Re-scan schema file(s) and confirm every model is documented in Section 10.
-   * Re-scan all route directories and confirm each route group is represented in Architecture and Product Flows.
-   * Re-scan `/docs` recursively and confirm every Markdown file is either:
-
-     * Individually summarized, OR
-     * Explicitly marked as irrelevant with justification.
-   * Cross-check environment variables found in code (`process.env.*`) against the Environment Variables table; ensure none are undocumented.
-   * Cross-check port numbers, base URLs, and proxy settings for mismatches.
-   * Confirm all required sections (1–22) are present and non-empty.
-   * If any inconsistency is found, resolve it before finalizing the document.
-
-Now do the work and output the complete contents of `MASTER_CONTEXT.md`.
-
----
-
-# Self-Critique (Preset)
-
-## Clarity
-
-* The prompt is explicit about the role (Staff Engineer + Technical Writer), the deliverable (`MASTER_CONTEXT.md`), and the exact required section order.
-* It defines strict source-of-truth rules to prevent guessing.
-* It clearly separates instructions, output requirements, and verification steps.
-
-## Completeness
-
-* Covers purpose, architecture, stack, repo map, local run, deployment, data model, flows, conventions, testing, risks, and Git intent.
-* Includes a dedicated “Codex Operating Rules” section to reduce unsafe edits.
-* Explicitly requires Deterministic Cross-Consistency Verification as a structural output section (Section 22).
-
-## Hallucination / Assumption Control
-
-* Strong guardrail: mark unknowns as `UNKNOWN` and list exact files checked.
-* Forces the agent to cite real file paths.
-* Requires cross-checking environment variables against actual `process.env.*` usage.
-* Requires reconciliation between routes, schema, docs, and product flows.
-
-## Deterministic Rigor Validation
-
-* Section 22 is structurally required and must contain verification **results**, not instructions.
-* Cross-consistency checks must be visible in output (no silent validation steps).
-* Route groups, schema models, environment variables, and documentation must be reconciled before finalization.
-* All required sections (1–22) must be present and non-empty before completion.
-
-## Bias / Overreach Check
-
-* Avoids opinionated redesign; documents what exists.
-* Optimizes for operational usefulness rather than marketing language.
-* Treats the repository as the single source of truth.
-
-## Next-Step Improvements
-
-* If the repo is very large, optionally limit deep dives to the top N high-impact paths while linking to detailed sections.
-* For monorepos, require per-app segmentation with clearly separated entrypoints and environment variables.
-* If security is critical, expand auth flow mapping and permission boundary documentation.
-* Optionally add a “High-Risk Change Checklist” subsection for production-heavy systems.
+Now do the work and output the complete file contents for all required artifacts.

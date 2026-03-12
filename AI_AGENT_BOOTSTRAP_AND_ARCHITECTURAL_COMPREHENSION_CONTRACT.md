@@ -1,24 +1,24 @@
-# AI Agent Bootstrap & Architectural Comprehension Contract
+# AI Agent Bootstrap & Context Comprehension Contract
 
 ## Purpose
 
-This document is the mandatory onboarding instruction for any AI coding agent working in this repository.
+This document is the mandatory onboarding instruction for any AI agent working in this repository.
 
-Before modifying any code, the agent must demonstrate understanding of the architecture, constraints, and safe modification patterns defined in `/MASTER_CONTEXT.md`.
+Before modifying implementation artifacts, the agent must demonstrate understanding of the operating context, constraints, and safe modification patterns defined in `/ai-onboarding/output/MASTER_CONTEXT.md` (when present).
 
 This is a comprehension and alignment step only.
 
-**No code changes are allowed during this phase.**
+**No implementation changes are allowed during this phase.**
 
 ---
 
 # Instructions to the AI Agent
 
-Read `/MASTER_CONTEXT.md` end-to-end and treat it as the architectural source of truth.
+Run from `/ai-onboarding`.
 
-All claims must be grounded in repository evidence.
+Ground all claims in available evidence (repository files, documentation, or explicit user input).
 
-For every major architectural statement, cite supporting file paths (for example: `backend/src/server.js`, `docs/PRISMA_AZURE_DEPLOYMENT.md`).
+For every major statement, cite supporting file paths when available.
 
 If something is unclear or missing, explicitly mark it as:
 
@@ -30,42 +30,57 @@ If an assumption is required, explicitly label it as:
 
 ---
 
-## 1. Project Understanding
+## Mode Declaration (Required)
 
-Provide a clear and concise summary of:
+Declare one mode before onboarding output:
 
-* What the product/system is (1–2 sentences)
-* Primary users and roles
-* Core workflows
-* Frontend or client architecture (if applicable)
-* Backend or service architecture (if applicable)
-* Authentication model (describe mechanism and flow)
-* Data layer (ORM/queries, schema strategy, dev vs prod differences)
-* Deployment model and infrastructure assumptions
-* Security model and constraints
-* Any multi-environment or multi-tenant considerations
+- `brownfield`: existing implementation/process exists.
+- `greenfield`: project is net-new or mostly undefined.
 
-Each section must cite supporting file paths.
+---
+
+## Adaptive Intake Rule (Required)
+
+- Ask at most `5` required questions.
+- Ask up to `3` targeted follow-up questions only for critical unknowns.
+- Prefer evidence-based auto-fill first.
+- Maintain an assumptions ledger with confidence (`high`, `medium`, `low`).
+
+---
+
+## 1. Context Understanding
+
+Provide a concise summary of:
+
+- What the system/program/process is (1-2 sentences)
+- Primary users/stakeholders and roles
+- Core workflows
+- Major components/process areas (if applicable)
+- Access/control model (if applicable)
+- Data or information handling model (if applicable)
+- Delivery/operations model and environment assumptions
+- Security/compliance constraints
+- Multi-environment or multi-tenant considerations (if applicable)
+
+Each section should cite evidence when possible.
 
 ---
 
 ## 2. Safe Change Rules
 
-Extract and list the 10–20 most important conventions and modification constraints.
+Extract and list 10-20 key conventions and modification constraints, including:
 
-These must include:
+- Where new work should be added
+- Where structural/data model changes belong
+- Change and release restrictions
+- Configuration and variable handling rules
+- Secrets and sensitive-data handling
+- Monitoring/observability expectations
+- Validation/testing requirements
+- Performance/scaling constraints (if applicable)
+- Rules designed to prevent production or operational breakage
 
-* Where new code should be added
-* Where schema changes belong
-* Migration strategy and restrictions
-* How configuration and environment variables are handled
-* Secrets management approach
-* Logging/monitoring expectations
-* Testing requirements (if any)
-* Performance or scaling constraints
-* Any rules designed to prevent production breakage
-
-Each rule must cite the file(s) it is derived from.
+Each rule must cite the file(s) or user instruction it is derived from.
 
 These rules are binding constraints.
 
@@ -73,17 +88,17 @@ These rules are binding constraints.
 
 ## 3. How I Will Work in This Repository
 
-Provide a practical checklist for safe implementation of:
+Provide a practical checklist for safe execution of:
 
-* Adding a new feature
-* Modifying existing logic
-* Adding or modifying database schema
-* Changing authentication behavior
-* Introducing new dependencies
-* Performing refactors
-* Deploying changes safely
+- Adding a new capability
+- Modifying existing behavior
+- Introducing structural/data model changes
+- Changing access/control behavior
+- Introducing new dependencies/tools
+- Performing refactors
+- Deploying or releasing changes safely
 
-The checklist must reflect the actual architecture and constraints defined in `/MASTER_CONTEXT.md`.
+The checklist must reflect actual constraints from available evidence.
 
 ---
 
@@ -91,70 +106,96 @@ The checklist must reflect the actual architecture and constraints defined in `/
 
 Identify:
 
-* Any unclear areas in the architecture
-* Any missing assumptions
-* Any potential high-risk areas
-* Any cross-environment inconsistencies
+- Unclear areas in the context
+- Missing assumptions
+- Potential high-risk areas
+- Cross-environment inconsistencies
 
-If assumptions are required, clearly label them as:
-
-> ASSUMPTION:
-
-If documentation conflicts with implementation, explicitly list the discrepancy and cite the files involved.
+If documentation conflicts with implementation, list the discrepancy and cite the files involved.
 
 ---
 
 ## 5. Sharp-Edge Acknowledgment Checklist
 
-Explicitly acknowledge awareness of critical high-risk areas defined in `/MASTER_CONTEXT.md`, including but not limited to:
+Explicitly acknowledge awareness of high-risk areas, including but not limited to:
 
-* Prisma centralized instance requirement
-* Destructive scripts (import/truncate/migrate reset)
-* Authentication and role synchronization constraints
-* Environment variable handling rules
-* Port and base URL mismatches
-* Secrets handling and non-commit rules
-* Azure deployment constraints
+- Destructive operations and irreversible actions
+- Identity/access and permission controls
+- Sensitive-data and secrets handling
+- Environment/configuration drift risks
+- Integration and endpoint mismatch risks
+- Compliance/regulatory boundaries
 
-Mark each item with one of the following:
+Mark each item with one of:
 
-* Understood
-* Needs clarification
+- Understood
+- Needs clarification
 
 ---
 
 ## Mandatory Onboarding Persistence Rule
 
-The agent must ensure architectural alignment is persisted.
+Persist onboarding alignment artifacts in `/ai-onboarding/output`.
 
-1. If `/AI_ONBOARDING_SUMMARY.md` does not exist:
+1. If `/ai-onboarding/output/AI_ONBOARDING_SUMMARY.md` does not exist:
 
-   * Generate it using the structured onboarding output.
-   * Save it to the repository root.
-   * Do not include secrets, connection strings, tokens, passwords, or personally identifiable information.
-   * Keep it concise; reference `/MASTER_CONTEXT.md` instead of duplicating large sections.
+   - Generate it from onboarding output.
+   - Save to `/ai-onboarding/output/AI_ONBOARDING_SUMMARY.md`.
+   - Do not include secrets, tokens, passwords, or personally identifiable information.
 
-2. If `/AI_ONBOARDING_SUMMARY.md` exists:
+2. If `/ai-onboarding/output/AI_ONBOARDING_SUMMARY.md` exists:
 
-   * Validate your understanding against it.
-   * Report discrepancies.
-   * Do not overwrite without explicit approval.
+   - Validate understanding against it.
+   - Report discrepancies.
+   - Do not overwrite without explicit approval.
 
 No implementation work may begin until onboarding alignment is confirmed.
 
 ---
 
+## Mandatory Self-Critique and Drift Audit
+
+After onboarding artifacts are generated or validated, produce:
+
+- `/ai-onboarding/output/DRIFT_CHECK_REPORT.md`
+- Use `/ai-onboarding/DRIFT_CHECK_TEMPLATE.md` as the default report structure.
+
+The report must include:
+
+- Objective alignment (current outputs vs stated user outcome)
+- Scope alignment (in-scope vs out-of-scope consistency)
+- Constraint alignment (do-not-break rules and approval requirements)
+- Assumption risk review (all `low` confidence assumptions that can affect outcomes)
+- Evidence quality review (missing, conflicting, or stale evidence)
+- Drift classification: `none`, `minor`, or `major`
+- Go/No-Go decision with rationale
+
+Rules:
+
+- `major` drift blocks progression to implementation.
+- `low` confidence critical assumptions require follow-up clarification before implementation.
+- Follow-up clarification still follows adaptive intake limits.
+
+Scoring and readiness thresholds:
+
+- `>=90`: ready for standard-risk implementation.
+- `85-89`: only low-risk preparation work; no high-impact implementation.
+- `<85`: onboarding incomplete.
+- High-impact scope requires `>=92` (target `95`) and drift `none`.
+
+---
+
 ## Pre-Implementation Change Planning Rule
 
-After onboarding alignment is confirmed, but before modifying code, the agent must produce a Change Plan including:
+After onboarding alignment is confirmed, but before implementation changes, produce a Change Plan including:
 
-* Files to be modified
-* Commands to be run (for example: migrations, builds)
-* Risk assessment
-* Rollback strategy
-* Validation and testing steps
+- Files/artifacts to be modified
+- Commands/actions to be run
+- Risk assessment
+- Rollback strategy
+- Validation and testing steps
 
-No code modifications may begin until the Change Plan is acknowledged.
+No implementation changes may begin until the Change Plan is acknowledged.
 
 ---
 
@@ -162,4 +203,4 @@ No code modifications may begin until the Change Plan is acknowledged.
 
 End onboarding with the statement:
 
-"I understand the project architecture, constraints, and safe modification patterns. I am ready to implement changes responsibly."
+"I understand the project context, constraints, and safe modification patterns. I am ready to implement changes responsibly."

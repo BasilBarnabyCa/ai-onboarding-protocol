@@ -25,49 +25,49 @@
 
 ### Feature Development
 ```
-feat(frontend): add video upload component with drag-and-drop
-feat(backend): implement YouTube transcript extraction
-feat(auth): add JWT-based authentication system
+feat(onboarding): add adaptive intake scoring model
+feat(security): add threat-model checklist template
+feat(ops): add incident response runbook starter
 ```
 
 ### Bug Fixes
 ```
-fix(server): resolve EADDRINUSE port conflict on restart
-fix(frontend): handle API errors gracefully in UrlInput component
-fix(security): patch XSS vulnerability in user input sanitization
+fix(protocol): correct phase ordering in execution guide
+fix(template): resolve missing placeholder in intake form
+fix(security): close permission gap in access review workflow
 ```
 
 ### Technical Debt
 ```
-refactor(services): extract LLM service into provider-agnostic wrapper
-refactor(middleware): consolidate validation logic into reusable functions
-refactor(tests): improve test coverage for video processing workflow
+refactor(workflow): simplify onboarding artifact generation steps
+refactor(risk): consolidate risk scoring logic into one section
+refactor(docs): normalize naming across all onboarding files
 ```
 
 ### Documentation
 ```
-docs(readme): add deployment instructions for AWS
-docs(api): document new video processing endpoints
-docs(dev): update development setup guide
+docs(scope): define greenfield vs brownfield criteria
+docs(playbook): add security control mapping guidance
+docs(runbook): update recovery and rollback instructions
 ```
 
 ### Infrastructure
 ```
-chore(deps): upgrade Express to 4.18.2 for stability
-chore(ci): add automated security scanning
-chore(env): add environment variable validation
+chore(ci): add onboarding score validation step
+chore(policy): enforce output path to /ai-onboarding/output
+chore(env): add template variable validation for intake
 ```
 
 ## Good vs Bad Examples
 
 ### ✅ Good
 ```
-feat(video): implement async video processing with progress tracking
+feat(onboarding): implement adaptive intake with confidence tracking
 
-- Add background job queue for video processing
-- Implement progress updates via WebSocket
-- Add retry logic for failed transcript extraction
-- Update frontend to show real-time progress
+- Auto-fill intake template from discovered evidence
+- Ask only unresolved high-impact questions
+- Add assumptions ledger with confidence labels
+- Score onboarding completeness before completion
 
 Closes #123
 ```
@@ -80,15 +80,15 @@ wip
 ```
 
 ## Branch Naming
-- `feature/video-processing`
-- `fix/port-conflict`
-- `refactor/auth-system`
-- `docs/api-documentation`
+- `feature/adaptive-intake`
+- `fix/protocol-mismatch`
+- `refactor/risk-model`
+- `docs/security-playbook`
 
 ## Pull Request Titles
 Follow the same convention as commits:
 ```
-feat(video): implement async video processing with progress tracking
-fix(security): resolve XSS vulnerability in user input
-refactor(services): extract LLM service into provider-agnostic wrapper
+feat(onboarding): implement adaptive intake with confidence tracking
+fix(security): resolve access control mapping gap
+refactor(workflow): consolidate alignment and planning handoff
 ```
