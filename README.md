@@ -20,7 +20,7 @@ This repository provides a repeatable protocol to:
 
 `Run from /ai-onboarding` means this folder is your working context in the AI tool. It is not a shell command.
 
-If you want the shortest possible start, send this first:
+If you want the shortest possible start, copy the `/ai-onboarding` folder to your project root and send this to your LLM:
 
 ```text
 Follow /ai-onboarding/docs/protocols/ARCHITECTURE_ALIGNMENT.md.
