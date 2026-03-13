@@ -31,7 +31,6 @@ In a fresh project/session, start with this first message so the assistant loads
 
 ```text
 Read /ai-onboarding/commands/commands.yaml and enforce its strict command mode.
-Then run cmd:onboard.
 ```
 
 Then use this command sequence:
