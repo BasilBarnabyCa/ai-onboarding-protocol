@@ -17,6 +17,15 @@ All AI agents must follow this protocol before making changes.
 
 ---
 
+## Command Invocation Safety
+
+- Command shortcuts are recognized only when input begins with `cmd:`.
+- Valid command format: `^(cmd:(onboard|onboard:full|drift-audit|impl|reanchor|brownfield:select)|cmd:plan: \S.*)$`
+- If input does not match valid command format exactly, treat it as normal conversation text.
+- `plan` requires inline task description in strict form: `cmd:plan: <task description>`.
+
+---
+
 ## Execution Role Definition
 
 When performing work in this repository, operate as:
@@ -68,6 +77,17 @@ This role remains constant across threads.
 - Resolve brownfield profile selection using `/ai-onboarding/profiles/PROFILE_SELECTION_PROTOCOL.md`.
 - If profile selection is ambiguous, ask one disambiguation question within question budget.
 - Track unresolved assumptions in an assumptions ledger with confidence labels.
+- Step 0 required fields are: mode, platform, platform profile, and for brownfield target workspace path + project brief.
+- Do not assume or infer missing Step 0 required fields.
+
+---
+
+## Step 0 Hard Gate (Strict)
+
+- If any Step 0 required field is missing, onboarding is blocked at Step 0.
+- While blocked at Step 0, do not run bootstrap, produce onboarding artifacts, or declare Phase 1 complete.
+- Request only the missing required fields, then continue once all required fields are present.
+- Optional profile override may be requested after required fields are complete; it is never a blocker.
 
 ---
 

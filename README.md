@@ -18,17 +18,37 @@ This repository provides a repeatable protocol to:
 
 ## Where To Start
 
-`Run from /ai-onboarding` means this folder is your working context in the AI tool. It is not a shell command.
+Copy the `/ai-onboarding` folder into your project root before starting.
 
-If you want the shortest possible start, copy the `/ai-onboarding` folder to your project root and send this to your LLM:
+Use command shortcuts for the fastest workflow.
+Command shortcuts run only in strict command mode with `cmd:` prefix.
+Plain words like `onboard` in normal sentences must be treated as regular text.
+Valid command format: `^(cmd:(onboard|onboard:full|drift-audit|impl|reanchor|brownfield:select)|cmd:plan: \S.*)$`
+
+Command reference:
+
+- `commands/COMMANDS.md` (copy/paste view)
+- `commands/commands.yaml` (source of truth)
+
+Recommended command sequence:
+
+1. `cmd:onboard`
+2. `cmd:drift-audit`
+3. `cmd:plan: <task description>`
+4. `cmd:impl`
+
+If you prefer raw prompts instead of commands, send these prompts in order.
+
+### 1) Alignment (start here)
 
 ```text
 Follow /ai-onboarding/docs/protocols/ARCHITECTURE_ALIGNMENT.md.
 No implementation changes.
 ```
 
-After this message, the assistant should ask you for any missing Step 0 inputs automatically.
-You should not need to know the full Step 0 schema in advance.
+After this first message, the assistant must ask for missing Step 0 inputs automatically.
+You should not need to provide them in advance.
+Step 0 required fields are a hard gate: the assistant must not proceed to Step 1+ until all required fields are provided.
 
 Expected assistant questions (as needed):
 
@@ -39,31 +59,13 @@ Expected assistant questions (as needed):
 - Brownfield only: brief project description (1-3 sentences)
 - Brownfield only: optional profile override
 
-Then use:
+Strict behavior:
 
-```text
-Follow /ai-onboarding/AGENT_RULES.md.
+- Missing required Step 0 fields block onboarding progression.
+- The assistant asks only missing required fields and pauses until answered.
+- The assistant does not infer missing Step 0 values.
 
-Begin Phase 2 - Change Planning only.
-No implementation changes.
-
-Task:
-[Clearly describe the task here]
-```
-
-Then use:
-
-```text
-Follow /ai-onboarding/AGENT_RULES.md.
-
-Proceed with implementation according to the approved Change Plan.
-```
-
-For full prompts and optional fields, see `docs/protocols/AI_EXECUTION_PROTOCOL.md`.
-
-Start by sending prompt messages to the AI assistant in this exact order when you want full explicit context.
-
-### 1) Alignment
+Alternative if you prefer to provide everything up front in one message:
 
 ```text
 Follow /ai-onboarding/docs/protocols/ARCHITECTURE_ALIGNMENT.md.
@@ -94,6 +96,10 @@ No implementation changes.
 ```
 
 ### 3) Change Planning
+
+Command shortcut form:
+
+- `cmd:plan: <task description>`
 
 ```text
 Follow /ai-onboarding/AGENT_RULES.md.
@@ -127,6 +133,8 @@ No implementation changes in this message - alignment only.
 Then continue from the already-approved Change Plan.
 ```
 
+For full details, use `docs/protocols/AI_EXECUTION_PROTOCOL.md`.
+
 ## Core Files
 
 - `docs/protocols/AI_EXECUTION_PROTOCOL.md`: exact phase prompts
@@ -136,6 +144,8 @@ Then continue from the already-approved Change Plan.
 - `docs/generators/AI_ONBOARDING_MASTER_CONTEXT_GENERATOR.md`: master context generation rules
 - `templates/ONBOARDING_INTAKE_TEMPLATE.md`: low-friction intake template
 - `templates/DRIFT_CHECK_TEMPLATE.md`: standard drift audit template
+- `commands/COMMANDS.md`: command copy/paste prompts
+- `commands/commands.yaml`: command source-of-truth
 - `profiles/PROFILE_SELECTION_PROTOCOL.md`: deterministic brownfield profile router
 - `profiles/PROFILE_REGISTRY.md`: active/planned profile registry
 
