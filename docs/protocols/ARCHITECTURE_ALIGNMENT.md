@@ -59,7 +59,12 @@ Also declare execution platform profile:
 
 - Platform (`Codex`, `Claude Code`, `ChatGPT`, or `Other`)
 - Platform version/model
-- Capability profile (tools/file access/network/approval mode)
+- Capability profile using numbered selection:
+- `1` Auto-detect (recommended)
+- `2` Locked-down
+- `3` Standard
+- `4` High-trust
+- `5` All-access (explicit approval required)
 - Optional execution role profile (`domain - role`)
 
 If mode is `brownfield`, also declare:
@@ -78,21 +83,27 @@ Step 0 interaction rule:
 
 - If the user starts with a minimal alignment prompt and Step 0 fields are missing, the assistant must ask for missing fields before proceeding.
 - Ask one question at a time; do not paste a multi-field template block.
-- Ask `mode` first with a brief explanation, then branch to the next appropriate question by mode.
+- Ask `mode` first with explicit plain-language definitions, then branch to the next appropriate question by mode.
+- Required first question text:
+- "Which setup matches your situation?
+- 1) greenfield - new project or idea with little/no existing implementation.
+- 2) brownfield - existing repo/system you want to onboard and improve."
+- Accept `1|2|greenfield|brownfield`.
+- For capability profile, ask for one numeric choice (`1-5`) instead of free-text capability details.
 - The assistant must not assume the user already knows which Step 0 questions to provide.
 - Missing required Step 0 fields block progression to Step 1+.
-- Required fields: mode, platform, platform profile, and for brownfield target workspace path + project brief.
+- Required fields: mode, platform, platform version/model, capability profile selection (`1-5`), and for brownfield target workspace path + project brief.
 - Optional fields (non-blocking): execution role profile (`domain - role`), profile override.
 - Until required fields are complete, do not read/validate onboarding artifacts and do not execute bootstrap.
 
 Core intake gate (required before artifact generation):
 
 - After Step 0 is complete, collect core intake sequentially:
-- primary outcome
 - scope boundaries
 - top do-not-break constraints
 - required approvals
 - onboarding success criteria
+- Optional (non-blocking): onboarding special focus area.
 - Do not generate or update onboarding artifacts until core intake required fields are complete.
 
 ---
@@ -186,11 +197,12 @@ During Phase 1, the agent must:
 Phase 1 is complete only when all are true:
 
 - Mode declared
-- Platform profile declared
+- Platform version/model declared
+- Capability profile selection declared (`1-5`)
 - Execution role profile captured (if provided) or default role applied
 - Brownfield project brief declared (if applicable)
 - Brownfield selected profile declared (if applicable)
-- Core intake required fields completed (outcome, scope, constraints, approvals, success criteria)
+- Core intake required fields completed (scope, constraints, approvals, success criteria)
 - `MASTER_CONTEXT.md` read (or absence explicitly acknowledged)
 - Bootstrap contract executed
 - `AI_ONBOARDING_SUMMARY.md` generated or validated

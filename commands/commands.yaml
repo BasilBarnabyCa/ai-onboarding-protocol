@@ -13,15 +13,27 @@ commands:
       Follow /ai-onboarding/docs/protocols/ARCHITECTURE_ALIGNMENT.md.
       Strict Step 0 mode:
       Ask for missing required Step 0 fields one question at a time.
-      Start by asking Mode (`greenfield` or `brownfield`) with a brief explanation.
+      Start with this exact mode question:
+      "Which setup matches your situation?
+      1) greenfield - new project or idea with little/no existing implementation.
+      2) brownfield - existing repo/system you want to onboard and improve."
+      Accept `1|2|greenfield|brownfield`.
       Branch questions by mode:
       - If greenfield: ask only greenfield-relevant required questions next.
       - If brownfield: ask target workspace + project brief next, then brownfield profile resolution.
+      For capability profile, present numbered choices and accept a single number:
+      1) Auto-detect (recommended)
+      2) Locked-down
+      3) Standard
+      4) High-trust
+      5) All-access (explicit approval required)
+      If response is unclear, default to 1 and confirm.
       Do not proceed to Step 1+ until all required Step 0 fields are complete.
       Do not assume missing Step 0 values.
       If Step 0 fields are provided inline, use them directly and ask only for remaining required fields.
       Do not paste template-style multi-field blocks to the user.
-      After Step 0, run core intake sequentially (outcome, scope boundaries, do-not-break constraints, approvals, success criteria).
+      After Step 0, run core intake sequentially (scope boundaries, do-not-break constraints, approvals, success criteria).
+      Optional (non-blocking): ask onboarding special focus area.
       Do not generate or update onboarding output files until Step 0 and core intake required fields are complete.
       No implementation changes.
     required_vars: []

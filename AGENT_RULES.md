@@ -76,19 +76,23 @@ Effective role posture (default or user-provided optional role profile) remains 
 ## Adaptive Intake Constraints
 
 - Ask required onboarding questions sequentially (one question at a time).
-- Ask at most `6` required onboarding questions (including one mode-specific composite question when needed).
+- Ask at most `8` required onboarding questions (including mode-specific composite questions when needed).
 - Ask at most `3` follow-up questions, and only when critical uncertainty remains.
 - Prefer auto-discovery from available artifacts before asking questions.
-- Capture execution platform profile (platform, version/model, capabilities) at onboarding start.
+- Capture execution platform profile at onboarding start:
+- platform
+- version/model
+- capability profile selection (`1-5`)
 - Offer optional execution role capture as `domain - role`.
 - If mode is `brownfield`, capture target workspace path and a 1-3 sentence project brief.
 - Resolve brownfield profile selection using `/ai-onboarding/profiles/PROFILE_SELECTION_PROTOCOL.md`.
 - If profile selection is ambiguous, ask one disambiguation question within question budget.
 - Track unresolved assumptions in an assumptions ledger with confidence labels.
-- Step 0 required fields are: mode, platform, platform profile, and for brownfield target workspace path + project brief.
+- Step 0 required fields are: mode, platform, platform version/model, capability profile selection (`1-5`), and for brownfield target workspace path + project brief.
 - Do not assume or infer missing Step 0 required fields.
 - Optional Step 0 field: execution role profile (`domain - role`).
 - Do not paste template-like multi-field intake blocks to the user.
+- If capability profile selection is unclear, default to `1` and confirm.
 
 ---
 
@@ -96,19 +100,20 @@ Effective role posture (default or user-provided optional role profile) remains 
 
 - If any Step 0 required field is missing, onboarding is blocked at Step 0.
 - While blocked at Step 0, do not run bootstrap, produce onboarding artifacts, or declare Phase 1 complete.
-- Ask `mode` first, then branch to the next appropriate required question by mode.
+- Ask `mode` first with plain-language definitions, then branch to the next appropriate required question by mode.
+- Mode question must make meaning explicit (new project vs existing repo/system).
 - Request only the missing required fields, then continue once all required fields are present.
 - Optional profile override may be requested after required fields are complete; it is never a blocker.
 
 ## Core Intake Hard Gate (Strict)
 
 - After Step 0, collect core intake required fields before artifact generation:
-- primary outcome
 - scope boundaries
 - top do-not-break constraints
 - required approvals
 - onboarding success criteria
 - While core intake required fields are incomplete, do not generate or update onboarding output artifacts.
+- Optional (non-blocking): onboarding special focus area.
 
 ---
 

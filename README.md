@@ -31,7 +31,6 @@ In a fresh project/session, start with this first message so the assistant loads
 
 ```text
 Read /ai-onboarding/commands/commands.yaml and enforce its strict command mode.
-Then run cmd:onboard.
 ```
 
 Then use this command sequence:
@@ -57,10 +56,15 @@ Step 0 required fields are a hard gate: the assistant must not proceed to Step 1
 Expected assistant behavior:
 
 - Ask one question at a time (sequential), not a large multi-field block.
-- Ask mode first (`greenfield` or `brownfield`) with a brief explanation.
+- Ask mode first with plain-language definitions:
+1) greenfield = new project/idea with little or no implementation yet
+2) brownfield = existing repo/system that already has implementation
+- Ask capability profile as a numeric choice:
+1) Auto-detect, 2) Locked-down, 3) Standard, 4) High-trust, 5) All-access.
 - If `greenfield`, continue with greenfield-relevant questions.
 - If `brownfield`, ask target workspace path and project brief next.
-- After Step 0, ask core intake questions sequentially (outcome, scope, constraints, approvals, success criteria) before generating output files.
+- After Step 0, ask core intake questions sequentially (scope, constraints, approvals, success criteria) before generating output files.
+- Optional (non-blocking): ask for a special onboarding focus area.
 - Optional fields (`execution role profile`, `profile override`) are non-blocking.
 
 If execution role profile is omitted, the default role from `AGENT_RULES.md` is used.
@@ -70,6 +74,7 @@ Strict behavior:
 - Missing required Step 0 fields block onboarding progression.
 - The assistant asks only missing required fields and pauses until answered.
 - The assistant does not infer missing Step 0 values.
+- If capability choice is unclear, the assistant defaults to `1` and confirms.
 
 Wait for:
 

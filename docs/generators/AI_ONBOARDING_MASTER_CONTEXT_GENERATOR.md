@@ -48,13 +48,23 @@ Capture execution platform details at onboarding start:
 
 - Platform: `Codex`, `Claude Code`, `ChatGPT`, or `Other`
 - Platform version/model
-- Capability profile (tools, file access scope, network policy, approval mode)
+- Capability profile selection (`1-5`)
 - Optional execution role profile (`domain - role`)
+
+Capability profile selector:
+
+1. `1` Auto-detect (recommended)
+2. `2` Locked-down
+3. `3` Standard
+4. `4` High-trust
+5. `5` All-access (explicit approval required)
 
 Rule:
 
 - Auto-detect platform/capabilities where possible.
-- Ask only if unknown.
+- Ask for numeric profile selection only (`1-5`), not free-text capability fields.
+- If auto-detection is available, present detected profile and ask user to accept with `1` or override with another option.
+- If response is unclear, default to `1` and confirm.
 - Optional execution role profile must not block progression.
 
 ## Overlay Rules
@@ -97,7 +107,7 @@ And enforce:
 
 1. Run auto-discovery first and pre-fill everything possible.
 2. Ask required questions sequentially (one question at a time); do not paste a template block.
-3. Ask at most `6` required questions (including one mode-specific composite question when needed).
+3. Ask at most `8` required questions (including mode-specific composite questions when needed).
 4. Ask up to `3` follow-up questions only for critical uncertainty.
 5. Do not generate or update onboarding output files until Step 0 and core intake required fields are complete.
 6. Save filled intake to `/ai-onboarding/output/ONBOARDING_INTAKE_FILLED.md`.
@@ -105,12 +115,18 @@ And enforce:
 
 ## Suggested required questions
 
-1. Ask mode first: `greenfield` or `brownfield` (with a brief explanation).
-2. Ask platform/model/capability profile only if not auto-detected.
-3. If brownfield: ask target workspace path + project brief (1-3 sentences).
-4. Ask primary outcome.
-5. Ask scope boundaries + top do-not-break constraints + required approvals + onboarding success criteria.
-6. If greenfield and missing: ask one composite greenfield-depth question (vision, non-goals, metrics, MVP/milestones, decisions, domain loop, acceptance/release).
+1. Ask mode first with explicit plain-language definitions:
+- "Which setup matches your situation?
+- 1) greenfield - new project or idea with little/no existing implementation.
+- 2) brownfield - existing repo/system you want to onboard and improve."
+- Accept `1|2|greenfield|brownfield`.
+2. Ask platform only if not auto-detected.
+3. Ask platform version/model only if not auto-detected.
+4. Ask capability profile selector (`1-5`).
+5. If brownfield: ask target workspace path + project brief (1-3 sentences).
+6. Ask scope boundaries + top do-not-break constraints + required approvals + onboarding success criteria.
+7. Optional (non-blocking): ask onboarding special focus area.
+8. If greenfield and missing: ask one composite greenfield-depth question (vision, non-goals, metrics, MVP/milestones, decisions, domain loop, acceptance/release).
 
 Optional question (non-blocking):
 
@@ -209,7 +225,7 @@ Minimum checks:
 - High-risk control consistency (access/secrets/destructive/deploy)
 - Assumptions ledger cross-reference check
 - Drift report fields present and complete
-- Platform profile consistency between intake and outputs
+- Platform version/model and capability profile selection consistency between intake and outputs
 - Mode-specific checks:
 - Brownfield: profile selection consistency + route/API/env checks where applicable
 - Greenfield: vision/MVP/acceptance/release checks present and coherent
@@ -240,9 +256,9 @@ High-impact override:
 ## Procedure
 
 1. Select mode (`greenfield` or `brownfield`).
-2. Capture platform profile (+ optional execution role profile).
+2. Capture platform profile selection (+ optional execution role profile).
 3. If brownfield: capture workspace path + project brief, then resolve profile.
-4. Ask core intake required fields sequentially.
+4. Ask core intake required fields sequentially (scope, constraints, approvals, success criteria).
 5. If greenfield: collect greenfield-depth fields (single composite question if needed).
 6. Do not generate outputs until Step 0 + required intake fields are complete.
 7. Auto-discover and summarize evidence.
