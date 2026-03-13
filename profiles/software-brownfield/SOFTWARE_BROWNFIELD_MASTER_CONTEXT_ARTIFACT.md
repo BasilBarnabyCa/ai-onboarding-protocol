@@ -33,27 +33,28 @@ Provide a software-specific, high-rigor overlay for brownfield onboarding. This 
 Use these sections in the output `MASTER_CONTEXT.md` when software profile is active:
 
 1. Project One-Liner
-2. What This Repo Does
-3. Architecture Overview
-4. Tech Stack
-5. Repo Map
-6. Critical Files Index (High Sensitivity)
-7. Modification Impact Map
-8. How to Run Locally
-9. How to Deploy
-10. Data and Domain Model
-11. Key Product Flows
-12. Coding Conventions
-13. Testing
-14. Known Risks / Sharp Edges
-15. Recent Work and Intent (from Git History)
-16. Agent Operating Rules for This Repo
-17. Change Workflow Protocol
-18. AI Safety Principles
-19. Performance Sensitivity Areas
-20. Security Boundaries and Secret Handling
-21. Open Questions
-22. Deterministic Cross-Consistency Verification (with explicit results)
+2. Source of Truth Hierarchy
+3. What This Repo Does
+4. Architecture Overview
+5. Tech Stack
+6. Repo Map
+7. Critical Files Index (High Sensitivity)
+8. Modification Impact Map
+9. How to Run Locally
+10. How to Deploy
+11. Data and Domain Model
+12. Key Product Flows
+13. Coding Conventions
+14. Testing
+15. Known Risks / Sharp Edges
+16. Recent Work and Intent (from Git History)
+17. Agent Operating Rules for This Repo
+18. Change Workflow Protocol
+19. AI Safety Principles
+20. Performance Sensitivity Areas
+21. Security Boundaries and Secret Handling
+22. Open Questions
+23. Deterministic Cross-Consistency Verification (with explicit results)
 
 ## Mandatory Software Cross-Consistency Checks
 
@@ -66,6 +67,38 @@ The verification section must include explicit results for:
 - Schema/model coverage check
 - Port/base URL/proxy mismatch check
 - Required-section completeness check
+
+Result format is mandatory:
+
+- Each check must be reported as `pass|fail`.
+- Each result must include concrete evidence file paths.
+- Any failed check must include a mismatch note and required corrective action.
+
+Use table format:
+
+- Check
+- Status (`pass|fail`)
+- Evidence
+- Mismatch/Action
+
+## Mandatory Brownfield Evidence Tables
+
+`MASTER_CONTEXT.md` must include:
+
+- Per-doc summary table for markdown docs under `/docs` (or equivalent):
+- file path
+- summary
+- implementation alignment (`aligned|partially stale|stale|unknown`)
+- Discrepancy register table for docs-vs-implementation conflicts:
+- claim source
+- implementation evidence
+- impact
+- required correction
+- Environment variable reality table:
+- variable
+- required/default
+- where used
+- status (`USED|INJECTED ONLY|LEGACY/UNUSED|UNKNOWN`)
 
 ## Additional Safety Checks for Software Brownfield
 

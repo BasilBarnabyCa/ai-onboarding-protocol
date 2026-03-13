@@ -52,9 +52,12 @@ Expected assistant questions (as needed):
 - Mode: `greenfield` or `brownfield`
 - Platform: `Codex`, `Claude Code`, `ChatGPT`, or `Other`
 - Platform profile (model + capability summary)
+- Optional: execution role profile (`domain - role`)
 - Brownfield only: target workspace absolute path
 - Brownfield only: brief project description (1-3 sentences)
 - Brownfield only: optional profile override
+
+If execution role profile is omitted, the default role from `AGENT_RULES.md` is used.
 
 Strict behavior:
 
@@ -69,6 +72,7 @@ Follow /ai-onboarding/docs/protocols/ARCHITECTURE_ALIGNMENT.md.
 Mode: [brownfield|greenfield]
 Platform: [Codex|Claude Code|ChatGPT|Other]
 Platform profile: [model + capability summary]
+Execution role profile: [domain - role, optional]
 Target workspace: [absolute path, brownfield only]
 Project brief: [1-3 sentences, brownfield only]
 Profile override: [optional]
@@ -151,6 +155,7 @@ For full details, use `docs/protocols/AI_EXECUTION_PROTOCOL.md`.
 - `commands/commands.yaml`: command source-of-truth
 - `profiles/PROFILE_SELECTION_PROTOCOL.md`: deterministic brownfield profile router
 - `profiles/PROFILE_REGISTRY.md`: active/planned profile registry
+- `profiles/greenfield/GREENFIELD_MASTER_CONTEXT_ARTIFACT.md`: high-rigor greenfield depth overlay
 
 ## Software Brownfield Overlay
 
@@ -166,6 +171,12 @@ Profile selection behavior:
 
 - For brownfield runs, profile selection is resolved via `profiles/PROFILE_SELECTION_PROTOCOL.md`.
 - If ambiguous, one disambiguation question is asked within onboarding budget.
+
+## Greenfield Overlay
+
+When mode is `greenfield`, apply:
+
+- `profiles/greenfield/GREENFIELD_MASTER_CONTEXT_ARTIFACT.md`
 
 ## Output Artifacts
 
@@ -187,6 +198,13 @@ Common files:
 Archived output snapshots:
 
 - `/ai-onboarding/output/archive/*`
+
+## Role Persistence
+
+- Optional Step 0 field: `Execution role profile` in format `domain - role`.
+- If provided, it is persisted in onboarding artifacts (starting with `ONBOARDING_INTAKE_FILLED.md`) and carried forward in alignment context.
+- If omitted, the default role from `AGENT_RULES.md` is used.
+- Precedence order: current prompt role profile -> persisted onboarding artifacts -> default role in `AGENT_RULES.md`.
 
 ## Readiness Gates
 

@@ -60,6 +60,7 @@ Also declare execution platform profile:
 - Platform (`Codex`, `Claude Code`, `ChatGPT`, or `Other`)
 - Platform version/model
 - Capability profile (tools/file access/network/approval mode)
+- Optional execution role profile (`domain - role`)
 
 If mode is `brownfield`, also declare:
 
@@ -71,7 +72,7 @@ Then resolve selected profile via:
 
 - `/ai-onboarding/profiles/PROFILE_SELECTION_PROTOCOL.md`
 
-**Output required:** Mode + platform declaration (+ brownfield project brief and selected profile when applicable).
+**Output required:** Mode + platform declaration (+ optional execution role profile and brownfield project brief/selected profile when applicable).
 
 Step 0 interaction rule:
 
@@ -79,7 +80,7 @@ Step 0 interaction rule:
 - The assistant must not assume the user already knows which Step 0 questions to provide.
 - Missing required Step 0 fields block progression to Step 1+.
 - Required fields: mode, platform, platform profile, and for brownfield target workspace path + project brief.
-- Optional field (non-blocking): profile override.
+- Optional fields (non-blocking): execution role profile (`domain - role`), profile override.
 - Until required fields are complete, do not read/validate onboarding artifacts and do not execute bootstrap.
 
 ---
@@ -174,6 +175,7 @@ Phase 1 is complete only when all are true:
 
 - Mode declared
 - Platform profile declared
+- Execution role profile captured (if provided) or default role applied
 - Brownfield project brief declared (if applicable)
 - Brownfield selected profile declared (if applicable)
 - `MASTER_CONTEXT.md` read (or absence explicitly acknowledged)
