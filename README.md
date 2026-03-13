@@ -92,6 +92,12 @@ If drift is major, pause and ask for clarification.
 No implementation changes.
 ```
 
+Drift audit cadence during active development:
+
+- Run `cmd:drift-audit` every 3-5 working days while work is active.
+- Run `cmd:drift-audit` immediately after material scope/architecture/priority changes.
+- Run `cmd:reanchor` for quick alignment checks between full drift audits.
+
 ### 3) Change Planning
 
 Command shortcut form:

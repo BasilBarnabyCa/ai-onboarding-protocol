@@ -212,6 +212,22 @@ Proceed only when drift status is `none` or `minor`.
 
 ---
 
+## Step 2.6 - Periodic Drift Audit (Active Development)
+
+While implementation is active over multiple days, run periodic drift checks to keep execution aligned.
+
+Cadence:
+
+- Run `cmd:drift-audit` every 3-5 working days.
+- Run `cmd:drift-audit` immediately after material scope, architecture, risk, or priority changes.
+- Use `cmd:reanchor` for lightweight alignment checks between full drift audits.
+
+Proceeding rule:
+
+- If drift is `major`, pause implementation and resolve alignment before continuing.
+
+---
+
 ## Step 3 — Implementation
 
 After approving the Change Plan, send:
