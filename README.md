@@ -20,10 +20,7 @@ This repository provides a repeatable protocol to:
 
 Copy the `/ai-onboarding` folder into your project root before starting.
 
-Use command shortcuts for the fastest workflow.
-Command shortcuts run only in strict command mode with `cmd:` prefix.
-Plain words like `onboard` in normal sentences must be treated as regular text.
-Valid command format: `^(cmd:(onboard|onboard:full|drift-audit|impl|reanchor|brownfield:select)|cmd:plan: \S.*)$`
+Use command shortcuts for the fastest workflow. To avoid accidental triggering, a shortcut is only treated as a command when your message starts with `cmd:` (for example, `cmd:onboard` or `cmd:plan: <task description>`). If you use words like `onboard` in normal conversation, they are treated as regular text.
 
 Command reference:
 
