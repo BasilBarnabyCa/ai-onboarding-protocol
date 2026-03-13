@@ -31,25 +31,21 @@ Example flow:
 ```text
 Follow /ai-onboarding/docs/protocols/ARCHITECTURE_ALIGNMENT.md.
 Strict Step 0 mode:
-Ask for any missing required Step 0 fields before any alignment work.
+Ask for missing required Step 0 fields one question at a time.
+Start by asking Mode (`greenfield` or `brownfield`) with a brief explanation.
+Branch questions by mode:
+- If greenfield: ask only greenfield-relevant required questions next.
+- If brownfield: ask target workspace + project brief next, then brownfield profile resolution.
 Do not proceed to Step 1+ until all required Step 0 fields are complete.
 Do not assume missing Step 0 values.
 If Step 0 fields are provided inline, use them directly and ask only for remaining required fields.
+Do not paste template-style multi-field blocks to the user.
+After Step 0, run core intake sequentially (outcome, scope boundaries, do-not-break constraints, approvals, success criteria).
+Do not generate or update onboarding output files until Step 0 and core intake required fields are complete.
 No implementation changes.
 ```
 
-Optional one-message kickoff pattern with `cmd:onboard`:
-
-```text
-cmd:onboard
-Mode: [brownfield|greenfield]
-Platform: [Codex|Claude Code|ChatGPT|Other]
-Platform profile: [model + capability summary]
-Execution role profile: [domain - role, optional]
-Target workspace: [absolute path, brownfield only]
-Project brief: [1-3 sentences, brownfield only]
-Profile override: [optional]
-```
+Inline answers are supported, but onboarding still proceeds one question at a time.
 
 ### cmd:drift-audit
 

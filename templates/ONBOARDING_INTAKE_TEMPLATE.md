@@ -1,12 +1,15 @@
 # ONBOARDING_INTAKE_TEMPLATE.md
 
 Use this template during Phase 1.
+This template is an internal recording artifact; do not paste the full template to the user.
 
 Process:
 1. Auto-fill from available evidence first.
-2. Ask up to 5 required questions only where needed.
-3. Ask up to 3 follow-up questions only for critical unknowns.
-4. Save final filled version to `/ai-onboarding/output/ONBOARDING_INTAKE_FILLED.md`.
+2. Ask required questions sequentially (one question at a time), starting with mode.
+3. Ask up to 6 required questions only where needed.
+4. Ask up to 3 follow-up questions only for critical unknowns.
+5. Do not generate output artifacts until Step 0 and core intake required fields are complete.
+6. Save final filled version to `/ai-onboarding/output/ONBOARDING_INTAKE_FILLED.md`.
 
 ---
 
@@ -74,7 +77,7 @@ Process:
 ## Completion Check
 
 - Onboarding score: [0-100]
-- Required questions count used: [0-5]
+- Required questions count used: [0-6]
 - Follow-up questions count used: [0-3]
 - Drift status after self-critique: [none|minor|major]
 - Go/No-Go decision: [go|no-go]

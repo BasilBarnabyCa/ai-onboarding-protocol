@@ -27,7 +27,14 @@ Command reference:
 - `commands/COMMANDS.md` (copy/paste view)
 - `commands/commands.yaml` (source of truth)
 
-Recommended command sequence:
+In a fresh project/session, start with this first message so the assistant loads your local command spec before shortcuts:
+
+```text
+Read /ai-onboarding/commands/commands.yaml and enforce its strict command mode.
+Then run cmd:onboard.
+```
+
+Then use this command sequence:
 
 1. `cmd:onboard`
 2. `cmd:drift-audit`
@@ -47,15 +54,14 @@ After this first message, the assistant must ask for missing Step 0 inputs autom
 You should not need to provide them in advance.
 Step 0 required fields are a hard gate: the assistant must not proceed to Step 1+ until all required fields are provided.
 
-Expected assistant questions (as needed):
+Expected assistant behavior:
 
-- Mode: `greenfield` or `brownfield`
-- Platform: `Codex`, `Claude Code`, `ChatGPT`, or `Other`
-- Platform profile (model + capability summary)
-- Optional: execution role profile (`domain - role`)
-- Brownfield only: target workspace absolute path
-- Brownfield only: brief project description (1-3 sentences)
-- Brownfield only: optional profile override
+- Ask one question at a time (sequential), not a large multi-field block.
+- Ask mode first (`greenfield` or `brownfield`) with a brief explanation.
+- If `greenfield`, continue with greenfield-relevant questions.
+- If `brownfield`, ask target workspace path and project brief next.
+- After Step 0, ask core intake questions sequentially (outcome, scope, constraints, approvals, success criteria) before generating output files.
+- Optional fields (`execution role profile`, `profile override`) are non-blocking.
 
 If execution role profile is omitted, the default role from `AGENT_RULES.md` is used.
 
@@ -64,21 +70,6 @@ Strict behavior:
 - Missing required Step 0 fields block onboarding progression.
 - The assistant asks only missing required fields and pauses until answered.
 - The assistant does not infer missing Step 0 values.
-
-Alternative if you prefer to provide everything up front in one message:
-
-```text
-Follow /ai-onboarding/docs/protocols/ARCHITECTURE_ALIGNMENT.md.
-Mode: [brownfield|greenfield]
-Platform: [Codex|Claude Code|ChatGPT|Other]
-Platform profile: [model + capability summary]
-Execution role profile: [domain - role, optional]
-Target workspace: [absolute path, brownfield only]
-Project brief: [1-3 sentences, brownfield only]
-Profile override: [optional]
-No implementation changes.
-Write onboarding artifacts to /ai-onboarding/output.
-```
 
 Wait for:
 
