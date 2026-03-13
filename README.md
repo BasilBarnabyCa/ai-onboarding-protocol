@@ -20,15 +20,17 @@ This repository provides a repeatable protocol to:
 
 `Run from /ai-onboarding` means this folder is your working context in the AI tool. It is not a shell command.
 
-If you want the shortest possible start, copy the `/ai-onboarding` folder to your project root and send this to your LLM:
+Send these prompts in order.
+
+### 1) Alignment (start here)
 
 ```text
 Follow /ai-onboarding/docs/protocols/ARCHITECTURE_ALIGNMENT.md.
 No implementation changes.
 ```
 
-After this message, the assistant should ask you for any missing Step 0 inputs automatically.
-You should not need to know the full Step 0 schema in advance.
+After this first message, the assistant should ask for missing Step 0 inputs automatically.
+You should not need to provide them in advance.
 
 Expected assistant questions (as needed):
 
@@ -39,31 +41,7 @@ Expected assistant questions (as needed):
 - Brownfield only: brief project description (1-3 sentences)
 - Brownfield only: optional profile override
 
-Then use:
-
-```text
-Follow /ai-onboarding/AGENT_RULES.md.
-
-Begin Phase 2 - Change Planning only.
-No implementation changes.
-
-Task:
-[Clearly describe the task here]
-```
-
-Then use:
-
-```text
-Follow /ai-onboarding/AGENT_RULES.md.
-
-Proceed with implementation according to the approved Change Plan.
-```
-
-For full prompts and optional fields, see `docs/protocols/AI_EXECUTION_PROTOCOL.md`.
-
-Start by sending prompt messages to the AI assistant in this exact order when you want full explicit context.
-
-### 1) Alignment
+Alternative if you prefer to provide everything up front in one message:
 
 ```text
 Follow /ai-onboarding/docs/protocols/ARCHITECTURE_ALIGNMENT.md.
@@ -126,6 +104,8 @@ No implementation changes in this message - alignment only.
 
 Then continue from the already-approved Change Plan.
 ```
+
+For full details, use `docs/protocols/AI_EXECUTION_PROTOCOL.md`.
 
 ## Core Files
 
