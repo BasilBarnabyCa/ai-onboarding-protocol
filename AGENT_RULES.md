@@ -76,7 +76,7 @@ Effective role posture (default or user-provided optional role profile) remains 
 ## Adaptive Intake Constraints
 
 - Ask required onboarding questions sequentially (one question at a time).
-- Ask at most `8` required onboarding questions (including mode-specific composite questions when needed).
+- Ask at most `6` required onboarding questions (including mode-specific composite questions when needed).
 - Ask at most `3` follow-up questions, and only when critical uncertainty remains.
 - Prefer auto-discovery from available artifacts before asking questions.
 - Capture execution platform profile at onboarding start:
@@ -105,15 +105,19 @@ Effective role posture (default or user-provided optional role profile) remains 
 - Request only the missing required fields, then continue once all required fields are present.
 - Optional profile override may be requested after required fields are complete; it is never a blocker.
 
-## Core Intake Hard Gate (Strict)
+## Core Intake Defaults (Non-Blocking)
 
-- After Step 0, collect core intake required fields before artifact generation:
-- scope boundaries
-- top do-not-break constraints
-- required approvals
-- onboarding success criteria
-- While core intake required fields are incomplete, do not generate or update onboarding output artifacts.
-- Optional (non-blocking): onboarding special focus area.
+- Auto-fill defaults under the hood:
+- top do-not-break constraints = no destructive actions, no secrets in outputs, no implementation during onboarding
+- required approvals = approved plan before implementation, drift `major` blocks progression
+- onboarding success criteria = required artifacts generated, score threshold met, drift not `major`
+- Auto-fill default scope boundaries:
+- in scope = onboarding artifacts + readiness/drift gates
+- out of scope = implementation/deployment/refactors
+- Ask this optional prompt exactly:
+- "Optional: keep defaults, or type override to customize constraints/approvals/success criteria/scope/special-focus."
+- If user types `override`, ask one area at a time in this order:
+- constraints -> approvals -> success criteria -> scope -> special focus.
 
 ---
 

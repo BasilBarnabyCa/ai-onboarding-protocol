@@ -96,15 +96,20 @@ Step 0 interaction rule:
 - Optional fields (non-blocking): execution role profile (`domain - role`), profile override.
 - Until required fields are complete, do not read/validate onboarding artifacts and do not execute bootstrap.
 
-Core intake gate (required before artifact generation):
+Core intake defaults (non-blocking):
 
-- After Step 0 is complete, collect core intake sequentially:
-- scope boundaries
-- top do-not-break constraints
-- required approvals
-- onboarding success criteria
-- Optional (non-blocking): onboarding special focus area.
-- Do not generate or update onboarding artifacts until core intake required fields are complete.
+- After Step 0 is complete, auto-fill defaults:
+- top do-not-break constraints = no destructive actions, no secrets in outputs, no implementation during onboarding
+- required approvals = approved plan before implementation, drift `major` blocks progression
+- onboarding success criteria = required artifacts generated, score threshold met, drift not `major`
+- Auto-fill default scope boundaries:
+- in scope = onboarding artifacts + readiness/drift gates
+- out of scope = implementation/deployment/refactors
+- Then ask this optional prompt exactly:
+- "Optional: keep defaults, or type override to customize constraints/approvals/success criteria/scope/special-focus."
+- If user types `override`, ask one area at a time in this order:
+- constraints -> approvals -> success criteria -> scope -> special focus.
+- Do not generate or update onboarding artifacts until required Step 0 fields are complete.
 
 ---
 
@@ -202,7 +207,7 @@ Phase 1 is complete only when all are true:
 - Execution role profile captured (if provided) or default role applied
 - Brownfield project brief declared (if applicable)
 - Brownfield selected profile declared (if applicable)
-- Core intake required fields completed (scope, constraints, approvals, success criteria)
+- Core intake defaults applied (or overridden when provided)
 - `MASTER_CONTEXT.md` read (or absence explicitly acknowledged)
 - Bootstrap contract executed
 - `AI_ONBOARDING_SUMMARY.md` generated or validated

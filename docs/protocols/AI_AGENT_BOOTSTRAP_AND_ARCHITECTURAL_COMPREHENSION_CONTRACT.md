@@ -110,12 +110,23 @@ Persist greenfield depth outputs in onboarding artifacts (vision, non-goals, suc
 ## Adaptive Intake Rule (Required)
 
 - Ask required questions sequentially (one question at a time).
-- Ask at most `8` required questions (including mode-specific composite questions when needed).
+- Ask at most `6` required questions (including mode-specific composite questions when needed).
 - Ask up to `3` targeted follow-up questions only for critical unknowns.
 - Prefer evidence-based auto-fill first.
 - Maintain an assumptions ledger with confidence (`high`, `medium`, `low`).
+- Auto-fill onboarding defaults unless user asks to override:
+- top do-not-break constraints = no destructive actions, no secrets in outputs, no implementation during onboarding
+- required approvals = approved plan before implementation, drift `major` blocks progression
+- onboarding success criteria = required artifacts generated, score threshold met, drift not `major`
+- Auto-fill default scope boundaries:
+- in scope = onboarding artifacts + readiness/drift gates
+- out of scope = implementation/deployment/refactors
+- Ask this optional prompt exactly:
+- "Optional: keep defaults, or type override to customize constraints/approvals/success criteria/scope/special-focus."
+- If user types `override`, ask one area at a time in this order:
+- constraints -> approvals -> success criteria -> scope -> special focus.
 - Do not paste template-like multi-field blocks to the user.
-- Do not generate or update onboarding output artifacts until Step 0 and core intake required fields are complete.
+- Do not generate or update onboarding output artifacts until required Step 0 fields are complete.
 
 ---
 
