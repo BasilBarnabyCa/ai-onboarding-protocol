@@ -15,6 +15,18 @@ This protocol must be followed for every new task or session.
 
 Use these short prompts when you want the original simple workflow style.
 
+Command shortcuts are defined in:
+
+- `/ai-onboarding/commands/COMMANDS.md`
+- `/ai-onboarding/commands/commands.yaml`
+
+Shortcut note:
+
+- Use strict command mode with `cmd:` prefix.
+- Valid command format: `^(cmd:(onboard|onboard:full|drift-audit|impl|reanchor|brownfield:select)|cmd:plan: \S.*)$`
+- Use `cmd:plan: <task description>` for planning requests.
+- If message does not match valid command format, treat it as normal conversation text.
+
 ### 1) Alignment
 
 ```text
@@ -59,12 +71,14 @@ Notes:
 - After the minimal Alignment prompt, the system must immediately ask for any missing Step 0 inputs before proceeding.
 - The user should not be expected to know Step 0 fields unless asked.
 - Keep phase separation strict; do not collapse alignment/planning/implementation.
+- Missing Step 0 required fields are a hard block. Do not proceed to Step 1+ until they are complete.
 
 ---
 
 ## Step 0 — Declare Mode and Platform
 
-Declare mode and execution platform first:
+Declare mode and execution platform first.
+Required Step 0 fields:
 
 - `brownfield`: existing system/repository/process exists.
 - `greenfield`: new project with little or no implementation artifacts.
@@ -73,16 +87,20 @@ Declare mode and execution platform first:
 - Capability profile (tools/file access/network/approval mode)
 - If `brownfield`: target workspace path (absolute)
 - If `brownfield`: brief project description (1-3 sentences)
-- Optional: profile override (`software-brownfield`, etc.)
+- Optional, non-blocking: profile override (`software-brownfield`, etc.)
 
-If any Step 0 input is missing, ask these questions before alignment work begins:
+If any required Step 0 input is missing, ask these questions before alignment work begins:
 
 1. What mode should I use: `greenfield` or `brownfield`?
 2. What platform are you using: `Codex`, `Claude Code`, `ChatGPT`, or `Other`?
 3. What platform profile should I assume (model + capability summary)?
 4. If brownfield: what is the target workspace absolute path?
 5. If brownfield: give a brief project description (1-3 sentences).
-6. Optional if brownfield: do you want to force a profile override?
+
+Only after all required Step 0 fields are present:
+
+1. Continue with Step 1 alignment actions.
+2. Optionally ask whether to apply a profile override.
 
 If mode is `brownfield`, run:
 

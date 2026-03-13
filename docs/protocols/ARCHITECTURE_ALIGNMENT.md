@@ -77,6 +77,10 @@ Step 0 interaction rule:
 
 - If the user starts with a minimal alignment prompt and Step 0 fields are missing, the assistant must ask for missing fields before proceeding.
 - The assistant must not assume the user already knows which Step 0 questions to provide.
+- Missing required Step 0 fields block progression to Step 1+.
+- Required fields: mode, platform, platform profile, and for brownfield target workspace path + project brief.
+- Optional field (non-blocking): profile override.
+- Until required fields are complete, do not read/validate onboarding artifacts and do not execute bootstrap.
 
 ---
 
