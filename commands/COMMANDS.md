@@ -4,7 +4,7 @@ Derived from:
 - `/ai-onboarding/commands/commands.yaml`
 
 Last synced:
-- 2026-03-12
+- 2026-03-13
 
 Note:
 - `commands.yaml` is the source of truth.
@@ -14,7 +14,7 @@ Note:
 
 Use strict command mode:
 - Only treat input as a command when it starts with `cmd:`.
-- Commands must match: `^(cmd:(onboard|onboard:full|drift-audit|impl|reanchor|brownfield:select)|cmd:plan: \S.*)$`
+- Commands must match: `^(cmd:(onboard|drift-audit|impl|reanchor|brownfield:select)|cmd:plan: \S.*)$`
 - Anything else is normal conversation text.
 - For planning, use `cmd:plan: <task description>`.
 
@@ -34,22 +34,21 @@ Strict Step 0 mode:
 Ask for any missing required Step 0 fields before any alignment work.
 Do not proceed to Step 1+ until all required Step 0 fields are complete.
 Do not assume missing Step 0 values.
+If Step 0 fields are provided inline, use them directly and ask only for remaining required fields.
 No implementation changes.
 ```
 
-### cmd:onboard:full
+Optional one-message kickoff pattern with `cmd:onboard`:
 
 ```text
-Follow /ai-onboarding/docs/protocols/ARCHITECTURE_ALIGNMENT.md.
+cmd:onboard
 Mode: [brownfield|greenfield]
 Platform: [Codex|Claude Code|ChatGPT|Other]
 Platform profile: [model + capability summary]
+Execution role profile: [domain - role, optional]
 Target workspace: [absolute path, brownfield only]
 Project brief: [1-3 sentences, brownfield only]
 Profile override: [optional]
-If any required Step 0 field is missing, ask for it and pause before Step 1.
-No implementation changes.
-Write onboarding artifacts to /ai-onboarding/output.
 ```
 
 ### cmd:drift-audit

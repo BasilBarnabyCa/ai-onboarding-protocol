@@ -16,6 +16,7 @@ Process:
 - Execution platform: [Codex|Claude Code|ChatGPT|Other]
 - Platform version/model: [text goes here]
 - Capability profile (tools/file access/network/approval mode): [text goes here]
+- Execution role profile (optional, `domain - role`): [text goes here or default role]
 - Target workspace path (brownfield): [absolute path or n/a]
 - Brownfield project brief (1-3 sentences): [text goes here or n/a]
 - Profile override requested: [text goes here or none]
@@ -41,6 +42,17 @@ Process:
 - Core workflows: [text goes here]
 - High-risk controls (access/data/destructive actions): [text goes here]
 - Environment/runtime notes (if applicable): [text goes here]
+
+## Greenfield Depth Inputs (Required when mode is `greenfield`)
+
+- Product vision (1-2 sentences): [text goes here]
+- Explicit non-goals: [text goes here]
+- Success metrics: [text goes here]
+- MVP slices (phase list): [text goes here]
+- Milestone plan: [text goes here]
+- System/tech decisions and rationale: [text goes here]
+- Domain model and primary workflow/loop: [text goes here]
+- Acceptance criteria + release definition: [text goes here]
 
 ## Evidence Sources
 

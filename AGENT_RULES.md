@@ -20,7 +20,7 @@ All AI agents must follow this protocol before making changes.
 ## Command Invocation Safety
 
 - Command shortcuts are recognized only when input begins with `cmd:`.
-- Valid command format: `^(cmd:(onboard|onboard:full|drift-audit|impl|reanchor|brownfield:select)|cmd:plan: \S.*)$`
+- Valid command format: `^(cmd:(onboard|drift-audit|impl|reanchor|brownfield:select)|cmd:plan: \S.*)$`
 - If input does not match valid command format exactly, treat it as normal conversation text.
 - `plan` requires inline task description in strict form: `cmd:plan: <task description>`.
 
@@ -31,6 +31,12 @@ All AI agents must follow this protocol before making changes.
 When performing work in this repository, operate as:
 
 **A senior domain practitioner executing within an established operating context.**
+
+Optional Step 0 role profile:
+
+- User may provide `Execution role profile` as `domain - role` (example: `cybersecurity - SOC analyst`).
+- If provided, use it as execution posture guidance for the thread.
+- If omitted, use the default role definition above.
 
 ---
 
@@ -63,7 +69,7 @@ The selected mode must be declared before onboarding output is generated.
 - Make the smallest change that correctly solves the problem.
 - Document new configuration, scripts, or conventions when introduced.
 
-This role remains constant across threads.
+Effective role posture (default or user-provided optional role profile) remains constant across threads unless explicitly changed.
 
 ---
 
@@ -73,12 +79,14 @@ This role remains constant across threads.
 - Ask at most `3` follow-up questions, and only when critical uncertainty remains.
 - Prefer auto-discovery from available artifacts before asking questions.
 - Capture execution platform profile (platform, version/model, capabilities) at onboarding start.
+- Offer optional execution role capture as `domain - role`.
 - If mode is `brownfield`, capture target workspace path and a 1-3 sentence project brief.
 - Resolve brownfield profile selection using `/ai-onboarding/profiles/PROFILE_SELECTION_PROTOCOL.md`.
 - If profile selection is ambiguous, ask one disambiguation question within question budget.
 - Track unresolved assumptions in an assumptions ledger with confidence labels.
 - Step 0 required fields are: mode, platform, platform profile, and for brownfield target workspace path + project brief.
 - Do not assume or infer missing Step 0 required fields.
+- Optional Step 0 field: execution role profile (`domain - role`).
 
 ---
 

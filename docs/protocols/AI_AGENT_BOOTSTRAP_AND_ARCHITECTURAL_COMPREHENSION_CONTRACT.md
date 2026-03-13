@@ -46,12 +46,14 @@ Capture platform details before onboarding output:
 - Platform (`Codex`, `Claude Code`, `ChatGPT`, or `Other`)
 - Platform version/model
 - Capability profile (tools, filesystem access, network policy, approval mode)
+- Optional execution role profile (`domain - role`)
 
 Rules:
 
 - Auto-detect first where possible.
 - Ask the user only when unknown.
 - Platform clarification must stay within the required-question budget.
+- Execution role profile is optional and must not block progression.
 
 ---
 
@@ -75,6 +77,16 @@ Persist selection details:
 - Evidence summary
 
 If ambiguous, ask one disambiguation question within question budget.
+
+---
+
+## Greenfield Depth Overlay (Required when mode is `greenfield`)
+
+Apply:
+
+- `/ai-onboarding/profiles/greenfield/GREENFIELD_MASTER_CONTEXT_ARTIFACT.md`
+
+Persist greenfield depth outputs in onboarding artifacts (vision, non-goals, success metrics, MVP slices, milestone plan, decision rationale, acceptance/release criteria).
 
 ---
 
@@ -169,6 +181,28 @@ Mark each item with one of:
 
 - Understood
 - Needs clarification
+
+---
+
+## Required `AI_ONBOARDING_SUMMARY.md` Structure
+
+The summary must be a decision artifact, not a generic recap.
+
+Required sections:
+
+1. Project Understanding
+2. Safe Change Rules (binding constraints)
+3. How Work Will Be Executed Safely
+4. Risks and Ambiguities (`UNKNOWN` + `ASSUMPTION` items with evidence)
+5. Sharp-Edge Acknowledgment Checklist
+6. Readiness Snapshot (score, drift status, go/no-go)
+7. Alignment Confirmation statement
+
+Rules:
+
+- Every major statement must cite evidence file paths where available.
+- Risks should include impact and verification/mitigation action.
+- If docs conflict with implementation, include explicit discrepancy notes.
 
 ---
 

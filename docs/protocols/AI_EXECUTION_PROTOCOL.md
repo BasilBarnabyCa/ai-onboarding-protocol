@@ -23,7 +23,7 @@ Command shortcuts are defined in:
 Shortcut note:
 
 - Use strict command mode with `cmd:` prefix.
-- Valid command format: `^(cmd:(onboard|onboard:full|drift-audit|impl|reanchor|brownfield:select)|cmd:plan: \S.*)$`
+- Valid command format: `^(cmd:(onboard|drift-audit|impl|reanchor|brownfield:select)|cmd:plan: \S.*)$`
 - Use `cmd:plan: <task description>` for planning requests.
 - If message does not match valid command format, treat it as normal conversation text.
 
@@ -87,7 +87,10 @@ Required Step 0 fields:
 - Capability profile (tools/file access/network/approval mode)
 - If `brownfield`: target workspace path (absolute)
 - If `brownfield`: brief project description (1-3 sentences)
+- Optional, non-blocking: execution role profile (`domain - role`)
 - Optional, non-blocking: profile override (`software-brownfield`, etc.)
+
+If execution role profile is omitted, use default role from `/ai-onboarding/AGENT_RULES.md`.
 
 If any required Step 0 input is missing, ask these questions before alignment work begins:
 
@@ -100,7 +103,8 @@ If any required Step 0 input is missing, ask these questions before alignment wo
 Only after all required Step 0 fields are present:
 
 1. Continue with Step 1 alignment actions.
-2. Optionally ask whether to apply a profile override.
+2. Optionally ask for execution role profile in format `domain - role`.
+3. Optionally ask whether to apply a profile override.
 
 If mode is `brownfield`, run:
 
@@ -109,6 +113,10 @@ If mode is `brownfield`, run:
 If selected profile is `software-brownfield`, apply:
 
 - `/ai-onboarding/profiles/software-brownfield/SOFTWARE_BROWNFIELD_MASTER_CONTEXT_ARTIFACT.md`
+
+If mode is `greenfield`, apply:
+
+- `/ai-onboarding/profiles/greenfield/GREENFIELD_MASTER_CONTEXT_ARTIFACT.md`
 
 ---
 
@@ -133,6 +141,7 @@ Follow /ai-onboarding/docs/protocols/ARCHITECTURE_ALIGNMENT.md.
 Mode: [brownfield|greenfield]
 Platform: [Codex|Claude Code|ChatGPT|Other]
 Platform profile: [model + capability summary]
+Execution role profile: [domain - role, optional]
 Target workspace: [absolute path, brownfield only]
 Project brief: [1-3 sentences, brownfield only]
 Profile override: [optional]
@@ -209,6 +218,22 @@ No implementation changes in this message.
 ```
 
 Proceed only when drift status is `none` or `minor`.
+
+---
+
+## Step 2.6 - Periodic Drift Audit (Active Development)
+
+While implementation is active over multiple days, run periodic drift checks to keep execution aligned.
+
+Cadence:
+
+- Run `cmd:drift-audit` every 3-5 working days.
+- Run `cmd:drift-audit` immediately after material scope, architecture, risk, or priority changes.
+- Use `cmd:reanchor` for lightweight alignment checks between full drift audits.
+
+Proceeding rule:
+
+- If drift is `major`, pause implementation and resolve alignment before continuing.
 
 ---
 

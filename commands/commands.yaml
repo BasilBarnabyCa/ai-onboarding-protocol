@@ -1,40 +1,23 @@
 version: 1
 source_of_truth: commands/commands.yaml
 generated_view: commands/COMMANDS.md
-updated: 2026-03-12
+updated: 2026-03-13
 command_prefix: "cmd:"
 strict_command_matching: true
-validation_regex: '^(cmd:(onboard|onboard:full|drift-audit|impl|reanchor|brownfield:select)|cmd:plan: \S.*)$'
+validation_regex: '^(cmd:(onboard|drift-audit|impl|reanchor|brownfield:select)|cmd:plan: \S.*)$'
 
 commands:
   - id: onboard
-    description: Start alignment with strict Step 0 intake gate (`cmd:onboard`).
+    description: Start alignment with mandatory Step 0 intake gate (`cmd:onboard`).
     expands_to: |
       Follow /ai-onboarding/docs/protocols/ARCHITECTURE_ALIGNMENT.md.
       Strict Step 0 mode:
       Ask for any missing required Step 0 fields before any alignment work.
       Do not proceed to Step 1+ until all required Step 0 fields are complete.
       Do not assume missing Step 0 values.
+      If Step 0 fields are provided inline, use them directly and ask only for remaining required fields.
       No implementation changes.
     required_vars: []
-
-  - id: onboard:full
-    description: Start alignment with explicit Step 0 fields (`cmd:onboard:full`).
-    expands_to: |
-      Follow /ai-onboarding/docs/protocols/ARCHITECTURE_ALIGNMENT.md.
-      Mode: [brownfield|greenfield]
-      Platform: [Codex|Claude Code|ChatGPT|Other]
-      Platform profile: [model + capability summary]
-      Target workspace: [absolute path, brownfield only]
-      Project brief: [1-3 sentences, brownfield only]
-      Profile override: [optional]
-      If any required Step 0 field is missing, ask for it and pause before Step 1.
-      No implementation changes.
-      Write onboarding artifacts to /ai-onboarding/output.
-    required_vars:
-      - mode
-      - platform
-      - platform_profile
 
   - id: drift-audit
     description: Run mandatory drift audit gate (`cmd:drift-audit`).

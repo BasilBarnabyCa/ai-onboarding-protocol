@@ -20,10 +20,7 @@ This repository provides a repeatable protocol to:
 
 Copy the `/ai-onboarding` folder into your project root before starting.
 
-Use command shortcuts for the fastest workflow.
-Command shortcuts run only in strict command mode with `cmd:` prefix.
-Plain words like `onboard` in normal sentences must be treated as regular text.
-Valid command format: `^(cmd:(onboard|onboard:full|drift-audit|impl|reanchor|brownfield:select)|cmd:plan: \S.*)$`
+Use command shortcuts for the fastest workflow. To avoid accidental triggering, a shortcut is only treated as a command when your message starts with `cmd:` (for example, `cmd:onboard` or `cmd:plan: <task description>`). If you use words like `onboard` in normal conversation, they are treated as regular text.
 
 Command reference:
 
@@ -55,9 +52,12 @@ Expected assistant questions (as needed):
 - Mode: `greenfield` or `brownfield`
 - Platform: `Codex`, `Claude Code`, `ChatGPT`, or `Other`
 - Platform profile (model + capability summary)
+- Optional: execution role profile (`domain - role`)
 - Brownfield only: target workspace absolute path
 - Brownfield only: brief project description (1-3 sentences)
 - Brownfield only: optional profile override
+
+If execution role profile is omitted, the default role from `AGENT_RULES.md` is used.
 
 Strict behavior:
 
@@ -72,6 +72,7 @@ Follow /ai-onboarding/docs/protocols/ARCHITECTURE_ALIGNMENT.md.
 Mode: [brownfield|greenfield]
 Platform: [Codex|Claude Code|ChatGPT|Other]
 Platform profile: [model + capability summary]
+Execution role profile: [domain - role, optional]
 Target workspace: [absolute path, brownfield only]
 Project brief: [1-3 sentences, brownfield only]
 Profile override: [optional]
@@ -94,6 +95,12 @@ Use /ai-onboarding/templates/DRIFT_CHECK_TEMPLATE.md as the report format.
 If drift is major, pause and ask for clarification.
 No implementation changes.
 ```
+
+Drift audit cadence during active development:
+
+- Run `cmd:drift-audit` every 3-5 working days while work is active.
+- Run `cmd:drift-audit` immediately after material scope/architecture/priority changes.
+- Run `cmd:reanchor` for quick alignment checks between full drift audits.
 
 ### 3) Change Planning
 
@@ -148,6 +155,7 @@ For full details, use `docs/protocols/AI_EXECUTION_PROTOCOL.md`.
 - `commands/commands.yaml`: command source-of-truth
 - `profiles/PROFILE_SELECTION_PROTOCOL.md`: deterministic brownfield profile router
 - `profiles/PROFILE_REGISTRY.md`: active/planned profile registry
+- `profiles/greenfield/GREENFIELD_MASTER_CONTEXT_ARTIFACT.md`: high-rigor greenfield depth overlay
 
 ## Software Brownfield Overlay
 
@@ -163,6 +171,12 @@ Profile selection behavior:
 
 - For brownfield runs, profile selection is resolved via `profiles/PROFILE_SELECTION_PROTOCOL.md`.
 - If ambiguous, one disambiguation question is asked within onboarding budget.
+
+## Greenfield Overlay
+
+When mode is `greenfield`, apply:
+
+- `profiles/greenfield/GREENFIELD_MASTER_CONTEXT_ARTIFACT.md`
 
 ## Output Artifacts
 
@@ -184,6 +198,13 @@ Common files:
 Archived output snapshots:
 
 - `/ai-onboarding/output/archive/*`
+
+## Role Persistence
+
+- Optional Step 0 field: `Execution role profile` in format `domain - role`.
+- If provided, it is persisted in onboarding artifacts (starting with `ONBOARDING_INTAKE_FILLED.md`) and carried forward in alignment context.
+- If omitted, the default role from `AGENT_RULES.md` is used.
+- Precedence order: current prompt role profile -> persisted onboarding artifacts -> default role in `AGENT_RULES.md`.
 
 ## Readiness Gates
 
