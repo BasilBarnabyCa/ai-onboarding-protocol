@@ -96,18 +96,21 @@ And enforce:
 ## Adaptive Intake Rules
 
 1. Run auto-discovery first and pre-fill everything possible.
-2. Ask at most `5` required questions.
-3. Ask up to `3` follow-up questions only for critical uncertainty.
-4. Save filled intake to `/ai-onboarding/output/ONBOARDING_INTAKE_FILLED.md`.
-5. Fill drift template and save to `/ai-onboarding/output/DRIFT_CHECK_REPORT.md`.
+2. Ask required questions sequentially (one question at a time); do not paste a template block.
+3. Ask at most `6` required questions (including one mode-specific composite question when needed).
+4. Ask up to `3` follow-up questions only for critical uncertainty.
+5. Do not generate or update onboarding output files until Step 0 and core intake required fields are complete.
+6. Save filled intake to `/ai-onboarding/output/ONBOARDING_INTAKE_FILLED.md`.
+7. Fill drift template and save to `/ai-onboarding/output/DRIFT_CHECK_REPORT.md`.
 
 ## Suggested required questions
 
-1. Which mode should be used: `greenfield` or `brownfield`?
-2. Which execution platform/model/capability profile should be used?
-3. If brownfield: what is the target workspace path and brief project description (1-3 sentences)?
-4. What outcome matters most right now?
-5. What are top constraints/approvals and success criteria for this onboarding?
+1. Ask mode first: `greenfield` or `brownfield` (with a brief explanation).
+2. Ask platform/model/capability profile only if not auto-detected.
+3. If brownfield: ask target workspace path + project brief (1-3 sentences).
+4. Ask primary outcome.
+5. Ask scope boundaries + top do-not-break constraints + required approvals + onboarding success criteria.
+6. If greenfield and missing: ask one composite greenfield-depth question (vision, non-goals, metrics, MVP/milestones, decisions, domain loop, acceptance/release).
 
 Optional question (non-blocking):
 
@@ -239,11 +242,14 @@ High-impact override:
 1. Select mode (`greenfield` or `brownfield`).
 2. Capture platform profile (+ optional execution role profile).
 3. If brownfield: capture workspace path + project brief, then resolve profile.
-4. Auto-discover and summarize evidence.
-5. Fill intake template and ask only missing high-impact questions.
-6. Generate required output files in `/ai-onboarding/output`.
-7. Run deterministic verification and record explicit results.
-8. Generate/update drift report with classification and go/no-go.
-9. Output onboarding score and completion decision.
+4. Ask core intake required fields sequentially.
+5. If greenfield: collect greenfield-depth fields (single composite question if needed).
+6. Do not generate outputs until Step 0 + required intake fields are complete.
+7. Auto-discover and summarize evidence.
+8. Fill intake template and ask only missing high-impact questions.
+9. Generate required output files in `/ai-onboarding/output`.
+10. Run deterministic verification and record explicit results.
+11. Generate/update drift report with classification and go/no-go.
+12. Output onboarding score and completion decision.
 
 Now do the work and output complete contents for all required artifacts.

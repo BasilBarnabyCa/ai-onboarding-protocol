@@ -92,10 +92,13 @@ Persist greenfield depth outputs in onboarding artifacts (vision, non-goals, suc
 
 ## Adaptive Intake Rule (Required)
 
-- Ask at most `5` required questions.
+- Ask required questions sequentially (one question at a time).
+- Ask at most `6` required questions (including one mode-specific composite question when needed).
 - Ask up to `3` targeted follow-up questions only for critical unknowns.
 - Prefer evidence-based auto-fill first.
 - Maintain an assumptions ledger with confidence (`high`, `medium`, `low`).
+- Do not paste template-like multi-field blocks to the user.
+- Do not generate or update onboarding output artifacts until Step 0 and core intake required fields are complete.
 
 ---
 

@@ -77,11 +77,23 @@ Then resolve selected profile via:
 Step 0 interaction rule:
 
 - If the user starts with a minimal alignment prompt and Step 0 fields are missing, the assistant must ask for missing fields before proceeding.
+- Ask one question at a time; do not paste a multi-field template block.
+- Ask `mode` first with a brief explanation, then branch to the next appropriate question by mode.
 - The assistant must not assume the user already knows which Step 0 questions to provide.
 - Missing required Step 0 fields block progression to Step 1+.
 - Required fields: mode, platform, platform profile, and for brownfield target workspace path + project brief.
 - Optional fields (non-blocking): execution role profile (`domain - role`), profile override.
 - Until required fields are complete, do not read/validate onboarding artifacts and do not execute bootstrap.
+
+Core intake gate (required before artifact generation):
+
+- After Step 0 is complete, collect core intake sequentially:
+- primary outcome
+- scope boundaries
+- top do-not-break constraints
+- required approvals
+- onboarding success criteria
+- Do not generate or update onboarding artifacts until core intake required fields are complete.
 
 ---
 
@@ -178,6 +190,7 @@ Phase 1 is complete only when all are true:
 - Execution role profile captured (if provided) or default role applied
 - Brownfield project brief declared (if applicable)
 - Brownfield selected profile declared (if applicable)
+- Core intake required fields completed (outcome, scope, constraints, approvals, success criteria)
 - `MASTER_CONTEXT.md` read (or absence explicitly acknowledged)
 - Bootstrap contract executed
 - `AI_ONBOARDING_SUMMARY.md` generated or validated

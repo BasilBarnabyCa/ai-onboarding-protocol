@@ -70,6 +70,8 @@ Notes:
 
 - After the minimal Alignment prompt, the system must immediately ask for any missing Step 0 inputs before proceeding.
 - The user should not be expected to know Step 0 fields unless asked.
+- Ask Step 0 questions one at a time; do not paste a large multi-field block.
+- Start with `mode`, then branch to the next appropriate question by mode.
 - Keep phase separation strict; do not collapse alignment/planning/implementation.
 - Missing Step 0 required fields are a hard block. Do not proceed to Step 1+ until they are complete.
 
@@ -92,19 +94,29 @@ Required Step 0 fields:
 
 If execution role profile is omitted, use default role from `/ai-onboarding/AGENT_RULES.md`.
 
-If any required Step 0 input is missing, ask these questions before alignment work begins:
+If any required Step 0 input is missing, ask sequentially:
 
-1. What mode should I use: `greenfield` or `brownfield`?
-2. What platform are you using: `Codex`, `Claude Code`, `ChatGPT`, or `Other`?
-3. What platform profile should I assume (model + capability summary)?
-4. If brownfield: what is the target workspace absolute path?
-5. If brownfield: give a brief project description (1-3 sentences).
+1. Ask mode first (`greenfield` or `brownfield`) with a brief explanation.
+2. Ask platform only if not auto-detected.
+3. Ask platform profile only if not auto-detected.
+4. If mode is `brownfield`, ask target workspace absolute path.
+5. If mode is `brownfield`, ask brief project description (1-3 sentences).
 
 Only after all required Step 0 fields are present:
 
 1. Continue with Step 1 alignment actions.
 2. Optionally ask for execution role profile in format `domain - role`.
 3. Optionally ask whether to apply a profile override.
+
+Core intake hard gate (before writing onboarding artifacts):
+
+- Ask these required intake fields sequentially:
+1. Primary outcome right now
+2. Scope boundaries
+3. Top do-not-break constraints
+4. Required approvals
+5. Success criteria for onboarding quality
+- Do not generate or update onboarding output files until Step 0 and core intake required fields are complete.
 
 If mode is `brownfield`, run:
 
