@@ -72,6 +72,7 @@ Notes:
 - The user should not be expected to know Step 0 fields unless asked.
 - Ask Step 0 questions one at a time; do not paste a large multi-field block.
 - Start with `mode`, then branch to the next appropriate question by mode.
+- Ask capability profile as a numeric choice (`1-5`) instead of free-text fields.
 - Keep phase separation strict; do not collapse alignment/planning/implementation.
 - Missing Step 0 required fields are a hard block. Do not proceed to Step 1+ until they are complete.
 
@@ -86,21 +87,40 @@ Required Step 0 fields:
 - `greenfield`: new project with little or no implementation artifacts.
 - Platform: `Codex`, `Claude Code`, `ChatGPT`, or `Other`
 - Platform version/model
-- Capability profile (tools/file access/network/approval mode)
+- Capability profile selection (`1-5`)
 - If `brownfield`: target workspace path (absolute)
 - If `brownfield`: brief project description (1-3 sentences)
 - Optional, non-blocking: execution role profile (`domain - role`)
 - Optional, non-blocking: profile override (`software-brownfield`, etc.)
 
+Capability profile selector:
+
+1. `1` Auto-detect (recommended)
+2. `2` Locked-down
+3. `3` Standard
+4. `4` High-trust
+5. `5` All-access (explicit approval required)
+
+Rules:
+
+- Ask for the numeric selection only (`1-5`), not free-text capabilities.
+- If platform capabilities are auto-detected, present detected profile and ask for `1` to accept or another option to override.
+- If user response is unclear, default to `1` and confirm.
+
 If execution role profile is omitted, use default role from `/ai-onboarding/AGENT_RULES.md`.
 
 If any required Step 0 input is missing, ask sequentially:
 
-1. Ask mode first (`greenfield` or `brownfield`) with a brief explanation.
+1. Ask mode first using this wording:
+   "Which setup matches your situation?
+   1) greenfield - new project or idea with little/no existing implementation.
+   2) brownfield - existing repo/system you want to onboard and improve."
+   Accept `1|2|greenfield|brownfield`.
 2. Ask platform only if not auto-detected.
-3. Ask platform profile only if not auto-detected.
-4. If mode is `brownfield`, ask target workspace absolute path.
-5. If mode is `brownfield`, ask brief project description (1-3 sentences).
+3. Ask platform version/model only if not auto-detected.
+4. Ask capability profile selection (`1-5`).
+5. If mode is `brownfield`, ask target workspace absolute path.
+6. If mode is `brownfield`, ask brief project description (1-3 sentences).
 
 Only after all required Step 0 fields are present:
 
@@ -111,11 +131,11 @@ Only after all required Step 0 fields are present:
 Core intake hard gate (before writing onboarding artifacts):
 
 - Ask these required intake fields sequentially:
-1. Primary outcome right now
-2. Scope boundaries
-3. Top do-not-break constraints
-4. Required approvals
-5. Success criteria for onboarding quality
+1. Scope boundaries
+2. Top do-not-break constraints
+3. Required approvals
+4. Success criteria for onboarding quality
+- Optional (non-blocking): onboarding special focus area.
 - Do not generate or update onboarding output files until Step 0 and core intake required fields are complete.
 
 If mode is `brownfield`, run:
@@ -152,7 +172,8 @@ Send:
 Follow /ai-onboarding/docs/protocols/ARCHITECTURE_ALIGNMENT.md.
 Mode: [brownfield|greenfield]
 Platform: [Codex|Claude Code|ChatGPT|Other]
-Platform profile: [model + capability summary]
+Platform version/model: [text]
+Capability profile selection: [1|2|3|4|5]
 Execution role profile: [domain - role, optional]
 Target workspace: [absolute path, brownfield only]
 Project brief: [1-3 sentences, brownfield only]

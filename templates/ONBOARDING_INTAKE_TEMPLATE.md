@@ -6,7 +6,7 @@ This template is an internal recording artifact; do not paste the full template 
 Process:
 1. Auto-fill from available evidence first.
 2. Ask required questions sequentially (one question at a time), starting with mode.
-3. Ask up to 6 required questions only where needed.
+3. Ask up to 8 required questions only where needed.
 4. Ask up to 3 follow-up questions only for critical unknowns.
 5. Do not generate output artifacts until Step 0 and core intake required fields are complete.
 6. Save final filled version to `/ai-onboarding/output/ONBOARDING_INTAKE_FILLED.md`.
@@ -18,7 +18,8 @@ Process:
 - Selected mode: [text goes here]
 - Execution platform: [Codex|Claude Code|ChatGPT|Other]
 - Platform version/model: [text goes here]
-- Capability profile (tools/file access/network/approval mode): [text goes here]
+- Capability profile selection: [1|2|3|4|5]
+- Capability profile resolved (tools/file access/network/approval mode): [text goes here]
 - Execution role profile (optional, `domain - role`): [text goes here or default role]
 - Target workspace path (brownfield): [absolute path or n/a]
 - Brownfield project brief (1-3 sentences): [text goes here or n/a]
@@ -33,11 +34,14 @@ Process:
 
 ## Core Intake (Required)
 
-1. Primary outcome right now: [text goes here]
-2. Scope boundaries (in-scope vs out-of-scope): [text goes here]
-3. Top 3 do-not-break constraints: [text goes here]
-4. Required approvals before high-impact change: [text goes here]
-5. Success criteria for onboarding quality: [text goes here]
+1. Scope boundaries (in-scope vs out-of-scope): [text goes here]
+2. Top 3 do-not-break constraints: [text goes here]
+3. Required approvals before high-impact change: [text goes here]
+4. Success criteria for onboarding quality: [text goes here]
+
+## Optional Focus
+
+- Special focus area for this onboarding (optional): [text goes here]
 
 ## Context Snapshot
 
@@ -77,7 +81,7 @@ Process:
 ## Completion Check
 
 - Onboarding score: [0-100]
-- Required questions count used: [0-6]
+- Required questions count used: [0-8]
 - Follow-up questions count used: [0-3]
 - Drift status after self-critique: [none|minor|major]
 - Go/No-Go decision: [go|no-go]

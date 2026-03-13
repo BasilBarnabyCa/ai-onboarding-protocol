@@ -37,6 +37,13 @@ Declare one mode before onboarding output:
 - `brownfield`: existing implementation/process exists.
 - `greenfield`: project is net-new or mostly undefined.
 
+When asking the user, use plain-language wording:
+
+- "Which setup matches your situation?
+- 1) greenfield - new project or idea with little/no existing implementation.
+- 2) brownfield - existing repo/system you want to onboard and improve."
+- Accept `1|2|greenfield|brownfield`.
+
 ---
 
 ## Execution Platform Declaration (Required)
@@ -45,13 +52,23 @@ Capture platform details before onboarding output:
 
 - Platform (`Codex`, `Claude Code`, `ChatGPT`, or `Other`)
 - Platform version/model
-- Capability profile (tools, filesystem access, network policy, approval mode)
+- Capability profile selection (`1-5`)
 - Optional execution role profile (`domain - role`)
+
+Capability profile selector:
+
+1. `1` Auto-detect (recommended)
+2. `2` Locked-down
+3. `3` Standard
+4. `4` High-trust
+5. `5` All-access (explicit approval required)
 
 Rules:
 
 - Auto-detect first where possible.
-- Ask the user only when unknown.
+- Ask for numeric selection only (`1-5`), not free-text capability fields.
+- If auto-detection is available, show detected profile and accept `1` to confirm.
+- If response is unclear, default to `1` and confirm.
 - Platform clarification must stay within the required-question budget.
 - Execution role profile is optional and must not block progression.
 
@@ -93,7 +110,7 @@ Persist greenfield depth outputs in onboarding artifacts (vision, non-goals, suc
 ## Adaptive Intake Rule (Required)
 
 - Ask required questions sequentially (one question at a time).
-- Ask at most `6` required questions (including one mode-specific composite question when needed).
+- Ask at most `8` required questions (including mode-specific composite questions when needed).
 - Ask up to `3` targeted follow-up questions only for critical unknowns.
 - Prefer evidence-based auto-fill first.
 - Maintain an assumptions ledger with confidence (`high`, `medium`, `low`).
