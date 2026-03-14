@@ -133,7 +133,9 @@ And enforce:
 - If user types `override`, ask one area at a time in this order:
 - constraints -> approvals -> success criteria -> scope -> special focus.
 9. `keep defaults` only applies to defaults/override values; it does not skip guided intake questions.
-10. If greenfield and missing: ask one composite greenfield-depth question (vision, non-goals, metrics, MVP/milestones, decisions, domain loop, acceptance/release).
+10. Before artifact generation, ask this final non-blocking checkpoint exactly:
+- "Any final context to include before I generate artifacts? Reply `none` to continue, or add up to 3 bullets."
+11. If greenfield and missing: ask one composite greenfield-depth question (vision, non-goals, metrics, MVP/milestones, decisions, domain loop, acceptance/release).
 
 Optional question (non-blocking):
 
@@ -268,12 +270,13 @@ High-impact override:
 4. Run guided intake (mode-specific) after Step 0 and before defaults/overrides.
 5. Auto-fill onboarding defaults (constraints, approvals, success criteria, scope boundaries).
 6. Ask optional overrides using the standard `keep defaults` / `override` prompt.
-7. Do not generate outputs until required Step 0 fields are complete and guided intake is captured.
-8. Auto-discover and summarize evidence.
-9. Fill intake template and ask only missing high-impact questions.
-10. Generate required output files in `/ai-onboarding/output`.
-11. Run deterministic verification and record explicit results.
-12. Generate/update drift report with classification and go/no-go.
-13. Output onboarding score and completion decision.
+7. Ask a final non-blocking "anything else to add" checkpoint before generation.
+8. Do not generate outputs until required Step 0 fields are complete and guided intake is captured.
+9. Auto-discover and summarize evidence.
+10. Fill intake template and ask only missing high-impact questions.
+11. Generate required output files in `/ai-onboarding/output`.
+12. Run deterministic verification and record explicit results.
+13. Generate/update drift report with classification and go/no-go.
+14. Output onboarding score and completion decision.
 
 Now do the work and output complete contents for all required artifacts.

@@ -122,6 +122,9 @@ Core intake defaults (non-blocking, applied after guided intake):
 - If user types `override`, ask one area at a time in this order:
 - constraints -> approvals -> success criteria -> scope -> special focus.
 - `keep defaults` only applies to defaults/override values; it does not skip guided intake questions.
+- Before artifact generation, ask this final non-blocking checkpoint exactly:
+- "Any final context to include before I generate artifacts? Reply `none` to continue, or add up to 3 bullets."
+- If user replies `none`, proceed. If user adds context, capture it in intake and proceed.
 - Do not generate or update onboarding artifacts until required Step 0 fields are complete and guided intake is captured.
 
 ---
@@ -221,6 +224,7 @@ Phase 1 is complete only when all are true:
 - Brownfield project brief declared (if applicable)
 - Brownfield selected profile declared (if applicable)
 - Guided intake answers captured (mode-specific)
+- Final pre-generation additions checkpoint asked (response captured or `none`)
 - Core intake defaults applied (or overridden when provided)
 - `MASTER_CONTEXT.md` read (or absence explicitly acknowledged)
 - Bootstrap contract executed

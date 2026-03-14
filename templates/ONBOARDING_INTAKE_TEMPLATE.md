@@ -59,6 +59,8 @@ Process:
 ## Optional Focus
 
 - Special focus area for this onboarding (optional): [text goes here]
+- Final pre-generation additions prompt asked: [yes|no]
+- Final pre-generation additions (or `none`): [text goes here]
 
 ## Context Snapshot
 
