@@ -76,7 +76,7 @@ Effective role posture (default or user-provided optional role profile) remains 
 ## Adaptive Intake Constraints
 
 - Ask required onboarding questions sequentially (one question at a time).
-- Ask at most `6` required onboarding questions (including mode-specific composite questions when needed).
+- Ask at most `8` required onboarding questions (including mode-specific composite questions when needed).
 - Ask at most `3` follow-up questions, and only when critical uncertainty remains.
 - Prefer auto-discovery from available artifacts before asking questions.
 - Capture execution platform profile at onboarding start:
@@ -105,19 +105,31 @@ Effective role posture (default or user-provided optional role profile) remains 
 - Request only the missing required fields, then continue once all required fields are present.
 - Optional profile override may be requested after required fields are complete; it is never a blocker.
 
-## Core Intake Defaults (Non-Blocking)
+## Post-Step 0 Guided Intake + Defaults
 
-- Auto-fill defaults under the hood:
+- After Step 0 required fields are complete, run a short guided intake before generating artifacts.
+- Ask one question at a time. Do not paste template-like multi-field blocks.
+- Required guided intake by mode:
+- If `greenfield`, ask:
+- project brief (2-3 sentences: what is being built, for whom, and target platform)
+- first milestone outcomes (up to 3 bullets)
+- hard constraints (timeline/budget/tech/compliance; `none` allowed)
+- If `brownfield`, ask:
+- primary onboarding outcome (what clarity/decision this onboarding must produce)
+- do-not-break boundaries (security/data/runtime/deploy constraints)
+- onboarding success definition (what "ready for planning" means in this context)
+- Then apply defaults under the hood:
 - top do-not-break constraints = no destructive actions, no secrets in outputs, no implementation during onboarding
 - required approvals = approved plan before implementation, drift `major` blocks progression
 - onboarding success criteria = required artifacts generated, score threshold met, drift not `major`
-- Auto-fill default scope boundaries:
+- scope defaults:
 - in scope = onboarding artifacts + readiness/drift gates
 - out of scope = implementation/deployment/refactors
 - Ask this optional prompt exactly:
 - "Optional: keep defaults, or type override to customize constraints/approvals/success criteria/scope/special-focus."
 - If user types `override`, ask one area at a time in this order:
 - constraints -> approvals -> success criteria -> scope -> special focus.
+- `keep defaults` only applies to defaults/overrides; it does not skip guided intake.
 
 ---
 

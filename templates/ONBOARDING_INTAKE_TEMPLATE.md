@@ -32,17 +32,28 @@ Process:
 - Confidence: [high|medium|low]
 - Evidence: [text goes here]
 
-## Core Intake Defaults (Auto-Filled)
+## Guided Intake Answers (Post-Step 0, Required)
+
+- Guided intake completed before generation: [yes|no]
+- Greenfield project brief (2-3 sentences): [text goes here or n/a]
+- Greenfield first milestone outcomes (up to 3 bullets): [text goes here or n/a]
+- Greenfield hard constraints (timeline/budget/tech/compliance): [text goes here or none]
+- Brownfield primary onboarding outcome: [text goes here or n/a]
+- Brownfield do-not-break boundaries: [text goes here or n/a]
+- Brownfield onboarding success definition: [text goes here or n/a]
+
+## Core Intake Defaults (Applied After Guided Intake)
 
 - Do-not-break constraints default: no destructive actions, no secrets in outputs, no implementation during onboarding.
 - Required approvals default: approved plan before implementation; drift `major` blocks progression.
 - Success criteria default: required artifacts generated; score threshold met; drift not `major`.
 - Optional override prompt used: "Optional: keep defaults, or type override to customize constraints/approvals/success criteria/scope/special-focus."
 - Core intake override (optional): [text goes here]
+- Keep-defaults acknowledged (if used): [yes|no]
 
 ## Scope Boundaries
 
-- Scope boundaries default (auto-fill): in scope = onboarding artifacts + readiness/drift gates; out of scope = implementation/deployment/refactors
+- Scope boundaries default (auto-fill after guided intake): in scope = onboarding artifacts + readiness/drift gates; out of scope = implementation/deployment/refactors
 - Scope boundaries override (optional): [text goes here]
 
 ## Optional Focus

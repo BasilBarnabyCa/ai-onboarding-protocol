@@ -63,7 +63,16 @@ Expected assistant behavior:
 1) Auto-detect, 2) Locked-down, 3) Standard, 4) High-trust, 5) All-access.
 - If `greenfield`, continue with greenfield-relevant questions.
 - If `brownfield`, ask target workspace path and project brief next.
-- After Step 0, auto-fill onboarding defaults before generating output files:
+- After Step 0, run guided intake questions before generating output files:
+- If `greenfield`, ask (one question at a time):
+- project brief (2-3 sentences: what is being built, for whom, target platform)
+- first milestone outcomes (up to 3 bullets)
+- hard constraints (timeline/budget/tech/compliance; `none` allowed)
+- If `brownfield`, ask (one question at a time):
+- primary onboarding outcome
+- do-not-break boundaries (security/data/runtime/deploy)
+- onboarding success definition for this run
+- Then auto-fill onboarding defaults:
 constraints = no destructive actions, no secrets in outputs, no implementation during onboarding.
 approvals = approved plan before implementation; drift `major` blocks progression.
 success criteria = required artifacts generated; score threshold met; drift not `major`.
@@ -74,6 +83,7 @@ out of scope = implementation/deployment/refactors.
 "Optional: keep defaults, or type override to customize constraints/approvals/success criteria/scope/special-focus."
 - If user types `override`, ask one area at a time in this order:
 constraints -> approvals -> success criteria -> scope -> special focus.
+- `keep defaults` only applies to defaults/override values; it does not skip guided intake questions.
 - Optional fields (`execution role profile`, `profile override`) are non-blocking.
 
 If execution role profile is omitted, the default role from `AGENT_RULES.md` is used.
@@ -84,6 +94,7 @@ Strict behavior:
 - The assistant asks only missing required fields and pauses until answered.
 - The assistant does not infer missing Step 0 values.
 - If capability choice is unclear, the assistant defaults to `1` and confirms.
+- After Step 0, guided intake answers must be captured before artifact generation begins.
 
 Wait for:
 

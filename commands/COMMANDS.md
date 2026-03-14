@@ -51,7 +51,16 @@ Do not proceed to Step 1+ until all required Step 0 fields are complete.
 Do not assume missing Step 0 values.
 If Step 0 fields are provided inline, use them directly and ask only for remaining required fields.
 Do not paste template-style multi-field blocks to the user.
-After Step 0, auto-fill onboarding defaults under the hood:
+After Step 0, run guided intake (required) one question at a time before generating artifacts.
+If greenfield, ask:
+1) project brief (2-3 sentences: what is being built, for whom, and target platform)
+2) first milestone outcomes (up to 3 bullets)
+3) hard constraints (timeline/budget/tech/compliance; `none` allowed)
+If brownfield, ask:
+1) primary onboarding outcome
+2) do-not-break boundaries (security/data/runtime/deploy)
+3) onboarding success definition for this run
+Then auto-fill onboarding defaults under the hood:
 constraints = no destructive actions, no secrets in outputs, no implementation during onboarding.
 approvals = approved plan before implementation; drift `major` blocks progression.
 success criteria = required artifacts generated; score threshold met; drift not `major`.
@@ -62,7 +71,8 @@ Then ask this optional prompt exactly:
 "Optional: keep defaults, or type override to customize constraints/approvals/success criteria/scope/special-focus."
 If user types `override`, ask one area at a time in this order:
 constraints -> approvals -> success criteria -> scope -> special focus.
-Do not generate or update onboarding output files until required Step 0 fields are complete.
+`keep defaults` applies only to defaults/override values; it does not skip guided intake questions.
+Do not generate or update onboarding output files until required Step 0 fields are complete and guided intake is captured.
 No implementation changes.
 ```
 

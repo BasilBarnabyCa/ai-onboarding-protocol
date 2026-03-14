@@ -107,9 +107,9 @@ And enforce:
 
 1. Run auto-discovery first and pre-fill everything possible.
 2. Ask required questions sequentially (one question at a time); do not paste a template block.
-3. Ask at most `6` required questions (including mode-specific composite questions when needed).
+3. Ask at most `8` required questions (including mode-specific composite questions when needed).
 4. Ask up to `3` follow-up questions only for critical uncertainty.
-5. Do not generate or update onboarding output files until required Step 0 fields are complete.
+5. Do not generate or update onboarding output files until required Step 0 fields are complete and guided intake is captured.
 6. Save filled intake to `/ai-onboarding/output/ONBOARDING_INTAKE_FILLED.md`.
 7. Fill drift template and save to `/ai-onboarding/output/DRIFT_CHECK_REPORT.md`.
 
@@ -124,12 +124,16 @@ And enforce:
 3. Ask platform version/model only if not auto-detected.
 4. Ask capability profile selector (`1-5`).
 5. If brownfield: ask target workspace path + project brief (1-3 sentences).
-6. Auto-fill onboarding defaults (constraints, approvals, success criteria, scope boundaries).
-7. Ask this optional prompt exactly:
+6. Run guided intake (required, one question at a time):
+- If greenfield: ask project brief, first milestone outcomes, and hard constraints.
+- If brownfield: ask primary onboarding outcome, do-not-break boundaries, and onboarding success definition.
+7. Auto-fill onboarding defaults (constraints, approvals, success criteria, scope boundaries).
+8. Ask this optional prompt exactly:
 - "Optional: keep defaults, or type override to customize constraints/approvals/success criteria/scope/special-focus."
 - If user types `override`, ask one area at a time in this order:
 - constraints -> approvals -> success criteria -> scope -> special focus.
-8. If greenfield and missing: ask one composite greenfield-depth question (vision, non-goals, metrics, MVP/milestones, decisions, domain loop, acceptance/release).
+9. `keep defaults` only applies to defaults/override values; it does not skip guided intake questions.
+10. If greenfield and missing: ask one composite greenfield-depth question (vision, non-goals, metrics, MVP/milestones, decisions, domain loop, acceptance/release).
 
 Optional question (non-blocking):
 
@@ -261,10 +265,10 @@ High-impact override:
 1. Select mode (`greenfield` or `brownfield`).
 2. Capture platform profile selection (+ optional execution role profile).
 3. If brownfield: capture workspace path + project brief, then resolve profile.
-4. Auto-fill onboarding defaults (constraints, approvals, success criteria, scope boundaries).
-5. Ask optional overrides using the standard `keep defaults` / `override` prompt.
-6. If greenfield: collect greenfield-depth fields (single composite question if needed).
-7. Do not generate outputs until required Step 0 fields are complete.
+4. Run guided intake (mode-specific) after Step 0 and before defaults/overrides.
+5. Auto-fill onboarding defaults (constraints, approvals, success criteria, scope boundaries).
+6. Ask optional overrides using the standard `keep defaults` / `override` prompt.
+7. Do not generate outputs until required Step 0 fields are complete and guided intake is captured.
 8. Auto-discover and summarize evidence.
 9. Fill intake template and ask only missing high-impact questions.
 10. Generate required output files in `/ai-onboarding/output`.
