@@ -130,6 +130,9 @@ Effective role posture (default or user-provided optional role profile) remains 
 - If user types `override`, ask one area at a time in this order:
 - constraints -> approvals -> success criteria -> scope -> special focus.
 - `keep defaults` only applies to defaults/overrides; it does not skip guided intake.
+- Before artifact generation, ask this final non-blocking checkpoint exactly:
+- "Any final context to include before I generate artifacts? Reply `none` to continue, or add up to 3 bullets."
+- If user replies `none`, proceed. If user adds context, capture it in intake and proceed.
 
 ---
 

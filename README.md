@@ -84,6 +84,8 @@ out of scope = implementation/deployment/refactors.
 - If user types `override`, ask one area at a time in this order:
 constraints -> approvals -> success criteria -> scope -> special focus.
 - `keep defaults` only applies to defaults/override values; it does not skip guided intake questions.
+- Before generating artifacts, ask one final non-blocking checkpoint:
+"Any final context to include before I generate artifacts? Reply `none` to continue, or add up to 3 bullets."
 - Optional fields (`execution role profile`, `profile override`) are non-blocking.
 
 If execution role profile is omitted, the default role from `AGENT_RULES.md` is used.
