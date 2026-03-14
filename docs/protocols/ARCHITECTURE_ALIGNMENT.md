@@ -86,6 +86,7 @@ Step 0 interaction rule:
 - Use `/ai-onboarding/commands/STEP0_CANONICAL_OPTIONS.md` for Step 0 option wording.
 - Present Step 0 option lists verbatim; do not paraphrase, reorder, add, or remove choices.
 - Ask `mode` first with explicit plain-language definitions, then branch to the next appropriate question by mode.
+- Ask platform and platform model/version every run; auto-detection may prefill but does not skip these questions.
 - Required first question text:
 - "Which setup matches your situation?
 - 1) greenfield - new project or idea with little/no existing implementation.

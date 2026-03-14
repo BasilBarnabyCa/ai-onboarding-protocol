@@ -60,6 +60,7 @@ Expected assistant behavior:
 - Ask mode first with plain-language definitions:
 1) greenfield = new project/idea with little or no implementation yet
 2) brownfield = existing repo/system that already has implementation
+- Ask platform and platform model/version every run (auto-detection can prefill but must still be confirmed or corrected).
 - Ask capability profile as a numeric choice:
 1) Auto-detect, 2) Locked-down, 3) Standard, 4) High-trust, 5) All-access.
 - If `greenfield`, continue with greenfield-relevant questions.

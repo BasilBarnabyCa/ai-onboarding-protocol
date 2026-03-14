@@ -122,8 +122,8 @@ And enforce:
 - 1) greenfield - new project or idea with little/no existing implementation.
 - 2) brownfield - existing repo/system you want to onboard and improve."
 - Accept `1|2|greenfield|brownfield`.
-2. Ask platform only if not auto-detected.
-3. Ask platform version/model only if not auto-detected.
+2. Ask platform every run (auto-detection may prefill but must be confirmed or corrected).
+3. Ask platform version/model every run (accept `same` when detected value is correct).
 4. Ask capability profile selector (`1-5`).
 5. If brownfield: ask target workspace path + project brief (1-3 sentences).
 6. Run guided intake (required, one question at a time):

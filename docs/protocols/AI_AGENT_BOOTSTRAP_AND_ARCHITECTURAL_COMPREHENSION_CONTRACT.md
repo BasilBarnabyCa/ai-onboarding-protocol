@@ -66,6 +66,7 @@ Capability profile selector:
 Rules:
 
 - Auto-detect first where possible.
+- Ask platform and platform model/version every run (required capture); auto-detection only pre-fills suggestions.
 - Ask for numeric selection only (`1-5`), not free-text capability fields.
 - If auto-detection is available, show detected profile and accept `1` to confirm.
 - If response is unclear, default to `1` and confirm.
