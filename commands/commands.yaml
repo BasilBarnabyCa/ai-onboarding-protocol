@@ -12,7 +12,7 @@ commands:
     expands_to: |
       Follow /ai-onboarding/docs/protocols/ARCHITECTURE_ALIGNMENT.md.
       Strict Step 0 mode:
-      Use /ai-onboarding/commands/STEP0_CANONICAL_OPTIONS.md as canonical Step 0 wording.
+      Use /ai-onboarding/commands/STEP0_CANONICAL_OPTIONS.md as canonical Step 0 question wording.
       Present those options verbatim; do not paraphrase, reorder, add, or remove options.
       Ask for missing required Step 0 fields one question at a time.
       Start with this exact mode question:

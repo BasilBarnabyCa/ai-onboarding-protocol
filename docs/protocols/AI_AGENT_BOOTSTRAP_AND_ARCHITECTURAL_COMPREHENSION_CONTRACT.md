@@ -111,7 +111,7 @@ Persist greenfield depth outputs in onboarding artifacts (vision, non-goals, suc
 ## Adaptive Intake Rule (Required)
 
 - Ask required questions sequentially (one question at a time).
-- Use `/ai-onboarding/commands/STEP0_CANONICAL_OPTIONS.md` for Step 0 option wording.
+- Use `/ai-onboarding/commands/STEP0_CANONICAL_OPTIONS.md` for Step 0 question wording.
 - Present Step 0 option lists verbatim; do not paraphrase, reorder, add, or remove choices.
 - Ask at most `8` required questions (including mode-specific composite questions when needed).
 - Ask up to `3` targeted follow-up questions only for critical unknowns.

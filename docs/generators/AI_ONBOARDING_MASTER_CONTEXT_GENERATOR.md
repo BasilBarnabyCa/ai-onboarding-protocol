@@ -106,7 +106,7 @@ And enforce:
 ## Adaptive Intake Rules
 
 1. Run auto-discovery first and pre-fill everything possible.
-2. Use `/ai-onboarding/commands/STEP0_CANONICAL_OPTIONS.md` for Step 0 option wording.
+2. Use `/ai-onboarding/commands/STEP0_CANONICAL_OPTIONS.md` for Step 0 question wording.
 3. Present Step 0 option lists verbatim; do not paraphrase, reorder, add, or remove choices.
 4. Ask required questions sequentially (one question at a time); do not paste a template block.
 5. Ask at most `8` required questions (including mode-specific composite questions when needed).
@@ -123,7 +123,7 @@ And enforce:
 - 2) brownfield - existing repo/system you want to onboard and improve."
 - Accept `1|2|greenfield|brownfield`.
 2. Ask platform every run (auto-detection may prefill but must be confirmed or corrected).
-3. Ask platform version/model every run (accept `same` when detected value is correct).
+3. Ask LLM model every run (accept `yes` when detected value is correct, otherwise user provides correction).
 4. Ask capability profile selector (`1-5`).
 5. If brownfield: ask target workspace path + project brief (1-3 sentences).
 6. Run guided intake (required, one question at a time):

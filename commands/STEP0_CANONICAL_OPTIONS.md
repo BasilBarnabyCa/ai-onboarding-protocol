@@ -1,6 +1,6 @@
 # STEP0_CANONICAL_OPTIONS.md
 
-Use these Step 0 prompts/options verbatim. Do not paraphrase, reorder, add, or remove options.
+Use these Step 0 questions verbatim. Do not paraphrase, reorder, add, or remove questions/options.
 
 ## Mode Question (ask first)
 
@@ -29,12 +29,12 @@ If a platform is auto-detected, show it as a suggested default but still ask thi
 ## Platform Model/Version Question (ask every run)
 
 ```text
-Which platform model/version should be recorded for this run?
-If the detected value is correct, reply: same
-Otherwise, provide the model/version text.
+Which LLM model should be recorded for this run? (example: GPT-5, Claude Sonnet 4)
+If I show a detected model and it is correct, reply: yes
+Otherwise, provide the corrected model text.
 ```
 
-Accept: `same` or non-empty free text.
+Accept: `yes` or non-empty free text.
 
 ## Capability Profile Question
 
