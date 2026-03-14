@@ -96,9 +96,21 @@ Step 0 interaction rule:
 - Optional fields (non-blocking): execution role profile (`domain - role`), profile override.
 - Until required fields are complete, do not read/validate onboarding artifacts and do not execute bootstrap.
 
-Core intake defaults (non-blocking):
+Post-Step 0 guided intake (required, sequential):
 
-- After Step 0 is complete, auto-fill defaults:
+- After Step 0 is complete, ask guided intake questions one at a time before generating artifacts.
+- If mode is `greenfield`, ask:
+- project brief (2-3 sentences: what is being built, for whom, target platform)
+- first milestone outcomes (up to 3 bullets)
+- hard constraints (timeline/budget/tech/compliance; `none` allowed)
+- If mode is `brownfield`, ask:
+- primary onboarding outcome
+- do-not-break boundaries (security/data/runtime/deploy)
+- onboarding success definition for this run
+
+Core intake defaults (non-blocking, applied after guided intake):
+
+- Auto-fill defaults:
 - top do-not-break constraints = no destructive actions, no secrets in outputs, no implementation during onboarding
 - required approvals = approved plan before implementation, drift `major` blocks progression
 - onboarding success criteria = required artifacts generated, score threshold met, drift not `major`
@@ -109,7 +121,8 @@ Core intake defaults (non-blocking):
 - "Optional: keep defaults, or type override to customize constraints/approvals/success criteria/scope/special-focus."
 - If user types `override`, ask one area at a time in this order:
 - constraints -> approvals -> success criteria -> scope -> special focus.
-- Do not generate or update onboarding artifacts until required Step 0 fields are complete.
+- `keep defaults` only applies to defaults/override values; it does not skip guided intake questions.
+- Do not generate or update onboarding artifacts until required Step 0 fields are complete and guided intake is captured.
 
 ---
 
@@ -207,6 +220,7 @@ Phase 1 is complete only when all are true:
 - Execution role profile captured (if provided) or default role applied
 - Brownfield project brief declared (if applicable)
 - Brownfield selected profile declared (if applicable)
+- Guided intake answers captured (mode-specific)
 - Core intake defaults applied (or overridden when provided)
 - `MASTER_CONTEXT.md` read (or absence explicitly acknowledged)
 - Bootstrap contract executed

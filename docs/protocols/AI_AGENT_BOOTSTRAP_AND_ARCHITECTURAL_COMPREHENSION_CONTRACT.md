@@ -110,11 +110,20 @@ Persist greenfield depth outputs in onboarding artifacts (vision, non-goals, suc
 ## Adaptive Intake Rule (Required)
 
 - Ask required questions sequentially (one question at a time).
-- Ask at most `6` required questions (including mode-specific composite questions when needed).
+- Ask at most `8` required questions (including mode-specific composite questions when needed).
 - Ask up to `3` targeted follow-up questions only for critical unknowns.
 - Prefer evidence-based auto-fill first.
 - Maintain an assumptions ledger with confidence (`high`, `medium`, `low`).
-- Auto-fill onboarding defaults unless user asks to override:
+- After Step 0 required fields are complete, run guided intake before generating artifacts:
+- If mode is `greenfield`, ask:
+- project brief (2-3 sentences: what is being built, for whom, target platform)
+- first milestone outcomes (up to 3 bullets)
+- hard constraints (timeline/budget/tech/compliance; `none` allowed)
+- If mode is `brownfield`, ask:
+- primary onboarding outcome
+- do-not-break boundaries (security/data/runtime/deploy)
+- onboarding success definition for this run
+- Then auto-fill onboarding defaults unless user asks to override:
 - top do-not-break constraints = no destructive actions, no secrets in outputs, no implementation during onboarding
 - required approvals = approved plan before implementation, drift `major` blocks progression
 - onboarding success criteria = required artifacts generated, score threshold met, drift not `major`
@@ -125,8 +134,9 @@ Persist greenfield depth outputs in onboarding artifacts (vision, non-goals, suc
 - "Optional: keep defaults, or type override to customize constraints/approvals/success criteria/scope/special-focus."
 - If user types `override`, ask one area at a time in this order:
 - constraints -> approvals -> success criteria -> scope -> special focus.
+- `keep defaults` only applies to defaults/override values; it does not skip guided intake questions.
 - Do not paste template-like multi-field blocks to the user.
-- Do not generate or update onboarding output artifacts until required Step 0 fields are complete.
+- Do not generate or update onboarding output artifacts until required Step 0 fields are complete and guided intake is captured.
 
 ---
 

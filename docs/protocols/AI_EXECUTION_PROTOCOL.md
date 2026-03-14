@@ -73,6 +73,7 @@ Notes:
 - Ask Step 0 questions one at a time; do not paste a large multi-field block.
 - Start with `mode`, then branch to the next appropriate question by mode.
 - Ask capability profile as a numeric choice (`1-5`) instead of free-text fields.
+- After Step 0, run a short guided intake (mode-specific) before artifact generation.
 - Keep phase separation strict; do not collapse alignment/planning/implementation.
 - Missing Step 0 required fields are a hard block. Do not proceed to Step 1+ until they are complete.
 
@@ -124,11 +125,23 @@ If any required Step 0 input is missing, ask sequentially:
 
 Only after all required Step 0 fields are present:
 
-1. Continue with Step 1 alignment actions.
+1. Continue with guided intake (required) before writing artifacts.
 2. Optionally ask for execution role profile in format `domain - role`.
 3. Optionally ask whether to apply a profile override.
 
-Core intake defaults (non-blocking, before writing onboarding artifacts):
+Guided intake (required, sequential, before writing onboarding artifacts):
+
+- Ask one question at a time.
+- If mode is `greenfield`, ask:
+- project brief (2-3 sentences: what is being built, for whom, target platform)
+- first milestone outcomes (up to 3 bullets)
+- hard constraints (timeline/budget/tech/compliance; `none` allowed)
+- If mode is `brownfield`, ask:
+- primary onboarding outcome
+- do-not-break boundaries (security/data/runtime/deploy)
+- onboarding success definition for this run
+
+Core intake defaults (non-blocking, applied after guided intake):
 
 - Auto-fill defaults:
 - top do-not-break constraints = no destructive actions, no secrets in outputs, no implementation during onboarding
@@ -141,7 +154,8 @@ Core intake defaults (non-blocking, before writing onboarding artifacts):
 - "Optional: keep defaults, or type override to customize constraints/approvals/success criteria/scope/special-focus."
 - If user types `override`, ask one area at a time in this order:
 - constraints -> approvals -> success criteria -> scope -> special focus.
-- Do not generate or update onboarding output files until required Step 0 fields are complete.
+- `keep defaults` only applies to defaults/override values; it does not skip guided intake questions.
+- Do not generate or update onboarding output files until required Step 0 fields are complete and guided intake is captured.
 
 If mode is `brownfield`, run:
 
