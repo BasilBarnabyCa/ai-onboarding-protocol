@@ -106,12 +106,14 @@ And enforce:
 ## Adaptive Intake Rules
 
 1. Run auto-discovery first and pre-fill everything possible.
-2. Ask required questions sequentially (one question at a time); do not paste a template block.
-3. Ask at most `8` required questions (including mode-specific composite questions when needed).
-4. Ask up to `3` follow-up questions only for critical uncertainty.
-5. Do not generate or update onboarding output files until required Step 0 fields are complete and guided intake is captured.
-6. Save filled intake to `/ai-onboarding/output/ONBOARDING_INTAKE_FILLED.md`.
-7. Fill drift template and save to `/ai-onboarding/output/DRIFT_CHECK_REPORT.md`.
+2. Use `/ai-onboarding/commands/STEP0_CANONICAL_OPTIONS.md` for Step 0 option wording.
+3. Present Step 0 option lists verbatim; do not paraphrase, reorder, add, or remove choices.
+4. Ask required questions sequentially (one question at a time); do not paste a template block.
+5. Ask at most `8` required questions (including mode-specific composite questions when needed).
+6. Ask up to `3` follow-up questions only for critical uncertainty.
+7. Do not generate or update onboarding output files until required Step 0 fields are complete and guided intake is captured.
+8. Save filled intake to `/ai-onboarding/output/ONBOARDING_INTAKE_FILLED.md`.
+9. Fill drift template and save to `/ai-onboarding/output/DRIFT_CHECK_REPORT.md`.
 
 ## Suggested required questions
 
