@@ -56,6 +56,7 @@ Step 0 required fields are a hard gate: the assistant must not proceed to Step 1
 Expected assistant behavior:
 
 - Ask one question at a time (sequential), not a large multi-field block.
+- Use canonical Step 0 wording/options from `/ai-onboarding/commands/STEP0_CANONICAL_OPTIONS.md` verbatim.
 - Ask mode first with plain-language definitions:
 1) greenfield = new project/idea with little or no implementation yet
 2) brownfield = existing repo/system that already has implementation

@@ -104,6 +104,8 @@ Capability profile selector:
 
 Rules:
 
+- Use `/ai-onboarding/commands/STEP0_CANONICAL_OPTIONS.md` for Step 0 option wording.
+- Present Step 0 option lists verbatim; do not paraphrase, reorder, add, or remove choices.
 - Ask for the numeric selection only (`1-5`), not free-text capabilities.
 - If platform capabilities are auto-detected, present detected profile and ask for `1` to accept or another option to override.
 - If user response is unclear, default to `1` and confirm.
