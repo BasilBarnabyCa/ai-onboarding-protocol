@@ -104,6 +104,7 @@ Effective role posture (default or user-provided optional role profile) remains 
 - Present Step 0 option lists verbatim; do not paraphrase, reorder, add, or remove choices.
 - Ask `mode` first with plain-language definitions, then branch to the next appropriate required question by mode.
 - Mode question must make meaning explicit (new project vs existing repo/system).
+- Ask platform and platform model/version every run; auto-detection may prefill but does not skip these questions.
 - Request only the missing required fields, then continue once all required fields are present.
 - Optional profile override may be requested after required fields are complete; it is never a blocker.
 

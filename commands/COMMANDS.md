@@ -42,6 +42,8 @@ Accept `1|2|greenfield|brownfield`.
 Branch questions by mode:
 - If greenfield: ask only greenfield-relevant required questions next.
 - If brownfield: ask target workspace + project brief next, then brownfield profile resolution.
+Ask platform and platform model/version every run (do not skip due to auto-detection).
+Auto-detection may prefill suggestions, but the user must explicitly confirm or correct.
 For capability profile, present numbered choices and accept a single number:
 1) Auto-detect (recommended)
 2) Locked-down

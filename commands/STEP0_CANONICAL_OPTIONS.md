@@ -12,7 +12,7 @@ Which setup matches your situation?
 
 Accept: `1|2|greenfield|brownfield`.
 
-## Platform Question (ask only if not auto-detected)
+## Platform Question (ask every run)
 
 ```text
 Which execution platform are you using for this onboarding run?
@@ -23,6 +23,18 @@ Which execution platform are you using for this onboarding run?
 ```
 
 Accept: `1|2|3|4|Codex|Claude Code|ChatGPT|Other`.
+
+If a platform is auto-detected, show it as a suggested default but still ask this question explicitly.
+
+## Platform Model/Version Question (ask every run)
+
+```text
+Which platform model/version should be recorded for this run?
+If the detected value is correct, reply: same
+Otherwise, provide the model/version text.
+```
+
+Accept: `same` or non-empty free text.
 
 ## Capability Profile Question
 
