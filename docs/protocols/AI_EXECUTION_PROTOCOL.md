@@ -104,7 +104,7 @@ Capability profile selector:
 
 Rules:
 
-- Use `/ai-onboarding/commands/STEP0_CANONICAL_OPTIONS.md` for Step 0 option wording.
+- Use `/ai-onboarding/commands/STEP0_CANONICAL_OPTIONS.md` for Step 0 question wording.
 - Present Step 0 option lists verbatim; do not paraphrase, reorder, add, or remove choices.
 - Ask for the numeric selection only (`1-5`), not free-text capabilities.
 - Ask platform and platform model/version every run; do not skip these because of auto-detection.
@@ -122,7 +122,7 @@ If any required Step 0 input is missing, ask sequentially:
    2) brownfield - existing repo/system you want to onboard and improve."
    Accept `1|2|greenfield|brownfield`.
 2. Ask platform using canonical options (ask every run).
-3. Ask platform version/model (ask every run; accept `same` when detected value is correct).
+3. Ask LLM model (ask every run; accept `yes` when detected value is correct, otherwise user provides correction).
 4. Ask capability profile selection (`1-5`).
 5. If mode is `brownfield`, ask target workspace absolute path.
 6. If mode is `brownfield`, ask brief project description (1-3 sentences).

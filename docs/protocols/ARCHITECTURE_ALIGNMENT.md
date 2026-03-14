@@ -83,7 +83,7 @@ Step 0 interaction rule:
 
 - If the user starts with a minimal alignment prompt and Step 0 fields are missing, the assistant must ask for missing fields before proceeding.
 - Ask one question at a time; do not paste a multi-field template block.
-- Use `/ai-onboarding/commands/STEP0_CANONICAL_OPTIONS.md` for Step 0 option wording.
+- Use `/ai-onboarding/commands/STEP0_CANONICAL_OPTIONS.md` for Step 0 question wording.
 - Present Step 0 option lists verbatim; do not paraphrase, reorder, add, or remove choices.
 - Ask `mode` first with explicit plain-language definitions, then branch to the next appropriate question by mode.
 - Ask platform and platform model/version every run; auto-detection may prefill but does not skip these questions.
