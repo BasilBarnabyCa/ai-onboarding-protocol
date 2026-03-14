@@ -6,9 +6,9 @@ This template is an internal recording artifact; do not paste the full template 
 Process:
 1. Auto-fill from available evidence first.
 2. Ask required questions sequentially (one question at a time), starting with mode.
-3. Ask up to 8 required questions only where needed.
+3. Ask up to 6 required questions only where needed.
 4. Ask up to 3 follow-up questions only for critical unknowns.
-5. Do not generate output artifacts until Step 0 and core intake required fields are complete.
+5. Do not generate output artifacts until required Step 0 fields are complete.
 6. Save final filled version to `/ai-onboarding/output/ONBOARDING_INTAKE_FILLED.md`.
 
 ---
@@ -32,12 +32,18 @@ Process:
 - Confidence: [high|medium|low]
 - Evidence: [text goes here]
 
-## Core Intake (Required)
+## Core Intake Defaults (Auto-Filled)
 
-1. Scope boundaries (in-scope vs out-of-scope): [text goes here]
-2. Top 3 do-not-break constraints: [text goes here]
-3. Required approvals before high-impact change: [text goes here]
-4. Success criteria for onboarding quality: [text goes here]
+- Do-not-break constraints default: no destructive actions, no secrets in outputs, no implementation during onboarding.
+- Required approvals default: approved plan before implementation; drift `major` blocks progression.
+- Success criteria default: required artifacts generated; score threshold met; drift not `major`.
+- Optional override prompt used: "Optional: keep defaults, or type override to customize constraints/approvals/success criteria/scope/special-focus."
+- Core intake override (optional): [text goes here]
+
+## Scope Boundaries
+
+- Scope boundaries default (auto-fill): in scope = onboarding artifacts + readiness/drift gates; out of scope = implementation/deployment/refactors
+- Scope boundaries override (optional): [text goes here]
 
 ## Optional Focus
 
@@ -81,7 +87,7 @@ Process:
 ## Completion Check
 
 - Onboarding score: [0-100]
-- Required questions count used: [0-8]
+- Required questions count used: [0-6]
 - Follow-up questions count used: [0-3]
 - Drift status after self-critique: [none|minor|major]
 - Go/No-Go decision: [go|no-go]

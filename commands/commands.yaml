@@ -32,9 +32,18 @@ commands:
       Do not assume missing Step 0 values.
       If Step 0 fields are provided inline, use them directly and ask only for remaining required fields.
       Do not paste template-style multi-field blocks to the user.
-      After Step 0, run core intake sequentially (scope boundaries, do-not-break constraints, approvals, success criteria).
-      Optional (non-blocking): ask onboarding special focus area.
-      Do not generate or update onboarding output files until Step 0 and core intake required fields are complete.
+      After Step 0, auto-fill onboarding defaults under the hood:
+      constraints = no destructive actions, no secrets in outputs, no implementation during onboarding.
+      approvals = approved plan before implementation; drift `major` blocks progression.
+      success criteria = required artifacts generated; score threshold met; drift not `major`.
+      Auto-fill default scope boundaries:
+      in scope = onboarding artifacts + readiness/drift gates.
+      out of scope = implementation/deployment/refactors.
+      Then ask this optional prompt exactly:
+      "Optional: keep defaults, or type override to customize constraints/approvals/success criteria/scope/special-focus."
+      If user types `override`, ask one area at a time in this order:
+      constraints -> approvals -> success criteria -> scope -> special focus.
+      Do not generate or update onboarding output files until required Step 0 fields are complete.
       No implementation changes.
     required_vars: []
 
