@@ -18,7 +18,9 @@ This repository provides a repeatable protocol to:
 
 ## Where To Start
 
-Copy the `/ai-onboarding` folder into your project root before starting.
+Create a folder in the root directory of your project called `/ai-onboarding`.
+
+Download and copy contents of this repo to the `/ai-onboarding` folder before starting.
 
 Use command shortcuts for the fastest workflow. To avoid accidental triggering, a shortcut is only treated as a command when your message starts with `cmd:` (for example, `cmd:onboard` or `cmd:plan: <task description>`). If you use words like `onboard` in normal conversation, they are treated as regular text.
 
