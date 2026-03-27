@@ -38,9 +38,7 @@ Process:
 - Greenfield project brief (2-3 sentences): [text goes here or n/a]
 - Greenfield first milestone outcomes (up to 3 bullets): [text goes here or n/a]
 - Greenfield hard constraints (timeline/budget/tech/compliance): [text goes here or none]
-- Brownfield primary onboarding outcome: [text goes here or n/a]
 - Brownfield do-not-break boundaries: [text goes here or n/a]
-- Brownfield onboarding success definition: [text goes here or n/a]
 
 ## Core Intake Defaults (Applied After Guided Intake)
 

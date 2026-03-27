@@ -118,9 +118,7 @@ Effective role posture (default or user-provided optional role profile) remains 
 - first milestone outcomes (up to 3 bullets)
 - hard constraints (timeline/budget/tech/compliance; `none` allowed)
 - If `brownfield`, ask:
-- primary onboarding outcome (what clarity/decision this onboarding must produce)
 - do-not-break boundaries (security/data/runtime/deploy constraints)
-- onboarding success definition (what "ready for planning" means in this context)
 - Then apply defaults under the hood:
 - top do-not-break constraints = no destructive actions, no secrets in outputs, no implementation during onboarding
 - required approvals = approved plan before implementation, drift `major` blocks progression

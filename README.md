@@ -71,9 +71,7 @@ Expected assistant behavior:
 - first milestone outcomes (up to 3 bullets)
 - hard constraints (timeline/budget/tech/compliance; `none` allowed)
 - If `brownfield`, ask (one question at a time):
-- primary onboarding outcome
 - do-not-break boundaries (security/data/runtime/deploy)
-- onboarding success definition for this run
 - Then auto-fill onboarding defaults:
 constraints = no destructive actions, no secrets in outputs, no implementation during onboarding.
 approvals = approved plan before implementation; drift `major` blocks progression.
