@@ -15,7 +15,8 @@ Note:
 Use strict command mode:
 - Only treat input as a command when it starts with `cmd:`.
 - Commands must match: `^(cmd:(onboard|drift-audit|impl|reanchor|brownfield:select)|cmd:plan: \S.*)$`
-- Anything else is normal conversation text.
+- If a message does not start with `cmd:`, it is normal conversation text and should be handled normally.
+- Only malformed `cmd:` inputs should be rejected.
 - For planning, use `cmd:plan: <task description>`.
 
 Example flow:

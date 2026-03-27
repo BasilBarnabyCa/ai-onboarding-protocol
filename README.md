@@ -32,7 +32,8 @@ Command reference:
 In a fresh project/session, start with this first message so the assistant loads your local command spec before shortcuts:
 
 ```text
-Read /ai-onboarding/commands/commands.yaml and enforce its strict command mode.
+Read /ai-onboarding/commands/commands.yaml and enforce strict command mode only for messages that begin with `cmd:`.
+Do not reject or reroute normal-language requests that do not begin with `cmd:`; handle them as normal conversation.
 ```
 
 Then use this command sequence:

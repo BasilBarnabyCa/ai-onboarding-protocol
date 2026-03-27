@@ -21,7 +21,8 @@ All AI agents must follow this protocol before making changes.
 
 - Command shortcuts are recognized only when input begins with `cmd:`.
 - Valid command format: `^(cmd:(onboard|drift-audit|impl|reanchor|brownfield:select)|cmd:plan: \S.*)$`
-- If input does not match valid command format exactly, treat it as normal conversation text.
+- If a message does not begin with `cmd:`, treat it as normal conversation text and answer the request normally.
+- If a message begins with `cmd:` but does not match valid command format exactly, reject it as malformed command input.
 - `plan` requires inline task description in strict form: `cmd:plan: <task description>`.
 
 ---
