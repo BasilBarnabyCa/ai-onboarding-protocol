@@ -43,6 +43,13 @@ Then use this command sequence:
 3. `cmd:plan: <task description>`
 4. `cmd:impl`
 
+If you are starting a new thread on a project that has already been onboarded, start with:
+
+1. `cmd:reanchor`
+2. `cmd:plan: <task description>` or ask your normal-language question
+
+Use `cmd:onboard` again only when the project needs a fresh onboarding run or the context has materially changed.
+
 If you prefer raw prompts instead of commands, send these prompts in order.
 
 ### 1) Alignment (start here)
