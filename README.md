@@ -32,7 +32,8 @@ Command reference:
 In a fresh project/session, start with this first message so the assistant loads your local command spec before shortcuts:
 
 ```text
-Read /ai-onboarding/commands/commands.yaml and enforce its strict command mode.
+Read /ai-onboarding/commands/commands.yaml and enforce strict command mode only for messages that begin with `cmd:`.
+Do not reject or reroute normal-language requests that do not begin with `cmd:`; handle them as normal conversation.
 ```
 
 Then use this command sequence:
@@ -41,6 +42,13 @@ Then use this command sequence:
 2. `cmd:drift-audit`
 3. `cmd:plan: <task description>`
 4. `cmd:impl`
+
+If you are starting a new thread on a project that has already been onboarded, start with:
+
+1. `cmd:reanchor`
+2. `cmd:plan: <task description>` or ask your normal-language question
+
+Use `cmd:onboard` again only when the project needs a fresh onboarding run or the context has materially changed.
 
 If you prefer raw prompts instead of commands, send these prompts in order.
 
@@ -73,9 +81,7 @@ Expected assistant behavior:
 - first milestone outcomes (up to 3 bullets)
 - hard constraints (timeline/budget/tech/compliance; `none` allowed)
 - If `brownfield`, ask (one question at a time):
-- primary onboarding outcome
 - do-not-break boundaries (security/data/runtime/deploy)
-- onboarding success definition for this run
 - Then auto-fill onboarding defaults:
 constraints = no destructive actions, no secrets in outputs, no implementation during onboarding.
 approvals = approved plan before implementation; drift `major` blocks progression.

@@ -123,9 +123,7 @@ Persist greenfield depth outputs in onboarding artifacts (vision, non-goals, suc
 - first milestone outcomes (up to 3 bullets)
 - hard constraints (timeline/budget/tech/compliance; `none` allowed)
 - If mode is `brownfield`, ask:
-- primary onboarding outcome
 - do-not-break boundaries (security/data/runtime/deploy)
-- onboarding success definition for this run
 - Then auto-fill onboarding defaults unless user asks to override:
 - top do-not-break constraints = no destructive actions, no secrets in outputs, no implementation during onboarding
 - required approvals = approved plan before implementation, drift `major` blocks progression

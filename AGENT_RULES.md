@@ -21,7 +21,8 @@ All AI agents must follow this protocol before making changes.
 
 - Command shortcuts are recognized only when input begins with `cmd:`.
 - Valid command format: `^(cmd:(onboard|drift-audit|impl|reanchor|brownfield:select)|cmd:plan: \S.*)$`
-- If input does not match valid command format exactly, treat it as normal conversation text.
+- If a message does not begin with `cmd:`, treat it as normal conversation text and answer the request normally.
+- If a message begins with `cmd:` but does not match valid command format exactly, reject it as malformed command input.
 - `plan` requires inline task description in strict form: `cmd:plan: <task description>`.
 
 ---
@@ -118,9 +119,7 @@ Effective role posture (default or user-provided optional role profile) remains 
 - first milestone outcomes (up to 3 bullets)
 - hard constraints (timeline/budget/tech/compliance; `none` allowed)
 - If `brownfield`, ask:
-- primary onboarding outcome (what clarity/decision this onboarding must produce)
 - do-not-break boundaries (security/data/runtime/deploy constraints)
-- onboarding success definition (what "ready for planning" means in this context)
 - Then apply defaults under the hood:
 - top do-not-break constraints = no destructive actions, no secrets in outputs, no implementation during onboarding
 - required approvals = approved plan before implementation, drift `major` blocks progression

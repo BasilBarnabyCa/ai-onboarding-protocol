@@ -128,7 +128,7 @@ And enforce:
 5. If brownfield: ask target workspace path + project brief (1-3 sentences).
 6. Run guided intake (required, one question at a time):
 - If greenfield: ask project brief, first milestone outcomes, and hard constraints.
-- If brownfield: ask primary onboarding outcome, do-not-break boundaries, and onboarding success definition.
+- If brownfield: ask do-not-break boundaries.
 7. Auto-fill onboarding defaults (constraints, approvals, success criteria, scope boundaries).
 8. Ask this optional prompt exactly:
 - "Optional: keep defaults, or type override to customize constraints/approvals/success criteria/scope/special-focus."

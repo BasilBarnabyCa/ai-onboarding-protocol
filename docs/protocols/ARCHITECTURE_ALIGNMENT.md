@@ -107,9 +107,7 @@ Post-Step 0 guided intake (required, sequential):
 - first milestone outcomes (up to 3 bullets)
 - hard constraints (timeline/budget/tech/compliance; `none` allowed)
 - If mode is `brownfield`, ask:
-- primary onboarding outcome
 - do-not-break boundaries (security/data/runtime/deploy)
-- onboarding success definition for this run
 
 Core intake defaults (non-blocking, applied after guided intake):
 

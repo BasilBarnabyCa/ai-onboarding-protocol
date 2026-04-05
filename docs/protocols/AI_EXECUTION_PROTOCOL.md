@@ -25,7 +25,8 @@ Shortcut note:
 - Use strict command mode with `cmd:` prefix.
 - Valid command format: `^(cmd:(onboard|drift-audit|impl|reanchor|brownfield:select)|cmd:plan: \S.*)$`
 - Use `cmd:plan: <task description>` for planning requests.
-- If message does not match valid command format, treat it as normal conversation text.
+- If a message does not begin with `cmd:`, treat it as normal conversation text and answer it normally.
+- Only reject malformed inputs that begin with `cmd:` but do not match valid command format.
 
 ### 1) Alignment
 
@@ -141,9 +142,7 @@ Guided intake (required, sequential, before writing onboarding artifacts):
 - first milestone outcomes (up to 3 bullets)
 - hard constraints (timeline/budget/tech/compliance; `none` allowed)
 - If mode is `brownfield`, ask:
-- primary onboarding outcome
 - do-not-break boundaries (security/data/runtime/deploy)
-- onboarding success definition for this run
 
 Core intake defaults (non-blocking, applied after guided intake):
 

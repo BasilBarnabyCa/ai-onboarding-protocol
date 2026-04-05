@@ -15,7 +15,8 @@ Note:
 Use strict command mode:
 - Only treat input as a command when it starts with `cmd:`.
 - Commands must match: `^(cmd:(onboard|drift-audit|impl|reanchor|brownfield:select)|cmd:plan: \S.*)$`
-- Anything else is normal conversation text.
+- If a message does not start with `cmd:`, it is normal conversation text and should be handled normally.
+- Only malformed `cmd:` inputs should be rejected.
 - For planning, use `cmd:plan: <task description>`.
 
 Example flow:
@@ -61,9 +62,7 @@ If greenfield, ask:
 2) first milestone outcomes (up to 3 bullets)
 3) hard constraints (timeline/budget/tech/compliance; `none` allowed)
 If brownfield, ask:
-1) primary onboarding outcome
-2) do-not-break boundaries (security/data/runtime/deploy)
-3) onboarding success definition for this run
+1) do-not-break boundaries (security/data/runtime/deploy)
 Then auto-fill onboarding defaults under the hood:
 constraints = no destructive actions, no secrets in outputs, no implementation during onboarding.
 approvals = approved plan before implementation; drift `major` blocks progression.
