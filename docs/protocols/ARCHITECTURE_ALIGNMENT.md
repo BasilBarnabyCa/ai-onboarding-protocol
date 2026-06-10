@@ -200,6 +200,20 @@ Provide final alignment statement:
 
 **Output required:** One alignment confirmation statement.
 
+### 4.1) Next-step question (brownfield only, non-blocking)
+
+After the alignment confirmation, ask exactly:
+
+"Onboarding is complete. What's next for this system?
+1) keep working here - continue with change planning (`cmd:plan: <task>`)
+2) migrate - rebuild on a new stack (follow /ai-onboarding/docs/protocols/POST_ONBOARDING_MIGRATION_PLAYBOOK.md)"
+
+Accept: `1|2|keep|migrate`.
+
+- If `1`/`keep`: proceed normally; the migration playbook is not invoked.
+- If `2`/`migrate`: read `/ai-onboarding/docs/LESSONS_LEARNED.md`, then start the migration playbook at Phase A (disposition is confirmed by this answer; continue to Phase B target definition — ask for the target stack FIRST).
+- This question is informational routing only — it never blocks Phase 1 completion, and the user may defer the decision.
+
 ---
 
 ## Guardrails (Phase 1 Only)

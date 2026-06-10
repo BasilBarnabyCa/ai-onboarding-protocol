@@ -4,6 +4,19 @@ All notable changes to this repository are documented in this file.
 
 This project currently tracks changes by date and merged pull requests (no tagged releases yet).
 
+## 2026-06-10
+
+### Added
+- Optional legacy-to-new-stack migration workflow, validated on a real migration (SDMC BMS, Laravel 7/Vue 2 → Node 20/Express/Prisma/Vue 3):
+  - `docs/protocols/POST_ONBOARDING_MIGRATION_PLAYBOOK.md`: Phases A–G (disposition → target definition → decision lock-in → handoff + companion docs generation → package assembly/freeze → new-project execution → retrospective).
+  - `templates/HANDOFF_TEMPLATE.md`: project-agnostic rebuild handoff template — stack-first rule, 14 sections incl. first-session kickoff (§0) and unattended mode (§14) with harness permission config and command-shape rules.
+  - `templates/handoff-package-skeleton/`: standard layout for the package carried to the new project (docs + runner config + brand assets), incl. agnostic `claude/settings.json` and `claude/CLAUDE_RULES.md`.
+  - `docs/LESSONS_LEARNED.md`: living friction→fix log (companion-docs requirement, harness permissions, un-allowlistable command shapes, env deny modes, dependency-as-intent, etc.); updated each run per Playbook Phase G.
+
+### Changed
+- README: added optional Legacy Migration Workflow section and new core-file entries.
+- Brownfield alignment now ends with a non-blocking next-step question (keep working here vs. migrate to a new stack) routing to `cmd:plan:` or the migration playbook.
+
 ## 2026-03-14
 
 ### Changed

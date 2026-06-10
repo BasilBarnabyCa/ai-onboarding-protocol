@@ -184,6 +184,18 @@ For full details, use `docs/protocols/AI_EXECUTION_PROTOCOL.md`.
 - `profiles/PROFILE_SELECTION_PROTOCOL.md`: deterministic brownfield profile router
 - `profiles/PROFILE_REGISTRY.md`: active/planned profile registry
 - `profiles/greenfield/GREENFIELD_MASTER_CONTEXT_ARTIFACT.md`: high-rigor greenfield depth overlay
+- `docs/protocols/POST_ONBOARDING_MIGRATION_PLAYBOOK.md`: optional legacy-to-new-stack migration workflow (Phases A–G)
+- `templates/HANDOFF_TEMPLATE.md`: rebuild handoff document template (project-agnostic; stack-first; includes unattended mode)
+- `templates/handoff-package-skeleton/`: layout + runner permission config + command rules for the package carried to the new project
+- `docs/LESSONS_LEARNED.md`: living friction→fix log from real migration runs (read before each migration; update during/after — Playbook Phase G)
+
+## Legacy Migration Workflow (Optional)
+
+Onboarding does not imply migration — most brownfield runs continue into normal change planning (`cmd:plan:`). But if, after onboarding, the decision is to **rebuild the system on a new stack**, an opt-in workflow is available:
+
+- `docs/protocols/POST_ONBOARDING_MIGRATION_PLAYBOOK.md`
+
+It produces a self-contained `handoff-package/` (handoff charter + legacy detail appendix + UX/brand spec + runner config + brand assets) that the new project's AI ingests to execute the rebuild, attended or unattended. If you use it, read `docs/LESSONS_LEARNED.md` first.
 
 ## Software Brownfield Overlay
 
