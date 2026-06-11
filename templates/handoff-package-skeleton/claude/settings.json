@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Edit",
+      "Write",
+      "Glob",
+      "Grep",
+      "Bash(npm:*)",
+      "Bash(npx:*)",
+      "Bash(node:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git branch:*)",
+      "Bash(git checkout:*)",
+      "Bash(git check-ignore:*)",
+      "Bash(mkdir:*)",
+      "Bash(ls:*)",
+      "Bash(cd:*)",
+      "Bash(cat:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(touch:*)",
+      "Bash(npx prisma:*)"
+    ],
+    "deny": [
+      "Read(**/.env.production)",
+      "Bash(git push:*)",
+      "Bash(rm -rf:*)"
+    ]
+  }
+}
