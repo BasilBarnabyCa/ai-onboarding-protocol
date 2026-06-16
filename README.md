@@ -43,6 +43,8 @@ Then use this command sequence:
 3. `cmd:plan: <task description>`
 4. `cmd:impl`
 
+After a brownfield `cmd:onboard` completes, the assistant asks one non-blocking routing question: **keep working here** (continue to `cmd:plan:`) or **migrate** (rebuild on a new stack via the optional Legacy Migration Workflow below). Answering is deferrable; it never blocks onboarding completion.
+
 If you are starting a new thread on a project that has already been onboarded, start with:
 
 1. `cmd:reanchor`
@@ -193,9 +195,21 @@ For full details, use `docs/protocols/AI_EXECUTION_PROTOCOL.md`.
 
 Onboarding does not imply migration — most brownfield runs continue into normal change planning (`cmd:plan:`). But if, after onboarding, the decision is to **rebuild the system on a new stack**, an opt-in workflow is available:
 
-- `docs/protocols/POST_ONBOARDING_MIGRATION_PLAYBOOK.md`
+- `docs/protocols/POST_ONBOARDING_MIGRATION_PLAYBOOK.md` (Phases A–G)
 
-It produces a self-contained `handoff-package/` (handoff charter + legacy detail appendix + UX/brand spec + runner config + brand assets) that the new project's AI ingests to execute the rebuild, attended or unattended. If you use it, read `docs/LESSONS_LEARNED.md` first.
+Before using it, read `docs/LESSONS_LEARNED.md` — a living friction→fix log from real migration runs, updated during/after each run (Phase G).
+
+High-level flow (full detail in the playbook):
+
+1. **A — Disposition:** entered via the post-onboarding routing question; `migrate` confirms the rebuild decision.
+2. **B — Target definition:** you provide your target stack FIRST (plus any deviations); the assistant maps old→new components and names port hazards by reading the actual legacy code (ORM lifecycle hooks, scheduled jobs, external file-format contracts).
+3. **C — Decision lock-in:** one batch of questions (new repo, hosting, day-one auth, app count, build order, cutover style, data migration approach) — recorded as do-not-re-litigate decisions.
+4. **D — Document generation:** the handoff charter (`templates/HANDOFF_TEMPLATE.md`) plus two companion docs extracted by parallel read-only subagents: a legacy detail appendix (every endpoint, consolidated schema, hook inventory, file contracts, dependency intent map) and a UX/brand spec (color tokens, fonts, logo asset names, nav trees, page archetypes, exact table columns per view).
+5. **E — Package & freeze:** assembles `handoff-package/` at the legacy repo root (docs + runner permission config + command rules + brand image/font assets + README with kickoff prompts); the legacy repo is committed and frozen as reference-only.
+6. **F — New-project execution:** copy the package into the new repo, then one kickoff line — attended (milestone-by-milestone approvals) or unattended (automated gates: lint, unit + integration tests, builds, commit-per-gate; hard stops remain for schema review, credentials, real data, deployment).
+7. **G — Retrospective:** new lessons are appended to `LESSONS_LEARNED.md` and synced back to this repo.
+
+The package's `claude/` folder ships a runner permission allowlist and command-shape rules that eliminate tool-approval stalls during unattended runs (see `templates/handoff-package-skeleton/`).
 
 ## Software Brownfield Overlay
 
@@ -234,6 +248,13 @@ Common files:
 - `DRIFT_CHECK_REPORT.md`
 - `PROJECT_SCOPE.md` (greenfield required)
 - `ONBOARDING_INTAKE_FILLED.md`
+
+Migration workflow files (only when the Legacy Migration Workflow is used):
+
+- `NEW_PROJECT_HANDOFF.md` (charter for the new project)
+- `LEGACY_DETAIL_APPENDIX.md` (implementation-level spec)
+- `UX_BRAND_SPEC.md` (visual contract incl. table columns per view)
+- plus an assembled `handoff-package/` at the legacy repo root (docs + runner config + brand assets)
 
 Archived output snapshots:
 
