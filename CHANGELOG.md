@@ -2,12 +2,23 @@
 
 All notable changes to this repository are documented in this file.
 
-This project currently tracks changes by date and merged pull requests (no tagged releases yet).
+This project tracks changes by date and merged pull requests; tagged releases start at v1.0.0.
+
+## v1.0.0 — 2026-07-05
+
+First public release.
+
+### Added
+- `LICENSE` (MIT, Basil Barnaby / Grafite AI).
+
+### Changed
+- README rewritten for a public audience: leads with the problem the framework solves and promotes the Legacy Migration Workflow (Phases A–G, with flow diagram) as the headline feature; adds a "why this exists" dogfooding section and a Grafite AI footer. Quick-start content unchanged below the pitch.
+- Docs scrubbed of client-identifying references; the reference migration is now described by its shape and stack (Laravel 7/Vue 2 → Node 20/Express/Prisma/Vue 3) only.
 
 ## 2026-06-10
 
 ### Added
-- Optional legacy-to-new-stack migration workflow, validated on a real migration (SDMC BMS, Laravel 7/Vue 2 → Node 20/Express/Prisma/Vue 3):
+- Optional legacy-to-new-stack migration workflow, validated on a real production migration (Laravel 7/Vue 2 → Node 20/Express/Prisma/Vue 3):
   - `docs/protocols/POST_ONBOARDING_MIGRATION_PLAYBOOK.md`: Phases A–G (disposition → target definition → decision lock-in → handoff + companion docs generation → package assembly/freeze → new-project execution → retrospective).
   - `templates/HANDOFF_TEMPLATE.md`: project-agnostic rebuild handoff template — stack-first rule, 14 sections incl. first-session kickoff (§0) and unattended mode (§14) with harness permission config and command-shape rules.
   - `templates/handoff-package-skeleton/`: standard layout for the package carried to the new project (docs + runner config + brand assets), incl. agnostic `claude/settings.json` and `claude/CLAUDE_RULES.md`.

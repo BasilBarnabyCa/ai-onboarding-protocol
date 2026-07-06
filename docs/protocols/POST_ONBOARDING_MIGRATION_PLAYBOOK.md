@@ -137,4 +137,4 @@ Then **sync upstream**: copy the updated `LESSONS_LEARNED.md` (and any changed t
 
 ---
 
-**Reference implementation of this playbook:** the SDMC BMS migration (this repo) — see `/ai-onboarding/output/NEW_PROJECT_HANDOFF.md` for a completed handoff example.
+**Reference implementation of this playbook:** a real production migration (Laravel 7/Vue 2 → Node 20/Express/Prisma/Vue 3) — running the playbook produces a completed handoff at `/ai-onboarding/output/NEW_PROJECT_HANDOFF.md`, and the friction→fix log from that run lives in `docs/LESSONS_LEARNED.md`.

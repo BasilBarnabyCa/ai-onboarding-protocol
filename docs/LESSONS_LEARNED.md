@@ -1,4 +1,4 @@
-# Lessons Learned — Legacy Migration Exercise (SDMC BMS, 2026-06-10)
+# Lessons Learned — Legacy Migration Exercise (Laravel 7/Vue 2 → Node 20/Express/Prisma/Vue 3, 2026-06-10)
 
 Friction encountered during the first full run of the migration workflow, and the fix now baked into the framework. Read this before running the playbook on the next legacy project.
 

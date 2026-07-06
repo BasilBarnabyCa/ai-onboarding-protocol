@@ -17,7 +17,7 @@ How to use:
 
 **This template is PROJECT-AGNOSTIC.** Where it shows concrete technologies, folder layouts, or layering chains (Express, Prisma, Vue SPAs, `routes → controllers → services → repositories`), these are ILLUSTRATIVE EXAMPLES from the reference implementation — not mandates. The user's target-stack answers (§2 ASK) are the source of truth: derive layout, layering, naming, and testing tools from THEIR stack, and adapt or drop any section content that doesn't apply (e.g. no SPAs, a different architecture style, no relational DB). Keep the SECTION STRUCTURE (0–14) intact for every project; vary the content freely.
 
-Completed example: the SDMC BMS handoff in this repo (`/ai-onboarding/output/NEW_PROJECT_HANDOFF.md`).
+Completed example: a filled handoff is produced at `/ai-onboarding/output/NEW_PROJECT_HANDOFF.md` when the migration playbook runs (generated per project; not tracked in this repo).
 
 ---
 
