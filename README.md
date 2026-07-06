@@ -1,20 +1,53 @@
 # AI Onboarding Framework
 
-Domain-agnostic onboarding and execution framework for AI agents, with strict safety gates for alignment, planning, and implementation.
+**A battle-tested protocol for putting AI agents to work on real codebases — including a complete legacy-to-new-stack migration pipeline — without drift, hallucinated context, or wrecked rebuilds.**
 
-## What This Repo Is
+## The problem
 
-This repository provides a repeatable protocol to:
+AI coding agents fail in predictable ways on serious work:
 
-- onboard an AI agent with evidence-backed context
-- keep question count low with adaptive intake
-- enforce drift checks before implementation
-- gate work with scoring thresholds (`>=90` standard, `>=92` high-impact + drift `none`)
+- They **drift**: scope, architecture, and priorities quietly mutate over a long session until the output no longer matches the ask.
+- They **hallucinate context**: instead of reading the code, they pattern-match on what similar projects usually look like — deadly on legacy systems full of accumulated business rules.
+- They **wreck legacy rebuilds**: a rewrite driven by vibes loses the endpoint nobody remembered, the import parser's load-bearing bug, and the lifecycle hook that stamped every record.
 
-## Who This Is For
+This framework fixes that with evidence-backed onboarding, explicit readiness scores, mandatory drift audits, and hard gates between alignment, planning, and implementation. Nothing gets built until the agent has proven — with scored, auditable artifacts — that it actually understands the system.
 
-- Teams running AI-assisted work in software, security, operations, or mixed domains
-- Projects that need deterministic onboarding and change safety
+## Headline feature: the Legacy Migration Workflow
+
+Most AI-agent frameworks stop at "onboard and plan." This one ships a complete, **validated-on-a-real-production-migration** pipeline for rebuilding a legacy system on a new stack (Phases A–G):
+
+```mermaid
+flowchart TD
+    A["A — Disposition<br/>post-onboarding routing: keep working here, or migrate?"] --> B["B — Target definition<br/>your target stack first; old→new component map;<br/>port hazards named by reading the actual legacy code"]
+    B --> C["C — Decision lock-in<br/>one batch of decisions (repo, hosting, auth, build order,<br/>cutover, data migration) — recorded, never re-litigated"]
+    C --> D["D — Document generation<br/>handoff charter + legacy detail appendix + UX/brand spec,<br/>extracted by parallel read-only subagents"]
+    D --> E["E — Package & freeze<br/>handoff-package/ assembled at legacy repo root;<br/>legacy repo frozen as reference-only"]
+    E --> F["F — New-project execution<br/>one kickoff line; attended (milestone approvals) or<br/>unattended (automated lint/test/build gates, commit-per-gate)"]
+    F --> G["G — Retrospective<br/>lessons appended to LESSONS_LEARNED.md<br/>and synced back to this framework"]
+```
+
+What makes it different:
+
+- **The handoff is a package, not a prayer.** Phase D generates three documents — a project charter, a legacy detail appendix (every endpoint, the consolidated schema, every lifecycle hook, byte-level file-format contracts, dependency *intent* map), and a UX/brand spec (design tokens, nav trees, exact table columns per view) — so the new project's AI almost never needs the legacy repo.
+- **The legacy repo gets frozen**, not abandoned: committed, artifacts force-added, and kept as a read-only behavioral reference.
+- **Unattended execution actually works.** The package ships runner permission config and command-shape rules that eliminate the tool-approval stalls that kill "autonomous" runs — learned the hard way and baked in (see `docs/LESSONS_LEARNED.md`).
+- **Every run makes the next one better.** Phase G appends real friction→fix entries to a living lessons log that the next migration reads first.
+
+Full detail: `docs/protocols/POST_ONBOARDING_MIGRATION_PLAYBOOK.md`.
+
+## Why this exists
+
+This framework wasn't designed on a whiteboard — it was extracted from real AI-assisted delivery work and dogfooded on real projects: a production timecard system, a content-analysis SaaS, and a full legacy migration of a production line-of-business system (Laravel 7/Vue 2 → Node 20/Express/Prisma/Vue 3). Every rule in `docs/LESSONS_LEARNED.md` traces to a specific failure that cost real time, and the fix is now baked into the templates and playbook.
+
+## What's in the box
+
+- **Adaptive onboarding** with a low question budget: evidence-backed context generation for brownfield and greenfield projects, with capability profiles and platform detection.
+- **Readiness gates**: work is scored; standard execution requires `>=90`, high-impact work `>=92` with drift `none`. Below threshold, implementation is blocked — no exceptions.
+- **Drift audits**: mandatory self-critique on a cadence, with `major` drift halting all progression.
+- **Strict command mode**: `cmd:`-prefixed shortcuts (`cmd:onboard`, `cmd:plan:`, `cmd:impl`, `cmd:drift-audit`, `cmd:reanchor`) that never hijack normal conversation.
+- **The Legacy Migration Workflow** above, as an opt-in continuation of brownfield onboarding.
+
+---
 
 ## Where To Start
 
@@ -43,7 +76,7 @@ Then use this command sequence:
 3. `cmd:plan: <task description>`
 4. `cmd:impl`
 
-After a brownfield `cmd:onboard` completes, the assistant asks one non-blocking routing question: **keep working here** (continue to `cmd:plan:`) or **migrate** (rebuild on a new stack via the optional Legacy Migration Workflow below). Answering is deferrable; it never blocks onboarding completion.
+After a brownfield `cmd:onboard` completes, the assistant asks one non-blocking routing question: **keep working here** (continue to `cmd:plan:`) or **migrate** (rebuild on a new stack via the optional Legacy Migration Workflow above). Answering is deferrable; it never blocks onboarding completion.
 
 If you are starting a new thread on a project that has already been onboarded, start with:
 
@@ -193,21 +226,11 @@ For full details, use `docs/protocols/AI_EXECUTION_PROTOCOL.md`.
 
 ## Legacy Migration Workflow (Optional)
 
-Onboarding does not imply migration — most brownfield runs continue into normal change planning (`cmd:plan:`). But if, after onboarding, the decision is to **rebuild the system on a new stack**, an opt-in workflow is available:
+Onboarding does not imply migration — most brownfield runs continue into normal change planning (`cmd:plan:`). But if, after onboarding, the decision is to **rebuild the system on a new stack**, the Phase A–G workflow described at the top of this README is available:
 
 - `docs/protocols/POST_ONBOARDING_MIGRATION_PLAYBOOK.md` (Phases A–G)
 
 Before using it, read `docs/LESSONS_LEARNED.md` — a living friction→fix log from real migration runs, updated during/after each run (Phase G).
-
-High-level flow (full detail in the playbook):
-
-1. **A — Disposition:** entered via the post-onboarding routing question; `migrate` confirms the rebuild decision.
-2. **B — Target definition:** you provide your target stack FIRST (plus any deviations); the assistant maps old→new components and names port hazards by reading the actual legacy code (ORM lifecycle hooks, scheduled jobs, external file-format contracts).
-3. **C — Decision lock-in:** one batch of questions (new repo, hosting, day-one auth, app count, build order, cutover style, data migration approach) — recorded as do-not-re-litigate decisions.
-4. **D — Document generation:** the handoff charter (`templates/HANDOFF_TEMPLATE.md`) plus two companion docs extracted by parallel read-only subagents: a legacy detail appendix (every endpoint, consolidated schema, hook inventory, file contracts, dependency intent map) and a UX/brand spec (color tokens, fonts, logo asset names, nav trees, page archetypes, exact table columns per view).
-5. **E — Package & freeze:** assembles `handoff-package/` at the legacy repo root (docs + runner permission config + command rules + brand image/font assets + README with kickoff prompts); the legacy repo is committed and frozen as reference-only.
-6. **F — New-project execution:** copy the package into the new repo, then one kickoff line — attended (milestone-by-milestone approvals) or unattended (automated gates: lint, unit + integration tests, builds, commit-per-gate; hard stops remain for schema review, credentials, real data, deployment).
-7. **G — Retrospective:** new lessons are appended to `LESSONS_LEARNED.md` and synced back to this repo.
 
 The package's `claude/` folder ships a runner permission allowlist and command-shape rules that eliminate tool-approval stalls during unattended runs (see `templates/handoff-package-skeleton/`).
 
@@ -280,3 +303,7 @@ Archived output snapshots:
 2. Review `MASTER_CONTEXT.md` and `DRIFT_CHECK_REPORT.md`.
 3. Approve Phase 2 plan.
 4. Re-run pre-implementation drift check before any changes.
+
+---
+
+Built by [Basil Barnaby](https://github.com/BasilBarnabyCa) · [Grafite AI](https://grafite.ai) — AI-enablement consulting, with AI-accelerated legacy migration as the flagship offer. This framework is free to use (MIT); if you want it run *for* you, [get in touch](https://grafite.ai).
