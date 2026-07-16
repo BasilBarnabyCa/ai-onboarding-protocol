@@ -25,6 +25,7 @@ Use this template to generate `/ai-onboarding/output/DRIFT_CHECK_REPORT.md`.
 5. Evidence freshness: [pass|fail] - [text goes here]
 6. Platform alignment: [pass|fail] - [text goes here]
 7. Profile alignment (brownfield): [pass|fail] - [text goes here]
+8. Context-budget check: [pass|fail] - [text goes here]
 
 ## Assumption Risk
 

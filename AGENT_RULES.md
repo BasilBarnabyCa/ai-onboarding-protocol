@@ -74,6 +74,18 @@ Effective role posture (default or user-provided optional role profile) remains 
 
 ---
 
+## Subagent Model-Tier Routing (Migration Workflow, Phase D)
+
+When Phase D of the Legacy Migration Workflow (`/ai-onboarding/docs/protocols/POST_ONBOARDING_MIGRATION_PLAYBOOK.md`) spawns parallel subagents to extract legacy detail, route each by task type:
+
+- **haiku** — file-extraction / legacy-code-reading subagents (routes, migrations, hooks, importers, sass/css variables, layout partials).
+- **sonnet** — cross-consistency checks, evidence-quality scoring.
+- **opus** — Phase A disposition-table decisions (Maintain/Upgrade/Rebuild/Retire), Phase B target-stack architecture mapping.
+
+Pass `model` explicitly on every subagent call — never omit it. An omitted `model` tends to default upward, not to haiku.
+
+---
+
 ## Adaptive Intake Constraints
 
 - Ask required onboarding questions sequentially (one question at a time).
@@ -189,6 +201,7 @@ Minimum report content:
 - Constraint alignment check (do-not-break rules, approvals, boundaries)
 - Evidence freshness check (stale or missing sources)
 - Assumption risk check (low-confidence assumptions that affect outcomes)
+- Context-budget check (session context usage vs. a threshold, e.g. ~40% of window used → require a compact/handoff artifact before continuing to the next phase; enforced via the Enforcement Clause below, not a separate mechanism)
 - Go/No-Go decision with rationale
 - Use `/ai-onboarding/templates/DRIFT_CHECK_TEMPLATE.md` as the default report structure.
 
@@ -201,3 +214,9 @@ Minimum report content:
 - If ambiguity exists, pause and request clarification before proceeding.
 - If repository or context state changes mid-thread, perform a re-alignment check using `/ai-onboarding/docs/protocols/ARCHITECTURE_ALIGNMENT.md` before continuing.
 - Do not regenerate `/ai-onboarding/output/AI_ONBOARDING_SUMMARY.md` unless `/ai-onboarding/output/MASTER_CONTEXT.md` has materially changed and explicit approval is given.
+
+---
+
+## Skill-Description Budget (Forward Note, Not Yet Applicable)
+
+This repo's `cmd:` triggers (`commands/commands.yaml` + regex match) are not Claude Code skills — no skill packaging exists here today, so no action is needed now. If `cmd:onboard`, `cmd:drift-audit`, or any other command is ever packaged as an installable skill, keep each skill description under ~200 characters (the settled threshold from the token-optimization audit — skill descriptions load into every message's menu, so cost scales with however many skills a given user/environment has installed, not a fixed number this repo controls).

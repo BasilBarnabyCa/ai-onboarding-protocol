@@ -180,6 +180,7 @@ Minimum checks:
 - Constraint and approval alignment
 - Assumption risk review
 - Evidence freshness review
+- Context-budget check (session context usage vs. a threshold, e.g. ~40% of window used → require a compact/handoff artifact before continuing to the next phase)
 - Drift classification (`none`, `minor`, `major`)
 - Go/No-Go decision
 - Threshold check against onboarding scoring policy (`>=90` standard, `>=92` high-impact)
@@ -246,3 +247,11 @@ Phase 1 is complete only when all are true:
 - `AI_ONBOARDING_SUMMARY.md` generated or validated
 - `DRIFT_CHECK_REPORT.md` generated or updated
 - Alignment confirmation provided
+
+---
+
+## Open Question: Blast-Radius / Dependency-Graph Tooling
+
+Blast-radius or dependency-graph tooling (e.g. code-review-graph style scoped reads) could reduce token cost for day-to-day doc drafting by reading only the affected subgraph instead of the full repo. But `docs/LESSONS_LEARNED.md` item #6 shows exhaustive reading caught two real data-corrupting bugs and correctly downgraded a feared risk ("26 observers" turned out to be one trivial pattern) — neither would have surfaced from a scoped read.
+
+**Recommendation:** do not blanket-adopt. Consider scoped reads only for Phase D handoff/doc drafting (low blast-radius, well-understood output). Keep Phase B's read-everything approach for port-hazard identification unchanged — that is precisely where scoped reads would have hidden the real risks found in practice.
