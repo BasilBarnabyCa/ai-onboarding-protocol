@@ -42,6 +42,7 @@ This framework wasn't designed on a whiteboard — it was extracted from real AI
 ## What's in the box
 
 - **Adaptive onboarding** with a low question budget: evidence-backed context generation for brownfield and greenfield projects, with capability profiles and platform detection.
+- **Domain profile registry**: pluggable brownfield overlays keyed off repo evidence. `software-brownfield` is active today; `cybersecurity-brownfield`, `data-brownfield`, and `ops-brownfield` are registered but planned (no artifact yet) — see `profiles/PROFILE_REGISTRY.md`.
 - **Readiness gates**: work is scored; standard execution requires `>=90`, high-impact work `>=92` with drift `none`. Below threshold, implementation is blocked — no exceptions.
 - **Drift audits**: mandatory self-critique on a cadence, with `major` drift halting all progression.
 - **Strict command mode**: `cmd:`-prefixed shortcuts (`cmd:onboard`, `cmd:plan:`, `cmd:impl`, `cmd:drift-audit`, `cmd:reanchor`) that never hijack normal conversation.
@@ -235,6 +236,8 @@ Before using it, read `docs/LESSONS_LEARNED.md` — a living friction→fix log 
 The package's `claude/` folder ships a runner permission allowlist and command-shape rules that eliminate tool-approval stalls during unattended runs (see `templates/handoff-package-skeleton/`).
 
 ## Software Brownfield Overlay
+
+The only active domain profile today (`cybersecurity-brownfield`, `data-brownfield`, `ops-brownfield` are registered as planned in `profiles/PROFILE_REGISTRY.md` but have no artifact yet).
 
 When mode is `brownfield` and target workspace is an existing software project, apply:
 

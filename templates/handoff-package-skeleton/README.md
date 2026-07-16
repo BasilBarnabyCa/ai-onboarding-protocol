@@ -8,6 +8,8 @@ This skeleton defines the standard handoff-package layout for ANY legacy-project
 4. Replace `PACKAGE_README_TEMPLATE.md` placeholders and save as the package's `README.md`.
 5. Adapt `claude/settings.json` allow-list to the target stack's CLIs (deny list stays).
 
+The shipped `claude/settings.json` already encodes three settled permission-prompt fixes from `docs/LESSONS_LEARNED.md` (items #3, #4): plain `git` from repo root is allowed (no bare `cd <dir> && git ...` — that pattern triggers an "untrusted hooks" prompt regardless of allowlist), `git check-ignore` is allowed for `.gitignore` verification, and `Read(**/.env.production)` stays denied while local `.env` reads stay allowed (JSON has no comment syntax, so the rationale lives here rather than inline in the file — do not strip these entries when adapting the allow-list per stack).
+
 ```
 handoff-package/                   ← PROJECT-SPECIFIC ONLY; the framework stays in ai-onboarding/
 ├── README.md                      ← from PACKAGE_README_TEMPLATE.md (filled)

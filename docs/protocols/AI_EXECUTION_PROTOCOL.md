@@ -2,7 +2,7 @@
 
 # AI Execution Protocol
 
-This document defines the exact commands to use when working with Codex from `/ai-onboarding`.
+This document defines the exact commands to use when working with an AI coding assistant (Codex, Claude Code, ChatGPT, or other) from `/ai-onboarding`.
 
 All generated onboarding artifacts must be written to `/ai-onboarding/output`.
 If `/ai-onboarding/output` is missing, create it first.

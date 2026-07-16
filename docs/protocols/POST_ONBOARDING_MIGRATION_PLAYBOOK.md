@@ -8,6 +8,8 @@
 
 **End state:** A frozen legacy repo with committed audit artifacts, plus a single self-contained handoff document the new project's AI ingests to start the rebuild.
 
+**Context budget:** this workflow (Phases A–G) is exactly where the Gate A/B context-budget check (`AGENT_RULES.md` → Self-Critique and Drift Control) earns its keep — long single-thread sessions accumulate context fast. Trigger the check whenever a phase's single thread crosses the threshold, not only at the two formal gates.
+
 ---
 
 ## Phase A — Disposition Decision
@@ -84,7 +86,7 @@ Create one **fully self-contained** markdown file (the new AI must need nothing 
 
 **Hard rules:** no secrets, no credentials, no real personal data, no internal IPs. Mark every inference `ASSUMPTION` and every gap `UNKNOWN`.
 
-**Companion documents (same phase — see template how-to-use step 7):** generate `LEGACY_DETAIL_APPENDIX.md` (endpoints, consolidated schema, hook inventory, file-format contracts, dependency intent map, nav/pages) and `UX_BRAND_SPEC.md` (logo/font asset names, color tokens, typography, shell, nav trees, page archetypes, exact table columns per view). These make unattended runs self-sufficient — without them the new AI stops to request legacy repo access at the schema, import, and UI milestones.
+**Companion documents (same phase — see template how-to-use step 7):** generate `LEGACY_DETAIL_APPENDIX.md` (endpoints, consolidated schema, hook inventory, file-format contracts, dependency intent map, nav/pages) and `UX_BRAND_SPEC.md` (logo/font asset names, color tokens, typography, shell, nav trees, page archetypes, exact table columns per view). These make unattended runs self-sufficient — without them the new AI stops to request legacy repo access at the schema, import, and UI milestones. Extraction runs via parallel read-only subagents (see `HANDOFF_TEMPLATE.md` step 7) — route each by model tier per `AGENT_RULES.md` → Subagent Model-Tier Routing. On the tension between scoped/blast-radius reads and this phase's read-everything extraction, see `ARCHITECTURE_ALIGNMENT.md` → Open Question: Blast-Radius / Dependency-Graph Tooling.
 
 ---
 
@@ -102,7 +104,7 @@ Create one **fully self-contained** markdown file (the new AI must need nothing 
 
 1. Copy the handoff document into the new repo as `docs/HANDOFF.md` (plus any detail appendix and the user's `COMMIT_CONVENTIONS.md` at root).
 2. Tell the AI: *"Ingest docs/HANDOFF.md and start."* Section 0 of the handoff drives everything from there.
-3. **For unattended runs, configure the harness before the long run** — otherwise it stalls on tool-approval prompts no matter what the handoff says: create the runner's project permission config (`.claude/settings.json` — example in `HANDOFF_TEMPLATE.md` §14) allowing routine dev commands and denying `.env` reads, `git push`, and recursive deletes; and add the command-shape rules to the project memory file (no `cd <dir> && git ...`; use `npm --prefix` for subpackages).
+3. **For unattended runs, configure the harness before the long run** — otherwise it stalls on tool-approval prompts no matter what the handoff says: create the runner's project permission config (`.claude/settings.json` — example in `HANDOFF_TEMPLATE.md` §14) allowing routine dev commands and denying `.env` reads, `git push`, and recursive deletes; and add the command-shape rules to the project memory file (no `cd <dir> && git ...`; use `npm --prefix` for subpackages). The shipped `templates/handoff-package-skeleton/claude/settings.json` already encodes these fixes (see its `README.md`) — new migrations don't need to rediscover them.
 4. Optionally copy the `ai-onboarding/` framework and run `cmd:onboard` as **greenfield**, using the handoff as the project brief input.
 5. Work milestone-by-milestone with a user checkpoint between milestones (encoded in §0/§9 of the handoff).
 6. Validation principle: **the running legacy app is the only behavioral spec** (legacy repos typically have no tests) — verify side-by-side per module.
